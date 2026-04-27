@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunde Surface Cleaning | Restore Your Seattle Property’s Curb Appeal</title>
+    <meta name="description" content="Premium pressure washing and surface cleaning in Seattle. Professional soft washing, driveway restoration, and roof cleaning. Get your free quote today!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png?v=1">
+    <link rel="shortcut icon" type="image/png" href="favicon.png?v=1">
+
+    <style>
+        :root {
+            /* Brand Identity Colors */
+            --brand-navy: #002D72;
+            --brand-azure: #0077C8;
+            --brand-sky: #4BBBEB;
+            --brand-white: #FFFFFF;
+            --brand-light-bg: #F0F7FC; /* Very light azure for backgrounds */
+            
+            /* Pico Overrides & Design Tokens */
+            --primary: var(--brand-azure);
+            --primary-hover: var(--brand-navy);
+            --secondary: var(--brand-light-bg);
+            --background: var(--brand-white);
+            --text-main: #1a1a1a;
+            
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --headings-font-family: 'Montserrat', sans-serif;
+            --background-color: var(--background);
+            --color: var(--text-main);
+            --primary-focus: rgba(0, 119, 200, 0.125);
+            --spacing: 1rem;
+        }
+
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-main);
+            background-color: var(--background);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--brand-navy);
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light-bg) 100%);
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--brand-azure);
+            background: linear-gradient(to bottom, var(--brand-azure), var(--brand-navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,45,114,0.1);
+            border: 1px solid var(--brand-light-bg);
+        }
+
+        /* CTA Buttons */
+        button.cta, a.cta {
+            background: var(--brand-azure);
+            background: linear-gradient(to bottom, var(--brand-azure), var(--brand-navy));
+            border: none;
+            color: white;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            min-height: 44px;
+            box-shadow: 0 4px 12px rgba(0,45,114,0.2);
+        }
+
+        button.cta:hover, a.cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,45,114,0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            padding: 2.5rem 0;
+            background: #fff;
+            text-align: center;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .testimonial-card {
+            font-style: italic;
+            font-size: 0.95rem;
+            padding: 1.5rem;
+            background: var(--brand-light-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--brand-sky);
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        article.service-card {
+            border: 1px solid var(--brand-light-bg);
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+            background: white;
+        }
+
+        article.service-card:hover {
+            box-shadow: 0 8px 20px rgba(0,45,114,0.08);
+            transform: translateY(-5px);
+            border-color: var(--brand-sky);
+        }
+
+        article.service-card h3 {
+            color: var(--brand-azure);
+        }
+
+        /* Before/After Slider */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .comparison-slider .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .comparison-slider .before {
+            background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1000');
+            z-index: 1;
+        }
+
+        .comparison-slider .after {
+            background-image: url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=1000');
+            width: 50%;
+            z-index: 2;
+            border-right: 4px solid var(--brand-white);
+        }
+
+        .slider-input {
+            position: absolute;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            outline: none;
+            margin: 0;
+            z-index: 3;
+            cursor: ew-resize;
+        }
+
+        /* How it Works */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .process-step span {
+            font-size: 3rem;
+            color: var(--brand-azure);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ */
+        details {
+            border-bottom: 1px solid var(--brand-light-bg);
+            padding: 1rem 0;
+        }
+
+        details summary {
+            font-weight: 600;
+            color: var(--brand-navy);
+        }
+
+        /* Sticky Footer Call Button */
+        .sticky-call {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-call {
+                display: block;
+                left: 20px;
+                right: 20px;
+                bottom: 10px;
+            }
+            .sticky-call a {
+                width: 100%;
+                box-shadow: 0 4px 15px rgba(0,45,114,0.3);
+            }
+        }
+
+        footer {
+            padding: 5rem 0;
+            background: var(--brand-navy);
+            color: var(--brand-white);
+            margin-top: 4rem;
+        }
+
+        footer h4, footer p, footer strong {
+            color: var(--brand-white);
+        }
+
+        footer a:not(.cta) {
+            color: var(--brand-sky);
+            text-decoration: none;
+        }
+
+        footer a:not(.cta):hover {
+            color: var(--brand-white);
+            text-decoration: underline;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        /* Utils */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .accent-text { color: var(--brand-azure); }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <h1>Restore Your Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
+                    <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. Choose from our tiered cleaning packages—from eco-friendly high-pressure rinses to professional-grade pre and post-treatment restorations.</p>
+                    <div class="stars">★★★★★ <span style="color: var(--text-main); font-size: 1rem;">(4.9/5 from 200+ Seattle Locals)</span></div>
+                </div>
+                <div class="hero-form">
+                    <h3 class="text-center">Get My Free Quote</h3>
+                    <form action="#" method="POST">
+                        <input type="text" name="name" placeholder="Full Name" required aria-label="Full Name">
+                        <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
+                        <select name="service" required aria-label="Service Package">
+                            <option value="" disabled selected>Select Cleaning Package</option>
+                            <option value="basic">Basic Wash (Water Only)</option>
+                            <option value="standard">Standard Wash (Pre-Treatment)</option>
+                            <option value="premium">Premium Wash (Full Protection)</option>
+                        </select>
+                        <button type="submit" class="cta">Send My Quote Request</button>
+                    </form>
+                    <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">⚡ Response in 15 mins or less</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    "Sunde's team made my driveway look brand new. Excellent service here in Bellevue!"
+                    <br><strong>— Mark R., Bellevue</strong>
+                </div>
+                <div class="testimonial-card">
+                    "Finally, a service that understands Seattle moss. The house wash was perfect."
+                    <br><strong>— Jane L., Queen Anne</strong>
+                </div>
+                <div class="testimonial-card">
+                    "Great price and even better results. My roof looks 10 years younger."
+                    <br><strong>— Sam T., Ballard</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container" id="services" style="padding-top: 4rem;">
+        <h2 class="text-center">Cleaning Packages</h2>
+        <div class="services-grid">
+            <article class="service-card">
+                <header><h3>Basic Wash</h3></header>
+                <p><strong>High-Pressure Rinse</strong><br>Effective high-pressure water cleaning to blast away loose surface dirt and debris. Best for light maintenance on a budget.</p>
+                <ul>
+                    <li>Eco-friendly (Water only)</li>
+                    <li>Surface-level dirt removal</li>
+                </ul>
+                <footer><a href="tel:2067398507" class="outline">Get Basic Quote</a></footer>
+            </article>
+            <article class="service-card" style="border: 2px solid var(--brand-azure);">
+                <header><h3 style="margin-bottom: 0;">Standard Wash</h3><small style="color: var(--brand-azure); font-weight: 700;">MOST POPULAR</small></header>
+                <p><strong>Pre-Cleaning Treatment</strong><br>We apply a professional-grade biodegradable solution to kill moss and loosen deep grime before safely washing it away.</p>
+                <ul>
+                    <li>Kills organic growth at root</li>
+                    <li>Safer low-pressure wash</li>
+                    <li>Longer lasting results</li>
+                </ul>
+                <footer><a href="tel:2067398507" class="cta button">Get Standard Quote</a></footer>
+            </article>
+            <article class="service-card">
+                <header><h3>Premium Wash</h3></header>
+                <p><strong>Full Surface Restoration</strong><br>Our ultimate treatment. Includes the Standard Wash plus a post-cleaning brightener that leaves a protective barrier.</p>
+                <ul>
+                    <li>Eliminates wash lines</li>
+                    <li>2-Year Algae-Free Guarantee</li>
+                    <li>Maximum curb appeal</li>
+                </ul>
+                <footer><a href="tel:2067398507" class="outline">Get Premium Quote</a></footer>
+            </article>
+        </div>
+    </section>
+
+    <!-- Before/After Slider -->
+    <section class="container">
+        <h2 class="text-center">Real Results</h2>
+        <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> difference</p>
+        <div class="comparison-slider">
+            <div class="image before"></div>
+            <div class="image after" id="after-img"></div>
+            <input type="range" min="0" max="100" value="50" class="slider-input" id="slider" aria-label="Before and after slider">
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="container" style="padding: 4rem 0;">
+        <h2 class="text-center">How It Works</h2>
+        <div class="process-grid">
+            <div class="process-step">
+                <span>📋</span>
+                <h4>1. Request Quote</h4>
+                <p>Fill out our form or call us. We provide instant estimates based on property size.</p>
+            </div>
+            <div class="process-step">
+                <span>📅</span>
+                <h4>2. Schedule</h4>
+                <p>Pick a time that works for you. We operate 7 days a week across the Greater Seattle Area.</p>
+            </div>
+            <div class="process-step">
+                <span>✨</span>
+                <h4>3. Transformation</h4>
+                <p>Watch years of dirt vanish. 100% Satisfaction Guarantee or you don't pay a cent.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container" style="margin-bottom: 4rem;">
+        <h2 class="text-center">Frequently Asked Questions</h2>
+        <details>
+            <summary>Why should I choose Pre-Cleaning over just Water Pressure?</summary>
+            <p>Water pressure alone only removes surface dirt. Our Standard and Premium packages use specialized pre-cleaning solutions that kill moss and algae at the root. This ensures a deeper clean and prevents organic growth from returning just weeks later.</p>
+        </details>
+        <details>
+            <summary>What is included in the Post-Cleaning treatment?</summary>
+            <p>Included in our Premium Wash, the post-treatment is a brightening agent that eliminates "tiger stripes" (uneven wash lines) and leaves a residual barrier on the surface. This protective layer can keep your surfaces clean for up to 2 years.</p>
+        </details>
+        <details>
+            <summary>Is the high pressure safe for my property?</summary>
+            <p>While our Basic Wash uses high pressure for flat surfaces like concrete, our Standard and Premium packages allow us to use a 'Soft Wash' technique. Because the chemicals do the heavy lifting, we can use lower pressure, which is much safer for your siding, roof, and delicate surfaces.</p>
+        </details>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <h4>Sunde Surface Cleaning</h4>
+            <p>Serving Seattle, WA and the Greater Puget Sound Area</p>
+            <p style="margin: 2rem 0;">
+                <strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a><br>
+                <strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a>
+            </p>
+            <a href="tel:2067398507" class="cta button" style="padding: 1.2rem 2.5rem; display: inline-block;">Call Now for a Free Estimate</a>
+            <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.6;">
+                &copy; 2026 Sunde Surface Cleaning. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="sticky-call">
+        <a href="tel:2067398507" class="cta button">📞 Click to Call: 206-739-8507</a>
+    </div>
+
+    <script>
+        // Before/After Slider Logic
+        const slider = document.getElementById('slider');
+        const afterImg = document.getElementById('after-img');
+
+        slider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            afterImg.style.width = value + '%';
+        });
+    </script>
+</body>
+</html>
