@@ -304,11 +304,16 @@
         }
 
         .features-cell {
-            flex-grow: 1;
-            text-align: left;
             padding: 1.5rem;
-            height: 320px; /* Consistent height for features */
+            height: 320px; /* Fixed height for perfect alignment */
             background-color: #FFFFFF;
+            text-align: left;
+        }
+
+        .features-cell ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .features-cell li {
@@ -316,6 +321,9 @@
             font-size: 0.85rem;
             border-bottom: 1px solid #f0f0f0;
             padding-bottom: 0.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
 
         .features-cell li:last-child {
@@ -328,6 +336,18 @@
             font-size: 0.9rem;
             font-weight: 500;
             line-height: 1.6;
+        }
+
+        .tagline-cell {
+            background-color: #fff;
+            height: 100px; /* Fixed height for perfect alignment */
+            font-style: italic;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-bottom: 1px solid #bdbdbd;
         }
 
         .tier-footer {
@@ -406,6 +426,11 @@
             padding: 3rem 0;
         }
 
+        .process-step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
         .process-step span {
             font-size: 3rem;
             color: var(--brand-azure);
@@ -453,7 +478,7 @@
             margin-top: 4rem;
         }
 
-        footer h4, footer p, footer strong {
+        footer h3, footer p, footer strong {
             color: var(--brand-white);
         }
 
@@ -475,15 +500,15 @@
         .text-center { text-align: center; }
         .mb-2 { margin-bottom: 2rem; }
         .accent-text { color: var(--brand-azure); }
-    </style>
-</head>
-<body>
+        </style>
+        </head>
+        <body>
 
-    <header role="banner" class="visually-hidden">
+        <header role="banner" class="visually-hidden">
         <h1>Sunde Surface Cleaning - Seattle's Premier Exterior Cleaning</h1>
-    </header>
+        </header>
 
-    <main>
+        <main>
         <!-- Hero Section -->
         <section class="hero" aria-label="Introduction and Quote Request">
             <div class="container">
@@ -499,13 +524,13 @@
                         <form action="#" method="POST" aria-label="Quote Request Form">
                             <fieldset style="border: none; padding: 0; margin: 0;">
                                 <legend class="visually-hidden">Contact Information and Service Selection</legend>
-                                
+
                                 <label for="hero-name" class="visually-hidden">Full Name</label>
                                 <input type="text" id="hero-name" name="name" placeholder="Full Name" required>
-                                
+
                                 <label for="hero-phone" class="visually-hidden">Phone Number</label>
                                 <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required>
-                                
+
                                 <label for="hero-service" class="visually-hidden">Select Cleaning Package</label>
                                 <select id="hero-service" name="service" required>
                                     <option value="" disabled selected>Select Cleaning Package</option>
@@ -513,7 +538,7 @@
                                     <option value="tier2">The Pre + Wash (Tier 2)</option>
                                     <option value="tier3">The Full Treatment (Tier 3)</option>
                                 </select>
-                                
+
                                 <button type="submit" class="cta">Get My Free Quote</button>
                             </fieldset>
                         </form>
@@ -523,152 +548,165 @@
             </div>
         </section>
 
-    <!-- Badge Bar -->
-    <section class="badge-bar" aria-label="Trust Badges">
-        <div class="container badge-grid">
-            <div class="badge-item"><span>⭐</span> 5.0 Google Rating</div>
-            <div class="badge-item"><span>🛡️</span> Licensed & Insured</div>
-            <div class="badge-item"><span>💯</span> 100% Satisfaction Guarantee</div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="container" id="services" style="padding-top: 4rem;">
-        <h2 class="text-center">Pricing Packages</h2>
-        <p class="text-center">Based on the original service calculator tiers</p>
-        
-        <div class="pricing-table">
-            <!-- Tier 1 -->
-            <div class="tier-column">
-                <div class="tier-cell tier-header tier-1-header">
-                    <small>TIER 1</small>
-                    <h3 id="tier1-name">The Wash</h3>
-                    <p>"Quick refresh — gets the surface clean."</p>
-                </div>
-                <div class="label-row" aria-hidden="true">Pricing</div>
-                <div class="tier-cell price-cell">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$0.38 <span style="font-size: 0.9rem;">/ sq ft</span></div>
-                    <small>($150 minimum)</small>
-                </div>
-                <div class="label-row" aria-hidden="true">What's Included</div>
-                <div class="tier-cell features-cell">
-                    <ul aria-labelledby="tier1-name">
-                        <li>✓ High-Pressure Wash</li>
-                        <li>✓ Standard Rinse</li>
-                        <li>✓ Eco-Friendly (Water Only)</li>
-                        <li>—</li>
-                        <li>—</li>
-                    </ul>
-                </div>
-                <div class="label-row" aria-hidden="true">Best For</div>
-                <div class="tier-cell best-for-cell">
-                    Light dirt / Regular maintenance<br>
-                    Light surface refresh
-                </div>
-                <div class="tier-cell tier-footer">
-                    <a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a>
-                </div>
+        <!-- Badge Bar -->
+        <section class="badge-bar" aria-label="Trust Badges">
+            <div class="container badge-grid">
+                <div class="badge-item"><span>⭐</span> 5.0 Google Rating</div>
+                <div class="badge-item"><span>🛡️</span> Licensed & Insured</div>
+                <div class="badge-item"><span>💯</span> 100% Satisfaction Guarantee</div>
             </div>
+        </section>
 
-            <!-- Tier 2 -->
-            <div class="tier-column">
-                <div class="tier-cell tier-header tier-2-header">
-                    <small>TIER 2 — MOST POPULAR</small>
-                    <h3 id="tier2-name">The Pre + Wash</h3>
-                    <p>"Our most popular — handles moss the right way."</p>
-                </div>
-                <div class="label-row" aria-hidden="true">Pricing</div>
-                <div class="tier-cell price-cell">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$0.50 <span style="font-size: 0.9rem;">/ sq ft</span></div>
-                    <small>($200 minimum)</small>
-                </div>
-                <div class="label-row" aria-hidden="true">What's Included</div>
-                <div class="tier-cell features-cell">
-                    <ul aria-labelledby="tier2-name">
-                        <li>✓ Professional Pre-Treatment</li>
-                        <li>✓ Moss & Algae Root Kill</li>
-                        <li>✓ Safer Soft-Wash Method</li>
-                        <li>✓ Tier 1 Included</li>
-                        <li>—</li>
-                    </ul>
-                </div>
-                <div class="label-row" aria-hidden="true">Best For</div>
-                <div class="tier-cell best-for-cell">
-                    Typical Seattle moss<br>
-                    Mildew & buildup<br>
-                    First-time deep clean
-                </div>
-                <div class="tier-cell tier-footer">
-                    <a href="tel:2067398507" class="button primary full-width">Get Tier 2 Estimate</a>
-                </div>
-            </div>
+        <!-- Services Section -->
+        <section class="container" id="services" style="padding-top: 4rem;">
+            <h2 class="text-center">SUNDE SURFACE CLEANING — Pricing Tiers</h2>
+            <p class="text-center">Three packages — same quality work, different levels of treatment</p>
 
-            <!-- Tier 3 -->
-            <div class="tier-column">
-                <div class="tier-cell tier-header tier-3-header">
-                    <small>TIER 3</small>
-                    <h3 id="tier3-name">The Full Treatment</h3>
-                    <p>"Clean now. Stays clean longer."</p>
-                </div>
-                <div class="label-row" aria-hidden="true">Pricing</div>
-                <div class="tier-cell price-cell">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$0.55 <span style="font-size: 0.9rem;">/ sq ft</span></div>
-                    <small>($250 minimum)</small>
-                </div>
-                <div class="label-row" aria-hidden="true">What's Included</div>
-                <div class="tier-cell features-cell">
-                    <ul aria-labelledby="tier3-name">
-                        <li>✓ Post-Cleaning Brightener</li>
-                        <li>✓ Residual Protection Barrier</li>
-                        <li>✓ 2-Year Algae-Free Guarantee</li>
-                        <li>✓ Tier 2 Included</li>
-                        <li>✓ Long-lasting protection</li>
-                    </ul>
-                </div>
-                <div class="label-row" aria-hidden="true">Best For</div>
-                <div class="tier-cell best-for-cell">
-                    Heavy moss<br>
-                    Long-lasting protection<br>
-                    Set & forget for the year
-                </div>
-                <div class="tier-cell tier-footer">
-                    <a href="tel:2067398507" class="button outline full-width">Get Tier 3 Estimate</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Instant Quote Calculator -->
-        <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;" aria-labelledby="calc-title">
-            <h2 id="calc-title" class="text-center">📐 Instant Quote Calculator</h2>
-            <p class="text-center">See your estimated price based on square footage.</p>
-            
-            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                <form onsubmit="return false;">
-                    <label for="sqft-input">Estimated Square Footage:</label>
-                    <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500">
-                </form>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;" aria-live="polite">
-                    <div>
-                        <small id="label-tier1">TIER 1</small>
-                        <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier1">$190.00</div>
+            <div class="pricing-table">
+                <!-- Tier 1 -->
+                <div class="tier-column">
+                    <div class="tier-cell tier-header tier-1-header">
+                        <small>TIER 1</small>
+                        <h3 id="tier1-name">The Wash</h3>
                     </div>
-                    <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
-                        <small id="label-tier2">TIER 2</small>
-                        <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);" aria-labelledby="label-tier2">$250.00</div>
+                    <div class="label-row" aria-hidden="true">Pricing</div>
+                    <div class="tier-cell price-cell">
+                        <div style="font-size: 1.5rem; font-weight: 700;">$0.38</div>
+                        <div style="font-size: 0.9rem;">per square foot</div>
+                        <small>$150 minimum</small>
                     </div>
-                    <div>
-                        <small id="label-tier3">TIER 3</small>
-                        <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier3">$275.00</div>
+                    <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
+                    <div class="tier-cell features-cell">
+                        <ul aria-labelledby="tier1-name">
+                            <li>✅  Pressure wash</li>
+                            <li>✅  Standard rinse</li>
+                            <li>➖️</li>
+                            <li>➖️</li>
+                            <li>➖️</li>
+                            <li>➖️</li>
+                        </ul>
+                    </div>
+                    <div class="label-row" aria-hidden="true">BEST FOR</div>
+                    <div class="tier-cell best-for-cell">
+                        Light dirt<br>
+                        Regular maintenance<br>
+                        Light surface refresh
+                    </div>
+                    <div class="tier-cell tagline-cell">
+                        "Quick refresh — gets the surface clean."
+                    </div>
+                    <div class="tier-cell tier-footer">                        <a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a>
                     </div>
                 </div>
-                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
-                <div class="text-center" style="margin-top: 2rem;">
-                    <a href="tel:2067398507" class="cta button" style="width: 100%;">Click to Lock in This Price</a>
+
+                <!-- Tier 2 -->
+                <div class="tier-column">
+                    <div class="tier-cell tier-header tier-2-header">
+                        <small>⭐ TIER 2 ⭐</small>
+                        <h3 id="tier2-name">The Pre + Wash</h3>
+                        <div style="font-size: 0.75rem; font-weight: 800; margin-top: 0.5rem; color: #fff;">MOST POPULAR</div>
+                    </div>
+                    <div class="label-row" aria-hidden="true">Pricing</div>
+                    <div class="tier-cell price-cell">
+                        <div style="font-size: 1.5rem; font-weight: 700;">$0.50</div>
+                        <div style="font-size: 0.9rem;">per square foot</div>
+                        <small>$200 minimum</small>
+                    </div>
+                    <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
+                    <div class="tier-cell features-cell">
+                        <ul aria-labelledby="tier2-name">
+                            <li>✅  Pressure wash</li>
+                            <li>✅  Standard rinse</li>
+                            <li>✅  Eco-friendly pre-treat</li>
+                            <li>✅  Dwell time for moss</li>
+                            <li>➖️</li>
+                            <li>➖️</li>
+                        </ul>
+                    </div>
+                    <div class="label-row" aria-hidden="true">BEST FOR</div>
+                    <div class="tier-cell best-for-cell">
+                        Typical Seattle moss<br>
+                        Mildew & buildup<br>
+                        First-time deep clean
+                    </div>
+                    <div class="tier-cell tagline-cell">
+                        "Our most popular — handles moss the right way."
+                    </div>                    <div class="tier-cell tier-footer">
+                        <a href="tel:2067398507" class="button primary full-width">Get Tier 2 Estimate</a>
+                    </div>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="tier-column">
+                    <div class="tier-cell tier-header tier-3-header">
+                        <small>TIER 3</small>
+                        <h3 id="tier3-name">The Full Treatment</h3>
+                    </div>
+                    <div class="label-row" aria-hidden="true">Pricing</div>
+                    <div class="tier-cell price-cell">
+                        <div style="font-size: 1.5rem; font-weight: 700;">$0.55</div>
+                        <div style="font-size: 0.9rem;">per square foot</div>
+                        <small>$250 minimum</small>
+                    </div>
+                    <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
+                    <div class="tier-cell features-cell">
+                        <ul aria-labelledby="tier3-name">
+                            <li>✅  Pressure wash</li>
+                            <li>✅  Standard rinse</li>
+                            <li>✅  Eco-friendly pre-treat</li>
+                            <li>✅  Dwell time for moss</li>
+                            <li>✅  Post-treatment inhibitor</li>
+                            <li>✅  Stays clean 2–3× longer</li>
+                        </ul>
+                    </div>
+                    <div class="label-row" aria-hidden="true">BEST FOR</div>
+                    <div class="tier-cell best-for-cell">
+                        Heavy moss<br>
+                        Long-lasting protection<br>
+                        Set & forget for the year
+                    </div>
+                    <div class="tier-cell tagline-cell">
+                        "Clean now. Stays clean longer."
+                    </div>                    <div class="tier-cell tier-footer">
+                        <a href="tel:2067398507" class="button outline full-width">Get Tier 3 Estimate</a>
+                    </div>
                 </div>
             </div>
         </section>
+
+    <!-- Instant Quote Calculator -->
+    <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;" aria-labelledby="calc-title">
+        <h2 id="calc-title" class="text-center">📐 INSTANT QUOTE — Type any square footage below</h2>
+
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <form onsubmit="return false;">
+                <label for="sqft-input">Square footage:</label>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500" style="flex-grow: 1;">
+                    <small style="color: #666; font-style: italic;">← change this number</small>
+                </div>
+            </form>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;" aria-live="polite">
+                <div>
+                    <small id="label-tier1">TIER 1 QUOTE</small>
+                    <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier1">$190.00</div>
+                </div>
+                <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                    <small id="label-tier2">TIER 2 QUOTE</small>
+                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);" aria-labelledby="label-tier2">$250.00</div>
+                </div>
+                <div>
+                    <small id="label-tier3">TIER 3 QUOTE</small>
+                    <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier3">$275.00</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="tel:2067398507" class="cta button" style="width: 100%;">Click to Lock in This Price</a>
+            </div>
+        </div>
+    </section>
 
         <!-- Before/After Slider -->
         <section class="container" aria-labelledby="reveal-title">
