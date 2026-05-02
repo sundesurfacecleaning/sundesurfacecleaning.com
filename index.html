@@ -101,11 +101,17 @@
         button.cta, a.cta, .button.primary {
             background: var(--brand-orange);
             border: none;
-            color: white;
+            color: var(--brand-navy); /* High contrast Navy on Orange (7.5:1) */
             font-weight: 700;
             transition: all 0.2s ease;
-            min-height: 44px;
+            min-height: 48px; /* Mobile touch target (WCAG recommends 44px) */
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             box-shadow: 0 4px 12px rgba(255,140,0,0.3);
+            text-decoration: none;
+            border-radius: 8px;
         }
 
         button.cta:hover, a.cta:hover, .button.primary:hover {
@@ -113,6 +119,57 @@
             box-shadow: 0 6px 15px rgba(255,140,0,0.4);
             filter: brightness(1.1);
             background: var(--brand-orange);
+            color: var(--brand-navy);
+        }
+
+        button.cta:focus-visible, a.cta:focus-visible, .button.primary:focus-visible, .button.outline:focus-visible {
+            outline: 3px solid var(--brand-navy);
+            outline-offset: 2px;
+        }
+
+        /* Outline Buttons (Tier 1 & 3) */
+        .button.outline {
+            background: transparent;
+            border: 2px solid var(--brand-azure);
+            color: var(--brand-azure);
+            font-weight: 700;
+            transition: all 0.2s ease;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .button.outline:hover {
+            background: var(--brand-azure);
+            color: var(--brand-white) !important; /* Force visibility on hover */
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Accessibility Utilities */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        input, select {
+            min-height: 48px; /* Mobile touch target */
+        }
+
+        small {
+            font-size: 0.875rem;
+            color: var(--brand-navy); /* Ensure accessible contrast for metadata */
+            font-weight: 500;
         }
 
         /* Badge Bar */
@@ -337,15 +394,21 @@
                 </div>
                 <div class="hero-form">
                     <h3 class="text-center">Get My Free Instant Estimate</h3>
-                    <form action="#" method="POST">
-                        <input type="text" name="name" placeholder="Full Name" required aria-label="Full Name">
-                        <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
-                        <select name="service" required aria-label="Service Package">
+                    <form action="#" method="POST" aria-label="Quote Request Form">
+                        <label for="hero-name" class="visually-hidden">Full Name</label>
+                        <input type="text" id="hero-name" name="name" placeholder="Full Name" required>
+                        
+                        <label for="hero-phone" class="visually-hidden">Phone Number</label>
+                        <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required>
+                        
+                        <label for="hero-service" class="visually-hidden">Select Cleaning Package</label>
+                        <select id="hero-service" name="service" required>
                             <option value="" disabled selected>Select Cleaning Package</option>
                             <option value="tier1">The Wash (Tier 1)</option>
                             <option value="tier2">The Pre + Wash (Tier 2)</option>
                             <option value="tier3">The Full Treatment (Tier 3)</option>
                         </select>
+                        
                         <button type="submit" class="cta">Get My Free Quote</button>
                     </form>
                     <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">Join 500+ Seattle homeowners who trust Sunde</p>
@@ -387,7 +450,7 @@
             <article class="service-card" style="border: 2px solid var(--brand-orange);">
                 <header>
                     <h3 style="margin-bottom: 0;">The Pre + Wash</h3>
-                    <small style="color: var(--brand-orange); font-weight: 700;">TIER 2 — MOSS & GRIME ELIMINATION</small>
+                    <small style="color: var(--brand-navy); font-weight: 700;">TIER 2 — MOSS & GRIME ELIMINATION</small>
                 </header>
                 <p><strong>$0.50 per sq ft</strong> ($200 minimum)</p>
                 <p><em>"Our most popular — handles moss the right way."</em></p>
@@ -420,26 +483,26 @@
     </section>
 
     <!-- Instant Quote Calculator -->
-    <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;">
-        <h2 class="text-center">📐 Instant Quote Calculator</h2>
+    <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;" aria-labelledby="calc-title">
+        <h2 id="calc-title" class="text-center">📐 Instant Quote Calculator</h2>
         <p class="text-center">See your estimated price based on square footage.</p>
         
         <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
             <label for="sqft-input">Estimated Square Footage:</label>
-            <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500" aria-label="Square Footage">
+            <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500">
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;" aria-live="polite">
                 <div>
-                    <small>TIER 1</small>
-                    <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);">$190.00</div>
+                    <small id="label-tier1">TIER 1</small>
+                    <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier1">$190.00</div>
                 </div>
                 <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
-                    <small>TIER 2</small>
-                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);">$250.00</div>
+                    <small id="label-tier2">TIER 2</small>
+                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);" aria-labelledby="label-tier2">$250.00</div>
                 </div>
                 <div>
-                    <small>TIER 3</small>
-                    <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);">$275.00</div>
+                    <small id="label-tier3">TIER 3</small>
+                    <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier3">$275.00</div>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
@@ -450,13 +513,13 @@
     </section>
 
     <!-- Before/After Slider -->
-    <section class="container">
-        <h2 class="text-center">The "Reveal"</h2>
+    <section class="container" aria-labelledby="reveal-title">
+        <h2 id="reveal-title" class="text-center">The "Reveal"</h2>
         <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> transformation</p>
         <div class="comparison-slider">
-            <div class="image before"></div>
-            <div class="image after" id="after-img"></div>
-            <input type="range" min="0" max="100" value="50" class="slider-input" id="slider" aria-label="Before and after slider">
+            <div class="image before" aria-hidden="true"></div>
+            <div class="image after" id="after-img" aria-hidden="true"></div>
+            <input type="range" min="0" max="100" value="50" class="slider-input" id="slider" aria-label="Before and after transformation slider. Slide left to see before, right to see after.">
         </div>
     </section>
 
@@ -533,7 +596,7 @@
                 <strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a>
             </p>
             <a href="tel:2067398507" class="cta button" style="padding: 1.2rem 2.5rem; display: inline-block;">Get My Free Instant Estimate</a>
-            <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.6;">
+            <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.8;">
                 &copy; 2026 Sunde Surface Cleaning. All rights reserved.
             </p>
         </div>
