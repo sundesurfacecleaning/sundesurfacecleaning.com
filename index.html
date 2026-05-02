@@ -24,6 +24,7 @@
             --brand-navy: #002D72;
             --brand-azure: #0077C8;
             --brand-sky: #4BBBEB;
+            --brand-orange: #FF8C00; /* Safety Orange for CTAs */
             --brand-white: #FFFFFF;
             --brand-light-bg: #F0F7FC; /* Very light azure for backgrounds */
             
@@ -97,21 +98,21 @@
         }
 
         /* CTA Buttons */
-        button.cta, a.cta {
-            background: var(--brand-azure);
-            background: linear-gradient(to bottom, var(--brand-azure), var(--brand-navy));
+        button.cta, a.cta, .button.primary {
+            background: var(--brand-orange);
             border: none;
             color: white;
             font-weight: 700;
             transition: all 0.2s ease;
             min-height: 44px;
-            box-shadow: 0 4px 12px rgba(0,45,114,0.2);
+            box-shadow: 0 4px 12px rgba(255,140,0,0.3);
         }
 
-        button.cta:hover, a.cta:hover {
+        button.cta:hover, a.cta:hover, .button.primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,45,114,0.3);
+            box-shadow: 0 6px 15px rgba(255,140,0,0.4);
             filter: brightness(1.1);
+            background: var(--brand-orange);
         }
 
         /* Trust Bar */
@@ -302,12 +303,13 @@
         <div class="container">
             <div class="hero-content">
                 <div>
-                    <h1>Restore Your Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
-                    <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. Choose from our tiered cleaning packages—from eco-friendly high-pressure rinses to professional-grade pre and post-treatment restorations.</p>
+                    <h1>Restore Your Seattle Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
+                    <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. We use professional "Soft-Wash" technology to safely remove moss and grime without damaging your property.</p>
                     <div class="stars">★★★★★ <span style="color: var(--text-main); font-size: 1rem;">(4.9/5 from 200+ Seattle Locals)</span></div>
+                    <p style="font-weight: 600; color: var(--brand-navy); margin-top: 1rem;">✅ Licensed & Insured | ⚡ 15-Min Response Guarantee</p>
                 </div>
                 <div class="hero-form">
-                    <h3 class="text-center">Get My Free Quote</h3>
+                    <h3 class="text-center">Get My Free Instant Estimate</h3>
                     <form action="#" method="POST">
                         <input type="text" name="name" placeholder="Full Name" required aria-label="Full Name">
                         <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
@@ -317,9 +319,9 @@
                             <option value="tier2">The Pre + Wash (Tier 2)</option>
                             <option value="tier3">The Full Treatment (Tier 3)</option>
                         </select>
-                        <button type="submit" class="cta">Send My Quote Request</button>
+                        <button type="submit" class="cta">Get My Free Quote</button>
                     </form>
-                    <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">⚡ Response in 15 mins or less</p>
+                    <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">Join 500+ Seattle homeowners who trust Sunde</p>
                 </div>
             </div>
         </div>
@@ -348,74 +350,55 @@
     <!-- Services Section -->
     <section class="container" id="services" style="padding-top: 4rem;">
         <h2 class="text-center">Cleaning Packages</h2>
-        <p class="text-center">Three packages — same quality work, different levels of treatment</p>
+        <p class="text-center">Transparent pricing — no hidden fees</p>
         <div class="services-grid">
             <article class="service-card">
                 <header>
                     <h3>The Wash</h3>
-                    <small>TIER 1</small>
+                    <small>TIER 1 — SURFACE REFRESH</small>
                 </header>
                 <p><strong>$0.38 per sq ft</strong> ($150 minimum)</p>
                 <p><em>"Quick refresh — gets the surface clean."</em></p>
                 <hr>
                 <strong>WHAT'S INCLUDED</strong>
                 <ul>
-                    <li>✓ Pressure wash</li>
-                    <li>✓ Standard rinse</li>
+                    <li>✓ High-Pressure Wash</li>
+                    <li>✓ Standard Rinse</li>
+                    <li>✓ Eco-Friendly (Water Only)</li>
                 </ul>
-                <hr>
-                <strong>BEST FOR</strong>
-                <ul>
-                    <li>Light dirt / Regular maintenance</li>
-                    <li>Light surface refresh</li>
-                </ul>
-                <footer><a href="tel:2067398507" class="outline">Get Tier 1 Quote</a></footer>
+                <footer><a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a></footer>
             </article>
-            <article class="service-card" style="border: 2px solid var(--brand-azure);">
+            <article class="service-card" style="border: 2px solid var(--brand-orange);">
                 <header>
                     <h3 style="margin-bottom: 0;">The Pre + Wash</h3>
-                    <small style="color: var(--brand-azure); font-weight: 700;">TIER 2 — MOST POPULAR</small>
+                    <small style="color: var(--brand-orange); font-weight: 700;">TIER 2 — MOSS & GRIME ELIMINATION</small>
                 </header>
                 <p><strong>$0.50 per sq ft</strong> ($200 minimum)</p>
                 <p><em>"Our most popular — handles moss the right way."</em></p>
                 <hr>
                 <strong>WHAT'S INCLUDED</strong>
                 <ul>
-                    <li>✓ Eco-friendly pre-treat</li>
-                    <li>✓ Dwell time for moss</li>
-                    <li>✓ Tier 1 included</li>
+                    <li>✓ Professional Pre-Treatment</li>
+                    <li>✓ Moss & Algae Root Kill</li>
+                    <li>✓ Safer Soft-Wash Method</li>
                 </ul>
-                <hr>
-                <strong>BEST FOR</strong>
-                <ul>
-                    <li>Typical Seattle moss</li>
-                    <li>Mildew & buildup</li>
-                    <li>First-time deep clean</li>
-                </ul>
-                <footer><a href="tel:2067398507" class="cta button">Get Tier 2 Quote</a></footer>
+                <footer><a href="tel:2067398507" class="button primary full-width">Get Tier 2 Estimate</a></footer>
             </article>
             <article class="service-card">
                 <header>
                     <h3>The Full Treatment</h3>
-                    <small>TIER 3</small>
+                    <small>TIER 3 — MAXIMUM PROTECTION</small>
                 </header>
                 <p><strong>$0.55 per sq ft</strong> ($250 minimum)</p>
                 <p><em>"Clean now. Stays clean longer."</em></p>
                 <hr>
                 <strong>WHAT'S INCLUDED</strong>
                 <ul>
-                    <li>✓ Post-treatment inhibitor</li>
-                    <li>✓ Stays clean 2–3× longer</li>
-                    <li>✓ Tier 2 included</li>
+                    <li>✓ Post-Cleaning Brightener</li>
+                    <li>✓ Residual Protection Barrier</li>
+                    <li>✓ 2-Year Algae-Free Guarantee</li>
                 </ul>
-                <hr>
-                <strong>BEST FOR</strong>
-                <ul>
-                    <li>Heavy moss</li>
-                    <li>Long-lasting protection</li>
-                    <li>Set & forget for the year</li>
-                </ul>
-                <footer><a href="tel:2067398507" class="outline">Get Tier 3 Quote</a></footer>
+                <footer><a href="tel:2067398507" class="button outline full-width">Get Tier 3 Estimate</a></footer>
             </article>
         </div>
     </section>
@@ -423,10 +406,10 @@
     <!-- Instant Quote Calculator -->
     <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;">
         <h2 class="text-center">📐 Instant Quote Calculator</h2>
-        <p class="text-center">Type your estimated square footage below for an instant price estimate.</p>
+        <p class="text-center">See your estimated price based on square footage.</p>
         
         <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <label for="sqft-input">Square Footage:</label>
+            <label for="sqft-input">Estimated Square Footage:</label>
             <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500" aria-label="Square Footage">
             
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;">
@@ -436,7 +419,7 @@
                 </div>
                 <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
                     <small>TIER 2</small>
-                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-azure);">$250.00</div>
+                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);">$250.00</div>
                 </div>
                 <div>
                     <small>TIER 3</small>
@@ -444,13 +427,16 @@
                 </div>
             </div>
             <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="tel:2067398507" class="cta button" style="width: 100%;">Click to Lock in This Price</a>
+            </div>
         </div>
     </section>
 
     <!-- Before/After Slider -->
     <section class="container">
-        <h2 class="text-center">Real Results</h2>
-        <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> difference</p>
+        <h2 class="text-center">The "Reveal"</h2>
+        <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> transformation</p>
         <div class="comparison-slider">
             <div class="image before"></div>
             <div class="image after" id="after-img"></div>
@@ -460,22 +446,22 @@
 
     <!-- How It Works -->
     <section class="container" style="padding: 4rem 0;">
-        <h2 class="text-center">How It Works</h2>
+        <h2 class="text-center">Our 3-Step Process</h2>
         <div class="process-grid">
             <div class="process-step">
                 <span>📋</span>
                 <h4>1. Request Quote</h4>
-                <p>Fill out our form or call us. We provide instant estimates based on property size.</p>
+                <p>Fill out our simple form. We provide instant estimates based on property size.</p>
             </div>
             <div class="process-step">
                 <span>📅</span>
-                <h4>2. Schedule</h4>
-                <p>Pick a time that works for you. We operate 7 days a week across the Greater Seattle Area.</p>
+                <h4>2. Expert Clean</h4>
+                <p>Our professional team arrives on time and uses "Soft-Wash" tech to restore your surfaces.</p>
             </div>
             <div class="process-step">
                 <span>✨</span>
-                <h4>3. Transformation</h4>
-                <p>Watch years of dirt vanish. 100% Satisfaction Guarantee or you don't pay a cent.</p>
+                <h4>3. Enjoy Results</h4>
+                <p>Relax and enjoy your sparkling clean home. 100% Satisfaction Guaranteed.</p>
             </div>
         </div>
     </section>
@@ -506,7 +492,7 @@
                 <strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a><br>
                 <strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a>
             </p>
-            <a href="tel:2067398507" class="cta button" style="padding: 1.2rem 2.5rem; display: inline-block;">Call Now for a Free Estimate</a>
+            <a href="tel:2067398507" class="cta button" style="padding: 1.2rem 2.5rem; display: inline-block;">Get My Free Instant Estimate</a>
             <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.6;">
                 &copy; 2026 Sunde Surface Cleaning. All rights reserved.
             </p>
