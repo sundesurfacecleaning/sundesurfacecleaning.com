@@ -975,12 +975,12 @@
 
     <script>
         // Before/After Slider Logic
-        const slider = document.getElementById('slider');
-        const afterImg = document.getElementById('after-img');
+        const sliderEl = document.getElementById('slider');
+        const afterImgEl = document.getElementById('after-img');
 
-        slider.addEventListener('input', (e) => {
+        sliderEl.addEventListener('input', (e) => {
             const value = e.target.value;
-            afterImg.style.width = value + '%';
+            afterImgEl.style.width = value + '%';
         });
 
         // Price Calculator Logic
