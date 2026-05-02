@@ -115,12 +115,31 @@
             background: var(--brand-orange);
         }
 
-        /* Trust Bar */
-        .trust-bar {
-            padding: 2.5rem 0;
+        /* Badge Bar */
+        .badge-bar {
+            padding: 1.5rem 0;
             background: #fff;
-            text-align: center;
             border-bottom: 1px solid #f1f1f1;
+        }
+
+        .badge-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--brand-navy);
+        }
+
+        .badge-item span {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
         }
 
         .stars {
@@ -129,20 +148,28 @@
             margin-bottom: 0.5rem;
         }
 
-        .testimonials {
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 0;
+            background: var(--brand-light-bg);
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
 
         .testimonial-card {
             font-style: italic;
             font-size: 0.95rem;
             padding: 1.5rem;
-            background: var(--brand-light-bg);
+            background: #fff;
             border-radius: 8px;
             border-left: 4px solid var(--brand-sky);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         /* Service Cards */
@@ -327,23 +354,12 @@
         </div>
     </section>
 
-    <!-- Trust Bar -->
-    <section class="trust-bar">
-        <div class="container">
-            <div class="testimonials">
-                <div class="testimonial-card">
-                    "Sunde's team made my driveway look brand new. Excellent service here in Bellevue!"
-                    <br><strong>— Mark R., Bellevue</strong>
-                </div>
-                <div class="testimonial-card">
-                    "Finally, a service that understands Seattle moss. The house wash was perfect."
-                    <br><strong>— Jane L., Queen Anne</strong>
-                </div>
-                <div class="testimonial-card">
-                    "Great price and even better results. My roof looks 10 years younger."
-                    <br><strong>— Sam T., Ballard</strong>
-                </div>
-            </div>
+    <!-- Badge Bar -->
+    <section class="badge-bar">
+        <div class="container badge-grid">
+            <div class="badge-item"><span>⭐</span> 5.0 Google Rating</div>
+            <div class="badge-item"><span>🛡️</span> Licensed & Insured</div>
+            <div class="badge-item"><span>💯</span> 100% Satisfaction Guarantee</div>
         </div>
     </section>
 
@@ -462,6 +478,30 @@
                 <span>✨</span>
                 <h4>3. Enjoy Results</h4>
                 <p>Relax and enjoy your sparkling clean home. 100% Satisfaction Guaranteed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="text-center">What Your Neighbors Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    "Sunde's team made my driveway look brand new. Excellent service here in Bellevue!"
+                    <br><strong>— Mark R., Bellevue</strong>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    "Finally, a service that understands Seattle moss. The house wash was perfect."
+                    <br><strong>— Jane L., Queen Anne</strong>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    "Great price and even better results. My roof looks 10 years younger."
+                    <br><strong>— Sam T., Ballard</strong>
+                </div>
             </div>
         </div>
     </section>
