@@ -189,6 +189,29 @@
             font-weight: 700;
         }
 
+        /* Layout & Sections */
+        .site-header {
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo {
+            max-height: 80px;
+        }
+
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        .section-light-bg {
+            background-color: var(--brand-light-bg);
+        }
+
+        .section-border-top { border-top: 1px solid #e1e8ed; }
+        .section-border-bottom { border-bottom: 1px solid #e1e8ed; }
+
         /* Hero Section */
         .hero {
             padding: 4rem 0;
@@ -229,6 +252,35 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,45,114,0.1);
             border: 1px solid var(--brand-light-bg);
+        }
+
+        .hero-form h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-trust-note {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            color: var(--brand-navy);
+        }
+
+        .hero-stars-container {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-stars-text {
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .hero-guarantee {
+            font-weight: 600;
+            color: var(--brand-navy);
+            margin-top: 1rem;
         }
 
         /* CTA Buttons */
@@ -333,37 +385,7 @@
             margin-right: 0.5rem;
         }
 
-        .stars {
-            color: #FFD700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            padding: 4rem 0;
-            background: var(--brand-light-bg);
-            margin-bottom: 4rem;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial-card {
-            font-style: italic;
-            font-size: 0.95rem;
-            padding: 1.5rem;
-            background: #fff;
-            border-radius: 8px;
-            border-left: 4px solid var(--brand-sky);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        /* Spreadsheet-Style Pricing Table */
+        /* Pricing Table */
         .pricing-table {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -426,6 +448,15 @@
             height: 120px; /* Fixed height for exact alignment */
         }
 
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .price-unit {
+            font-size: 0.9rem;
+        }
+
         .label-row {
             background-color: #ECEFF1; /* Spreadsheet Label BG */
             font-weight: 800;
@@ -435,6 +466,13 @@
             padding: 0.75rem;
             border-bottom: 1px solid #bdbdbd;
             text-align: center;
+        }
+
+        .popular-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-top: 0.5rem;
+            color: #fff;
         }
 
         .features-cell {
@@ -491,21 +529,90 @@
             height: 110px; /* Aligns buttons */
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 900px) {
-            .pricing-table {
-                grid-template-columns: 1fr;
-            }
-            .tier-column {
-                border-right: none;
-                border-bottom: 4px solid #bdbdbd;
-            }
-            .tier-column:last-child {
-                border-bottom: none;
-            }
+        /* Calculator Section */
+        .calculator-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* Before/After Slider */
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .input-group input { flex-grow: 1; }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .calculator-divider {
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+
+        .calculator-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .calculator-price.primary { color: var(--brand-orange); }
+        .calculator-price.navy { color: var(--brand-navy); }
+
+        .calculator-footer-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Why Soft Washing Section */
+        .soft-wash-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .soft-wash-item {
+            margin-bottom: 1rem;
+        }
+
+        .stat-card-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: white;
+            border: 2px solid var(--brand-azure);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,45,114,0.1);
+        }
+
+        .stat-number {
+            color: var(--brand-azure);
+            margin: 0;
+            font-size: 3.5rem;
+        }
+
+        .stat-label {
+            margin: 0;
+            font-weight: 700;
+            color: var(--brand-navy);
+        }
+
+        /* Comparison Slider */
         .comparison-slider {
             position: relative;
             width: 100%;
@@ -572,6 +679,36 @@
             margin-bottom: 1rem;
         }
 
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 0;
+            background: var(--brand-light-bg);
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            font-style: italic;
+            font-size: 0.95rem;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 8px;
+            border-left: 4px solid var(--brand-sky);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
         /* FAQ */
         details {
             border-bottom: 1px solid var(--brand-light-bg);
@@ -583,28 +720,7 @@
             color: var(--brand-navy);
         }
 
-        /* Sticky Footer Call Button */
-        .sticky-call {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .sticky-call {
-                display: block;
-                left: 20px;
-                right: 20px;
-                bottom: 10px;
-            }
-            .sticky-call a {
-                width: 100%;
-                box-shadow: 0 4px 15px rgba(0,45,114,0.3);
-            }
-        }
-
+        /* Footer */
         footer {
             padding: 5rem 0;
             background: var(--brand-navy);
@@ -630,16 +746,69 @@
             text-align: center;
         }
 
+        .service-areas-container {
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .service-areas-title {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .service-areas-list {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .address-block {
+            font-style: normal;
+            margin: 2rem 0;
+        }
+
+        .footer-copyright {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Sticky Footer Call Button */
+        .sticky-call {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-call {
+                display: block;
+                left: 20px;
+                right: 20px;
+                bottom: 10px;
+            }
+            .sticky-call a {
+                width: 100%;
+                box-shadow: 0 4px 15px rgba(0,45,114,0.3);
+            }
+        }
+
         /* Utils */
         .text-center { text-align: center; }
         .mb-2 { margin-bottom: 2rem; }
         .accent-text { color: var(--brand-azure); }
+        .full-width { width: 100%; }
+        .text-muted-italic { color: #666; font-style: italic; }
+        .mt-2 { margin-top: 2rem; }
         </style>
         </head>
         <body>
 
-        <header class="container" style="padding: 1rem 0; display: flex; align-items: center; justify-content: center;">
-            <img src="logo.png" alt="Sunde Surface Cleaning Logo - Seattle's Premier Pressure Washing and Soft Washing Specialist" style="max-height: 80px;">
+        <header class="container site-header">
+            <img src="logo.png" alt="Sunde Surface Cleaning Logo - Seattle's Premier Pressure Washing and Soft Washing Specialist" class="header-logo">
             <h1 class="visually-hidden">Sunde Surface Cleaning - Seattle's Premier Exterior Cleaning</h1>
         </header>
 
@@ -651,14 +820,15 @@
                     <div>
                         <h1 id="main-heading">Restore Your Seattle Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
                         <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. We use professional "Soft-Wash" technology to safely remove moss and grime without damaging your property.</p>
-                        <div class="stars" aria-label="5 star rating">★★★★★ <span style="color: var(--text-main); font-size: 1rem;">(4.9/5 from 200+ Seattle Locals)</span></div>
-                        <p style="font-weight: 600; color: var(--brand-navy); margin-top: 1rem;">✅ Licensed & Insured | ⚡ 15-Min Response Guarantee</p>
+                        <div class="hero-stars-container" aria-label="5 star rating">★★★★★ <span class="hero-stars-text">(4.9/5 from 200+ Seattle Locals)</span></div>
+                        <p class="hero-guarantee">✅ Licensed & Insured | ⚡ 15-Min Response Guarantee</p>
                     </div>
                     <div class="hero-form">
-                        <h2 class="text-center" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Get My Free Instant Estimate</h2>
+                        <h2 class="text-center">Get My Free Instant Estimate</h2>
                         <form action="#" method="POST" aria-label="Quote Request Form">
-                            <fieldset style="border: none; padding: 0; margin: 0;">
-                                <legend class="visually-hidden">Contact Information and Service Selection</legend>
+                            <fieldset class="visually-hidden">
+                                <legend>Contact Information and Service Selection</legend>
+                            </fieldset>
 
                                 <label for="hero-name" class="visually-hidden">Full Name</label>
                                 <input type="text" id="hero-name" name="name" placeholder="Full Name" required>
@@ -675,9 +845,8 @@
                                 </select>
 
                                 <button type="submit" class="cta">Get My Free Quote</button>
-                            </fieldset>
                         </form>
-                        <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">Join 500+ Seattle homeowners who trust Sunde</p>
+                        <p class="hero-trust-note">Join 500+ Seattle homeowners who trust Sunde</p>
                     </div>
                 </div>
             </div>
@@ -693,7 +862,7 @@
         </section>
 
         <!-- Services Section -->
-        <section class="container" id="services" style="padding-top: 4rem;">
+        <section class="container" id="services">
             <h2 class="text-center">SUNDE SURFACE CLEANING — Pricing Tiers</h2>
             <p class="text-center">Three packages — same quality work, different levels of treatment</p>
 
@@ -706,8 +875,8 @@
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div style="font-size: 1.5rem; font-weight: 700;">$0.38</div>
-                        <div style="font-size: 0.9rem;">per square foot</div>
+                        <div class="price-value">$0.38</div>
+                        <div class="price-unit">per square foot</div>
                         <small>$150 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
@@ -730,7 +899,8 @@
                     <div class="tier-cell tagline-cell">
                         "Quick refresh — gets the surface clean."
                     </div>
-                    <div class="tier-cell tier-footer">                        <a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a>
+                    <div class="tier-cell tier-footer">
+                        <a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a>
                     </div>
                 </div>
 
@@ -739,12 +909,12 @@
                     <div class="tier-cell tier-header tier-2-header">
                         <small>⭐ TIER 2 ⭐</small>
                         <h3 id="tier2-name">The Pre + Wash</h3>
-                        <div style="font-size: 0.75rem; font-weight: 800; margin-top: 0.5rem; color: #fff;">MOST POPULAR</div>
+                        <div class="popular-badge">MOST POPULAR</div>
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div style="font-size: 1.5rem; font-weight: 700;">$0.50</div>
-                        <div style="font-size: 0.9rem;">per square foot</div>
+                        <div class="price-value">$0.50</div>
+                        <div class="price-unit">per square foot</div>
                         <small>$200 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
@@ -779,8 +949,8 @@
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div style="font-size: 1.5rem; font-weight: 700;">$0.55</div>
-                        <div style="font-size: 0.9rem;">per square foot</div>
+                        <div class="price-value">$0.55</div>
+                        <div class="price-unit">per square foot</div>
                         <small>$250 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
@@ -810,35 +980,35 @@
         </section>
 
     <!-- Instant Quote Calculator -->
-    <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;" aria-labelledby="calc-title">
+    <section class="container section-padding section-light-bg" id="calculator" aria-labelledby="calc-title">
         <h2 id="calc-title" class="text-center">📐 INSTANT QUOTE — Type any square footage below</h2>
 
-        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <div class="calculator-card">
             <form onsubmit="return false;">
                 <label for="sqft-input">Square footage:</label>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500" style="flex-grow: 1;">
-                    <small style="color: #666; font-style: italic;">← change this number</small>
+                <div class="input-group">
+                    <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500">
+                    <small class="text-muted-italic">← change this number</small>
                 </div>
             </form>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;" aria-live="polite">
+            <div class="calculator-grid" aria-live="polite">
                 <div>
                     <small id="label-tier1">TIER 1 QUOTE</small>
-                    <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier1">$190.00</div>
+                    <div id="calc-tier1" class="calculator-price navy" aria-labelledby="label-tier1">$190.00</div>
                 </div>
-                <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                <div class="calculator-divider">
                     <small id="label-tier2">TIER 2 QUOTE</small>
-                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);" aria-labelledby="label-tier2">$250.00</div>
+                    <div id="calc-tier2" class="calculator-price primary" aria-labelledby="label-tier2">$250.00</div>
                 </div>
                 <div>
                     <small id="label-tier3">TIER 3 QUOTE</small>
-                    <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier3">$275.00</div>
+                    <div id="calc-tier3" class="calculator-price navy" aria-labelledby="label-tier3">$275.00</div>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
-            <div class="text-center" style="margin-top: 2rem;">
-                <a href="tel:2067398507" class="cta button" style="width: 100%;">Click to Lock in This Price</a>
+            <p class="calculator-footer-note">* Estimates include minimum charges where applicable.</p>
+            <div class="text-center mt-2">
+                <a href="tel:2067398507" class="cta button full-width">Click to Lock in This Price</a>
             </div>
         </div>
     </section>
@@ -856,7 +1026,7 @@
         </section>
 
         <!-- How It Works -->
-        <section class="container" style="padding: 4rem 0;" aria-labelledby="process-title">
+        <section class="container section-padding" aria-labelledby="process-title">
             <h2 id="process-title" class="text-center">Our 3-Step Process</h2>
             <div class="process-grid">
                 <div class="process-step">
@@ -878,22 +1048,22 @@
         </section>
 
         <!-- Why Soft Washing? -->
-        <section style="background: var(--brand-light-bg); padding: 5rem 0; border-top: 1px solid #e1e8ed; border-bottom: 1px solid #e1e8ed;">
+        <section class="section-light-bg section-padding section-border-top section-border-bottom">
             <div class="container">
                 <div class="grid">
                     <div>
                         <h2>Why "Soft Washing" is the Seattle Standard</h2>
                         <p>Unlike traditional pressure washing that can damage cedar siding, composite decking, and asphalt shingles, our <strong>Soft Wash technology</strong> uses eco-friendly solutions to kill moss, algae, and lichen at the root.</p>
-                        <ul style="list-style: none; padding-left: 0;">
-                            <li style="margin-bottom: 1rem;"><strong>🛡️ Protect Your Investment:</strong> No risk of water intrusion or surface etching.</li>
-                            <li style="margin-bottom: 1rem;"><strong>⚡ Longer Lasting:</strong> Kills organic growth so it stays clean 2-3x longer.</li>
-                            <li style="margin-bottom: 1rem;"><strong>🌿 Eco-Friendly:</strong> Safe for your landscape, pets, and the Puget Sound.</li>
+                        <ul class="soft-wash-list">
+                            <li class="soft-wash-item"><strong>🛡️ Protect Your Investment:</strong> No risk of water intrusion or surface etching.</li>
+                            <li class="soft-wash-item"><strong>⚡ Longer Lasting:</strong> Kills organic growth so it stays clean 2-3x longer.</li>
+                            <li class="soft-wash-item"><strong>🌿 Eco-Friendly:</strong> Safe for your landscape, pets, and the Puget Sound.</li>
                         </ul>
                     </div>
-                    <div style="display: flex; align-items: center; justify-content: center;">
-                        <div style="background: white; border: 2px solid var(--brand-azure); padding: 3rem; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0,45,114,0.1);">
-                            <h3 style="color: var(--brand-azure); margin: 0; font-size: 3.5rem;">2-3×</h3>
-                            <p style="margin: 0; font-weight: 700; color: var(--brand-navy);">CLEANER FOR LONGER</p>
+                    <div class="stat-card-container">
+                        <div class="stat-card">
+                            <h3 class="stat-number">2-3×</h3>
+                            <p class="stat-label">CLEANER FOR LONGER</p>
                             <small>Compared to standard pressure washing</small>
                         </div>
                     </div>
@@ -926,7 +1096,7 @@
         </section>
 
         <!-- FAQ -->
-        <section class="container" style="margin-bottom: 4rem;" aria-labelledby="faq-title">
+        <section class="container" id="faq" aria-labelledby="faq-title">
             <h2 id="faq-title" class="text-center">Frequently Asked Questions</h2>
             <details>
                 <summary>Why should I choose Pre-Cleaning over just Water Pressure?</summary>
@@ -950,20 +1120,20 @@
             <h3>Sunde Surface Cleaning</h3>
             <p>Seattle's Premier Exterior Cleaning Specialist</p>
             
-            <div style="margin: 2rem 0; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
-                <h4 style="color: white; margin-bottom: 1rem;">Service Areas</h4>
-                <p style="font-size: 0.9rem; opacity: 0.9;">
+            <div class="service-areas-container">
+                <h4 class="service-areas-title">Service Areas</h4>
+                <p class="service-areas-list">
                     Proudly serving <strong>Seattle</strong> and the surrounding communities, including:<br>
                     Bellevue • Queen Anne • Ballard • Capitol Hill • Magnolia • West Seattle • Shoreline • Edmonds • Kirkland • Redmond • Mercer Island • Renton • Issaquah • Sammamish
                 </p>
             </div>
 
-            <address style="font-style: normal; margin: 2rem 0;">
+            <address class="address-block">
                 <p><strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a></p>
                 <p><strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a></p>
             </address>
             <a href="tel:2067398507" class="cta button" style="padding: 1.2rem 2.5rem; display: inline-block;">Get My Free Instant Estimate</a>
-            <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.8;">
+            <p class="footer-copyright">
                 &copy; 2026 Sunde Surface Cleaning. All rights reserved.
             </p>
         </div>
