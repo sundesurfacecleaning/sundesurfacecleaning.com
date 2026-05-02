@@ -229,29 +229,126 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        /* Service Cards */
-        .services-grid {
+        /* Spreadsheet-Style Pricing Table */
+        .pricing-table {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 0;
+            gap: 0;
+            border: 1px solid #bdbdbd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
         }
 
-        article.service-card {
-            border: 1px solid var(--brand-light-bg);
-            transition: all 0.3s ease;
-            margin-bottom: 0;
-            background: white;
+        .tier-column {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #bdbdbd;
+            background: #fff;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            z-index: 1;
         }
 
-        article.service-card:hover {
-            box-shadow: 0 8px 20px rgba(0,45,114,0.08);
-            transform: translateY(-5px);
-            border-color: var(--brand-sky);
+        .tier-column:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,45,114,0.15);
+            z-index: 10;
+            border-color: transparent;
+            border-radius: 8px;
         }
 
-        article.service-card h3 {
-            color: var(--brand-azure);
+        .tier-column:last-child {
+            border-right: none;
+        }
+
+        .tier-cell {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid #bdbdbd; /* Match Excel border color */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%; /* Force fill */
+        }
+
+        .tier-header {
+            color: white;
+            padding: 1.5rem 1rem;
+            height: 160px; /* Fixed height for exact alignment */
+            border-bottom: 2px solid #bdbdbd;
+        }
+
+        .tier-1-header { background-color: #546E7A; } 
+        .tier-2-header { background-color: #0E7490; } 
+        .tier-3-header { background-color: #1B5E20; } 
+
+        .tier-header h3 { color: white !important; margin: 0; font-size: 1.75rem; }
+        .tier-header small { color: rgba(255,255,255,0.9) !important; font-weight: 700; letter-spacing: 1px; }
+        .tier-header p { color: #ffffff !important; font-size: 0.95rem; margin: 0.75rem 0 0; font-style: italic; line-height: 1.3; }
+
+        .price-cell {
+            background-color: #FAFAFA;
+            height: 120px; /* Fixed height for exact alignment */
+        }
+
+        .label-row {
+            background-color: #ECEFF1; /* Spreadsheet Label BG */
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: #455A64;
+            text-transform: uppercase;
+            padding: 0.75rem;
+            border-bottom: 1px solid #bdbdbd;
+            text-align: center;
+        }
+
+        .features-cell {
+            flex-grow: 1;
+            text-align: left;
+            padding: 1.5rem;
+            height: 320px; /* Consistent height for features */
+            background-color: #FFFFFF;
+        }
+
+        .features-cell li {
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 0.25rem;
+        }
+
+        .features-cell li:last-child {
+            border-bottom: none;
+        }
+
+        .best-for-cell {
+            background-color: #FAFAFA;
+            height: 140px; /* Fixed height for exact alignment */
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .tier-footer {
+            padding: 2rem 1.5rem;
+            border-bottom: none;
+            background-color: #ECEFF1;
+            height: 110px; /* Aligns buttons */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .pricing-table {
+                grid-template-columns: 1fr;
+            }
+            .tier-column {
+                border-right: none;
+                border-bottom: 4px solid #bdbdbd;
+            }
+            .tier-column:last-child {
+                border-bottom: none;
+            }
         }
 
         /* Before/After Slider */
@@ -382,43 +479,52 @@
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div>
-                    <h1>Restore Your Seattle Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
-                    <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. We use professional "Soft-Wash" technology to safely remove moss and grime without damaging your property.</p>
-                    <div class="stars">★★★★★ <span style="color: var(--text-main); font-size: 1rem;">(4.9/5 from 200+ Seattle Locals)</span></div>
-                    <p style="font-weight: 600; color: var(--brand-navy); margin-top: 1rem;">✅ Licensed & Insured | ⚡ 15-Min Response Guarantee</p>
-                </div>
-                <div class="hero-form">
-                    <h3 class="text-center">Get My Free Instant Estimate</h3>
-                    <form action="#" method="POST" aria-label="Quote Request Form">
-                        <label for="hero-name" class="visually-hidden">Full Name</label>
-                        <input type="text" id="hero-name" name="name" placeholder="Full Name" required>
-                        
-                        <label for="hero-phone" class="visually-hidden">Phone Number</label>
-                        <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required>
-                        
-                        <label for="hero-service" class="visually-hidden">Select Cleaning Package</label>
-                        <select id="hero-service" name="service" required>
-                            <option value="" disabled selected>Select Cleaning Package</option>
-                            <option value="tier1">The Wash (Tier 1)</option>
-                            <option value="tier2">The Pre + Wash (Tier 2)</option>
-                            <option value="tier3">The Full Treatment (Tier 3)</option>
-                        </select>
-                        
-                        <button type="submit" class="cta">Get My Free Quote</button>
-                    </form>
-                    <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">Join 500+ Seattle homeowners who trust Sunde</p>
+    <header role="banner" class="visually-hidden">
+        <h1>Sunde Surface Cleaning - Seattle's Premier Exterior Cleaning</h1>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Introduction and Quote Request">
+            <div class="container">
+                <div class="hero-content">
+                    <div>
+                        <h1 id="main-heading">Restore Your Seattle Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
+                        <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. We use professional "Soft-Wash" technology to safely remove moss and grime without damaging your property.</p>
+                        <div class="stars" aria-label="5 star rating">★★★★★ <span style="color: var(--text-main); font-size: 1rem;">(4.9/5 from 200+ Seattle Locals)</span></div>
+                        <p style="font-weight: 600; color: var(--brand-navy); margin-top: 1rem;">✅ Licensed & Insured | ⚡ 15-Min Response Guarantee</p>
+                    </div>
+                    <div class="hero-form">
+                        <h2 class="text-center" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Get My Free Instant Estimate</h2>
+                        <form action="#" method="POST" aria-label="Quote Request Form">
+                            <fieldset style="border: none; padding: 0; margin: 0;">
+                                <legend class="visually-hidden">Contact Information and Service Selection</legend>
+                                
+                                <label for="hero-name" class="visually-hidden">Full Name</label>
+                                <input type="text" id="hero-name" name="name" placeholder="Full Name" required>
+                                
+                                <label for="hero-phone" class="visually-hidden">Phone Number</label>
+                                <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required>
+                                
+                                <label for="hero-service" class="visually-hidden">Select Cleaning Package</label>
+                                <select id="hero-service" name="service" required>
+                                    <option value="" disabled selected>Select Cleaning Package</option>
+                                    <option value="tier1">The Wash (Tier 1)</option>
+                                    <option value="tier2">The Pre + Wash (Tier 2)</option>
+                                    <option value="tier3">The Full Treatment (Tier 3)</option>
+                                </select>
+                                
+                                <button type="submit" class="cta">Get My Free Quote</button>
+                            </fieldset>
+                        </form>
+                        <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem; color: var(--brand-navy);">Join 500+ Seattle homeowners who trust Sunde</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Badge Bar -->
-    <section class="badge-bar">
+    <section class="badge-bar" aria-label="Trust Badges">
         <div class="container badge-grid">
             <div class="badge-item"><span>⭐</span> 5.0 Google Rating</div>
             <div class="badge-item"><span>🛡️</span> Licensed & Insured</div>
@@ -428,173 +534,228 @@
 
     <!-- Services Section -->
     <section class="container" id="services" style="padding-top: 4rem;">
-        <h2 class="text-center">Cleaning Packages</h2>
-        <p class="text-center">Transparent pricing — no hidden fees</p>
-        <div class="services-grid">
-            <article class="service-card">
-                <header>
-                    <h3>The Wash</h3>
-                    <small>TIER 1 — SURFACE REFRESH</small>
-                </header>
-                <p><strong>$0.38 per sq ft</strong> ($150 minimum)</p>
-                <p><em>"Quick refresh — gets the surface clean."</em></p>
-                <hr>
-                <strong>WHAT'S INCLUDED</strong>
-                <ul>
-                    <li>✓ High-Pressure Wash</li>
-                    <li>✓ Standard Rinse</li>
-                    <li>✓ Eco-Friendly (Water Only)</li>
-                </ul>
-                <footer><a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a></footer>
-            </article>
-            <article class="service-card" style="border: 2px solid var(--brand-orange);">
-                <header>
-                    <h3 style="margin-bottom: 0;">The Pre + Wash</h3>
-                    <small style="color: var(--brand-navy); font-weight: 700;">TIER 2 — MOSS & GRIME ELIMINATION</small>
-                </header>
-                <p><strong>$0.50 per sq ft</strong> ($200 minimum)</p>
-                <p><em>"Our most popular — handles moss the right way."</em></p>
-                <hr>
-                <strong>WHAT'S INCLUDED</strong>
-                <ul>
-                    <li>✓ Professional Pre-Treatment</li>
-                    <li>✓ Moss & Algae Root Kill</li>
-                    <li>✓ Safer Soft-Wash Method</li>
-                </ul>
-                <footer><a href="tel:2067398507" class="button primary full-width">Get Tier 2 Estimate</a></footer>
-            </article>
-            <article class="service-card">
-                <header>
-                    <h3>The Full Treatment</h3>
-                    <small>TIER 3 — MAXIMUM PROTECTION</small>
-                </header>
-                <p><strong>$0.55 per sq ft</strong> ($250 minimum)</p>
-                <p><em>"Clean now. Stays clean longer."</em></p>
-                <hr>
-                <strong>WHAT'S INCLUDED</strong>
-                <ul>
-                    <li>✓ Post-Cleaning Brightener</li>
-                    <li>✓ Residual Protection Barrier</li>
-                    <li>✓ 2-Year Algae-Free Guarantee</li>
-                </ul>
-                <footer><a href="tel:2067398507" class="button outline full-width">Get Tier 3 Estimate</a></footer>
-            </article>
-        </div>
-    </section>
-
-    <!-- Instant Quote Calculator -->
-    <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;" aria-labelledby="calc-title">
-        <h2 id="calc-title" class="text-center">📐 Instant Quote Calculator</h2>
-        <p class="text-center">See your estimated price based on square footage.</p>
+        <h2 class="text-center">Pricing Packages</h2>
+        <p class="text-center">Based on the original service calculator tiers</p>
         
-        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <label for="sqft-input">Estimated Square Footage:</label>
-            <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500">
+        <div class="pricing-table">
+            <!-- Tier 1 -->
+            <div class="tier-column">
+                <div class="tier-cell tier-header tier-1-header">
+                    <small>TIER 1</small>
+                    <h3 id="tier1-name">The Wash</h3>
+                    <p>"Quick refresh — gets the surface clean."</p>
+                </div>
+                <div class="label-row" aria-hidden="true">Pricing</div>
+                <div class="tier-cell price-cell">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$0.38 <span style="font-size: 0.9rem;">/ sq ft</span></div>
+                    <small>($150 minimum)</small>
+                </div>
+                <div class="label-row" aria-hidden="true">What's Included</div>
+                <div class="tier-cell features-cell">
+                    <ul aria-labelledby="tier1-name">
+                        <li>✓ High-Pressure Wash</li>
+                        <li>✓ Standard Rinse</li>
+                        <li>✓ Eco-Friendly (Water Only)</li>
+                        <li>—</li>
+                        <li>—</li>
+                    </ul>
+                </div>
+                <div class="label-row" aria-hidden="true">Best For</div>
+                <div class="tier-cell best-for-cell">
+                    Light dirt / Regular maintenance<br>
+                    Light surface refresh
+                </div>
+                <div class="tier-cell tier-footer">
+                    <a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a>
+                </div>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="tier-column">
+                <div class="tier-cell tier-header tier-2-header">
+                    <small>TIER 2 — MOST POPULAR</small>
+                    <h3 id="tier2-name">The Pre + Wash</h3>
+                    <p>"Our most popular — handles moss the right way."</p>
+                </div>
+                <div class="label-row" aria-hidden="true">Pricing</div>
+                <div class="tier-cell price-cell">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$0.50 <span style="font-size: 0.9rem;">/ sq ft</span></div>
+                    <small>($200 minimum)</small>
+                </div>
+                <div class="label-row" aria-hidden="true">What's Included</div>
+                <div class="tier-cell features-cell">
+                    <ul aria-labelledby="tier2-name">
+                        <li>✓ Professional Pre-Treatment</li>
+                        <li>✓ Moss & Algae Root Kill</li>
+                        <li>✓ Safer Soft-Wash Method</li>
+                        <li>✓ Tier 1 Included</li>
+                        <li>—</li>
+                    </ul>
+                </div>
+                <div class="label-row" aria-hidden="true">Best For</div>
+                <div class="tier-cell best-for-cell">
+                    Typical Seattle moss<br>
+                    Mildew & buildup<br>
+                    First-time deep clean
+                </div>
+                <div class="tier-cell tier-footer">
+                    <a href="tel:2067398507" class="button primary full-width">Get Tier 2 Estimate</a>
+                </div>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="tier-column">
+                <div class="tier-cell tier-header tier-3-header">
+                    <small>TIER 3</small>
+                    <h3 id="tier3-name">The Full Treatment</h3>
+                    <p>"Clean now. Stays clean longer."</p>
+                </div>
+                <div class="label-row" aria-hidden="true">Pricing</div>
+                <div class="tier-cell price-cell">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$0.55 <span style="font-size: 0.9rem;">/ sq ft</span></div>
+                    <small>($250 minimum)</small>
+                </div>
+                <div class="label-row" aria-hidden="true">What's Included</div>
+                <div class="tier-cell features-cell">
+                    <ul aria-labelledby="tier3-name">
+                        <li>✓ Post-Cleaning Brightener</li>
+                        <li>✓ Residual Protection Barrier</li>
+                        <li>✓ 2-Year Algae-Free Guarantee</li>
+                        <li>✓ Tier 2 Included</li>
+                        <li>✓ Long-lasting protection</li>
+                    </ul>
+                </div>
+                <div class="label-row" aria-hidden="true">Best For</div>
+                <div class="tier-cell best-for-cell">
+                    Heavy moss<br>
+                    Long-lasting protection<br>
+                    Set & forget for the year
+                </div>
+                <div class="tier-cell tier-footer">
+                    <a href="tel:2067398507" class="button outline full-width">Get Tier 3 Estimate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Instant Quote Calculator -->
+        <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;" aria-labelledby="calc-title">
+            <h2 id="calc-title" class="text-center">📐 Instant Quote Calculator</h2>
+            <p class="text-center">See your estimated price based on square footage.</p>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;" aria-live="polite">
-                <div>
-                    <small id="label-tier1">TIER 1</small>
-                    <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier1">$190.00</div>
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <form onsubmit="return false;">
+                    <label for="sqft-input">Estimated Square Footage:</label>
+                    <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500">
+                </form>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;" aria-live="polite">
+                    <div>
+                        <small id="label-tier1">TIER 1</small>
+                        <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier1">$190.00</div>
+                    </div>
+                    <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                        <small id="label-tier2">TIER 2</small>
+                        <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);" aria-labelledby="label-tier2">$250.00</div>
+                    </div>
+                    <div>
+                        <small id="label-tier3">TIER 3</small>
+                        <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier3">$275.00</div>
+                    </div>
                 </div>
-                <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
-                    <small id="label-tier2">TIER 2</small>
-                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);" aria-labelledby="label-tier2">$250.00</div>
-                </div>
-                <div>
-                    <small id="label-tier3">TIER 3</small>
-                    <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);" aria-labelledby="label-tier3">$275.00</div>
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
+                <div class="text-center" style="margin-top: 2rem;">
+                    <a href="tel:2067398507" class="cta button" style="width: 100%;">Click to Lock in This Price</a>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
-            <div class="text-center" style="margin-top: 2rem;">
-                <a href="tel:2067398507" class="cta button" style="width: 100%;">Click to Lock in This Price</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Before/After Slider -->
-    <section class="container" aria-labelledby="reveal-title">
-        <h2 id="reveal-title" class="text-center">The "Reveal"</h2>
-        <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> transformation</p>
-        <div class="comparison-slider">
-            <div class="image before" aria-hidden="true"></div>
-            <div class="image after" id="after-img" aria-hidden="true"></div>
-            <input type="range" min="0" max="100" value="50" class="slider-input" id="slider" aria-label="Before and after transformation slider. Slide left to see before, right to see after.">
-        </div>
-    </section>
+        <!-- Before/After Slider -->
+        <section class="container" aria-labelledby="reveal-title">
+            <h2 id="reveal-title" class="text-center">The "Reveal"</h2>
+            <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> transformation</p>
+            <div class="comparison-slider">
+                <div class="image before" aria-hidden="true"></div>
+                <div class="image after" id="after-img" aria-hidden="true"></div>
+                <label for="slider" class="visually-hidden">Before and after transformation slider. Slide left to see before, right to see after.</label>
+                <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
+            </div>
+        </section>
 
-    <!-- How It Works -->
-    <section class="container" style="padding: 4rem 0;">
-        <h2 class="text-center">Our 3-Step Process</h2>
-        <div class="process-grid">
-            <div class="process-step">
-                <span>📋</span>
-                <h4>1. Request Quote</h4>
-                <p>Fill out our simple form. We provide instant estimates based on property size.</p>
-            </div>
-            <div class="process-step">
-                <span>📅</span>
-                <h4>2. Expert Clean</h4>
-                <p>Our professional team arrives on time and uses "Soft-Wash" tech to restore your surfaces.</p>
-            </div>
-            <div class="process-step">
-                <span>✨</span>
-                <h4>3. Enjoy Results</h4>
-                <p>Relax and enjoy your sparkling clean home. 100% Satisfaction Guaranteed.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="text-center">What Your Neighbors Are Saying</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    "Sunde's team made my driveway look brand new. Excellent service here in Bellevue!"
-                    <br><strong>— Mark R., Bellevue</strong>
+        <!-- How It Works -->
+        <section class="container" style="padding: 4rem 0;" aria-labelledby="process-title">
+            <h2 id="process-title" class="text-center">Our 3-Step Process</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <span aria-hidden="true">📋</span>
+                    <h3>1. Request Quote</h3>
+                    <p>Fill out our simple form. We provide instant estimates based on property size.</p>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    "Finally, a service that understands Seattle moss. The house wash was perfect."
-                    <br><strong>— Jane L., Queen Anne</strong>
+                <div class="process-step">
+                    <span aria-hidden="true">📅</span>
+                    <h3>2. Expert Clean</h3>
+                    <p>Our professional team arrives on time and uses "Soft-Wash" tech to restore your surfaces.</p>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    "Great price and even better results. My roof looks 10 years younger."
-                    <br><strong>— Sam T., Ballard</strong>
+                <div class="process-step">
+                    <span aria-hidden="true">✨</span>
+                    <h3>3. Enjoy Results</h3>
+                    <p>Relax and enjoy your sparkling clean home. 100% Satisfaction Guaranteed.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ -->
-    <section class="container" style="margin-bottom: 4rem;">
-        <h2 class="text-center">Frequently Asked Questions</h2>
-        <details>
-            <summary>Why should I choose Pre-Cleaning over just Water Pressure?</summary>
-            <p>Water pressure alone only removes surface dirt. Our Standard and Premium packages use specialized pre-cleaning solutions that kill moss and algae at the root. This ensures a deeper clean and prevents organic growth from returning just weeks later.</p>
-        </details>
-        <details>
-            <summary>What is included in the Post-Cleaning treatment?</summary>
-            <p>Included in our Premium Wash, the post-treatment is a brightening agent that eliminates "tiger stripes" (uneven wash lines) and leaves a residual barrier on the surface. This protective layer can keep your surfaces clean for up to 2 years.</p>
-        </details>
-        <details>
-            <summary>Is the high pressure safe for my property?</summary>
-            <p>While our Basic Wash uses high pressure for flat surfaces like concrete, our Standard and Premium packages allow us to use a 'Soft Wash' technique. Because the chemicals do the heavy lifting, we can use lower pressure, which is much safer for your siding, roof, and delicate surfaces.</p>
-        </details>
-    </section>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section" aria-labelledby="testimonials-title">
+            <div class="container">
+                <h2 id="testimonials-title" class="text-center">What Your Neighbors Are Saying</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars" aria-label="5 stars">★★★★★</div>
+                        <p>"Sunde's team made my driveway look brand new. Excellent service here in Bellevue!"</p>
+                        <strong>— Mark R., Bellevue</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars" aria-label="5 stars">★★★★★</div>
+                        <p>"Finally, a service that understands Seattle moss. The house wash was perfect."</p>
+                        <strong>— Jane L., Queen Anne</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars" aria-label="5 stars">★★★★★</div>
+                        <p>"Great price and even better results. My roof looks 10 years younger."</p>
+                        <strong>— Sam T., Ballard</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="container" style="margin-bottom: 4rem;" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="text-center">Frequently Asked Questions</h2>
+            <details>
+                <summary>Why should I choose Pre-Cleaning over just Water Pressure?</summary>
+                <p>Water pressure alone only removes surface dirt. Our Standard and Premium packages use specialized pre-cleaning solutions that kill moss and algae at the root. This ensures a deeper clean and prevents organic growth from returning just weeks later.</p>
+            </details>
+            <details>
+                <summary>What is included in the Post-Cleaning treatment?</summary>
+                <p>Included in our Premium Wash, the post-treatment is a brightening agent that eliminates "tiger stripes" (uneven wash lines) and leaves a residual barrier on the surface. This protective layer can keep your surfaces clean for up to 2 years.</p>
+            </details>
+            <details>
+                <summary>Is the high pressure safe for my property?</summary>
+                <p>While our Basic Wash uses high pressure for flat surfaces like concrete, our Standard and Premium packages allow us to use a 'Soft Wash' technique. Because the chemicals do the heavy lifting, we can use lower pressure, which is much safer for your siding, roof, and delicate surfaces.</p>
+            </details>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="container footer-content">
-            <h4>Sunde Surface Cleaning</h4>
+            <h3>Sunde Surface Cleaning</h3>
             <p>Serving Seattle, WA and the Greater Puget Sound Area</p>
-            <p style="margin: 2rem 0;">
-                <strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a><br>
-                <strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a>
-            </p>
+            <address style="font-style: normal; margin: 2rem 0;">
+                <p><strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a></p>
+                <p><strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a></p>
+            </address>
             <a href="tel:2067398507" class="cta button" style="padding: 1.2rem 2.5rem; display: inline-block;">Get My Free Instant Estimate</a>
             <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.8;">
                 &copy; 2026 Sunde Surface Cleaning. All rights reserved.
@@ -603,9 +764,9 @@
     </footer>
 
     <!-- Mobile Sticky CTA -->
-    <div class="sticky-call">
+    <nav class="sticky-call" aria-label="Emergency Call Navigation">
         <a href="tel:2067398507" class="cta button">📞 Click to Call: 206-739-8507</a>
-    </div>
+    </nav>
 
     <script>
         // Before/After Slider Logic
