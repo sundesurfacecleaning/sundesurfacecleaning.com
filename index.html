@@ -313,9 +313,9 @@
                         <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
                         <select name="service" required aria-label="Service Package">
                             <option value="" disabled selected>Select Cleaning Package</option>
-                            <option value="basic">Basic Wash (Water Only)</option>
-                            <option value="standard">Standard Wash (Pre-Treatment)</option>
-                            <option value="premium">Premium Wash (Full Protection)</option>
+                            <option value="tier1">The Wash (Tier 1)</option>
+                            <option value="tier2">The Pre + Wash (Tier 2)</option>
+                            <option value="tier3">The Full Treatment (Tier 3)</option>
                         </select>
                         <button type="submit" class="cta">Send My Quote Request</button>
                     </form>
@@ -348,36 +348,102 @@
     <!-- Services Section -->
     <section class="container" id="services" style="padding-top: 4rem;">
         <h2 class="text-center">Cleaning Packages</h2>
+        <p class="text-center">Three packages — same quality work, different levels of treatment</p>
         <div class="services-grid">
             <article class="service-card">
-                <header><h3>Basic Wash</h3></header>
-                <p><strong>High-Pressure Rinse</strong><br>Effective high-pressure water cleaning to blast away loose surface dirt and debris. Best for light maintenance on a budget.</p>
+                <header>
+                    <h3>The Wash</h3>
+                    <small>TIER 1</small>
+                </header>
+                <p><strong>$0.38 per sq ft</strong> ($150 minimum)</p>
+                <p><em>"Quick refresh — gets the surface clean."</em></p>
+                <hr>
+                <strong>WHAT'S INCLUDED</strong>
                 <ul>
-                    <li>Eco-friendly (Water only)</li>
-                    <li>Surface-level dirt removal</li>
+                    <li>✓ Pressure wash</li>
+                    <li>✓ Standard rinse</li>
                 </ul>
-                <footer><a href="tel:2067398507" class="outline">Get Basic Quote</a></footer>
+                <hr>
+                <strong>BEST FOR</strong>
+                <ul>
+                    <li>Light dirt / Regular maintenance</li>
+                    <li>Light surface refresh</li>
+                </ul>
+                <footer><a href="tel:2067398507" class="outline">Get Tier 1 Quote</a></footer>
             </article>
             <article class="service-card" style="border: 2px solid var(--brand-azure);">
-                <header><h3 style="margin-bottom: 0;">Standard Wash</h3><small style="color: var(--brand-azure); font-weight: 700;">MOST POPULAR</small></header>
-                <p><strong>Pre-Cleaning Treatment</strong><br>We apply a professional-grade biodegradable solution to kill moss and loosen deep grime before safely washing it away.</p>
+                <header>
+                    <h3 style="margin-bottom: 0;">The Pre + Wash</h3>
+                    <small style="color: var(--brand-azure); font-weight: 700;">TIER 2 — MOST POPULAR</small>
+                </header>
+                <p><strong>$0.50 per sq ft</strong> ($200 minimum)</p>
+                <p><em>"Our most popular — handles moss the right way."</em></p>
+                <hr>
+                <strong>WHAT'S INCLUDED</strong>
                 <ul>
-                    <li>Kills organic growth at root</li>
-                    <li>Safer low-pressure wash</li>
-                    <li>Longer lasting results</li>
+                    <li>✓ Eco-friendly pre-treat</li>
+                    <li>✓ Dwell time for moss</li>
+                    <li>✓ Tier 1 included</li>
                 </ul>
-                <footer><a href="tel:2067398507" class="cta button">Get Standard Quote</a></footer>
+                <hr>
+                <strong>BEST FOR</strong>
+                <ul>
+                    <li>Typical Seattle moss</li>
+                    <li>Mildew & buildup</li>
+                    <li>First-time deep clean</li>
+                </ul>
+                <footer><a href="tel:2067398507" class="cta button">Get Tier 2 Quote</a></footer>
             </article>
             <article class="service-card">
-                <header><h3>Premium Wash</h3></header>
-                <p><strong>Full Surface Restoration</strong><br>Our ultimate treatment. Includes the Standard Wash plus a post-cleaning brightener that leaves a protective barrier.</p>
+                <header>
+                    <h3>The Full Treatment</h3>
+                    <small>TIER 3</small>
+                </header>
+                <p><strong>$0.55 per sq ft</strong> ($250 minimum)</p>
+                <p><em>"Clean now. Stays clean longer."</em></p>
+                <hr>
+                <strong>WHAT'S INCLUDED</strong>
                 <ul>
-                    <li>Eliminates wash lines</li>
-                    <li>2-Year Algae-Free Guarantee</li>
-                    <li>Maximum curb appeal</li>
+                    <li>✓ Post-treatment inhibitor</li>
+                    <li>✓ Stays clean 2–3× longer</li>
+                    <li>✓ Tier 2 included</li>
                 </ul>
-                <footer><a href="tel:2067398507" class="outline">Get Premium Quote</a></footer>
+                <hr>
+                <strong>BEST FOR</strong>
+                <ul>
+                    <li>Heavy moss</li>
+                    <li>Long-lasting protection</li>
+                    <li>Set & forget for the year</li>
+                </ul>
+                <footer><a href="tel:2067398507" class="outline">Get Tier 3 Quote</a></footer>
             </article>
+        </div>
+    </section>
+
+    <!-- Instant Quote Calculator -->
+    <section class="container" id="calculator" style="padding: 4rem 0; background: var(--brand-light-bg); border-radius: 12px; margin-bottom: 4rem;">
+        <h2 class="text-center">📐 Instant Quote Calculator</h2>
+        <p class="text-center">Type your estimated square footage below for an instant price estimate.</p>
+        
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <label for="sqft-input">Square Footage:</label>
+            <input type="number" id="sqft-input" placeholder="e.g. 500" min="0" value="500" aria-label="Square Footage">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 2rem; text-align: center;">
+                <div>
+                    <small>TIER 1</small>
+                    <div id="calc-tier1" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);">$190.00</div>
+                </div>
+                <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                    <small>TIER 2</small>
+                    <div id="calc-tier2" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-azure);">$250.00</div>
+                </div>
+                <div>
+                    <small>TIER 3</small>
+                    <div id="calc-tier3" style="font-size: 1.5rem; font-weight: 700; color: var(--brand-navy);">$275.00</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #666;">* Estimates include minimum charges where applicable.</p>
         </div>
     </section>
 
@@ -461,6 +527,25 @@
             const value = e.target.value;
             afterImg.style.width = value + '%';
         });
+
+        // Price Calculator Logic
+        const sqftInput = document.getElementById('sqft-input');
+        const tier1Display = document.getElementById('calc-tier1');
+        const tier2Display = document.getElementById('calc-tier2');
+        const tier3Display = document.getElementById('calc-tier3');
+
+        const rates = { tier1: 0.38, tier2: 0.50, tier3: 0.55 };
+        const mins = { tier1: 150, tier2: 200, tier3: 250 };
+
+        function updatePrices() {
+            const sqft = parseFloat(sqftInput.value) || 0;
+            
+            tier1Display.innerText = '$' + Math.max(mins.tier1, sqft * rates.tier1).toFixed(2);
+            tier2Display.innerText = '$' + Math.max(mins.tier2, sqft * rates.tier2).toFixed(2);
+            tier3Display.innerText = '$' + Math.max(mins.tier3, sqft * rates.tier3).toFixed(2);
+        }
+
+        sqftInput.addEventListener('input', updatePrices);
     </script>
 </body>
 </html>
