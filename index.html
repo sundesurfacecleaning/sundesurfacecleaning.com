@@ -81,20 +81,7 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "The Wash (Tier 1)",
-                "description": "Standard pressure wash and surface refresh for driveways and flat surfaces.",
-                "offers": {
-                  "@type": "Offer",
-                  "price": "0.38",
-                  "priceCurrency": "USD"
-                }
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "The Pre + Wash (Tier 2)",
+                "name": "Gold Package (Tier 1)",
                 "description": "Eco-friendly pre-treatment and pressure wash. Ideal for Seattle moss and algae removal.",
                 "offers": {
                   "@type": "Offer",
@@ -107,7 +94,7 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "The Full Treatment (Tier 3)",
+                "name": "Diamond Package (Tier 2)",
                 "description": "Complete restoration with post-treatment inhibitors to keep surfaces clean 2-3x longer.",
                 "offers": {
                   "@type": "Offer",
@@ -128,7 +115,7 @@
             "name": "Why should I choose Pre-Cleaning over just Water Pressure?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Water pressure alone only removes surface dirt. Our Standard and Premium packages use specialized pre-cleaning solutions that kill moss and algae at the root, preventing growth from returning quickly."
+              "text": "Water pressure alone only removes surface dirt. Both our Gold and Diamond packages use specialized pre-cleaning solutions that kill moss and algae at the root, preventing growth from returning quickly."
             }
           },
           {
@@ -136,7 +123,7 @@
             "name": "What is included in the Post-Cleaning treatment?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Included in our Premium Wash, the post-treatment is a brightening agent that eliminates uneven wash lines and leaves a residual barrier to keep surfaces clean for up to 2 years."
+              "text": "Included in our Diamond Treatment, the post-treatment is a brightening agent that eliminates uneven wash lines and leaves a residual barrier to keep surfaces clean for up to 2 years."
             }
           },
           {
@@ -144,7 +131,7 @@
             "name": "Is the high pressure safe for my property?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We use a 'Soft Wash' technique for delicate surfaces like siding and roofs. By using eco-friendly solutions to do the heavy lifting, we can use lower pressure that is much safer for your home."
+              "text": "Because our Gold and Diamond packages use specialized solutions to do the heavy lifting, we can use a 'Soft Wash' technique. This lower pressure is much safer for your home."
             }
           }
         ]
@@ -549,7 +536,7 @@
 
         .calculator-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
             margin-top: 2rem;
             text-align: center;
@@ -634,12 +621,12 @@
         }
 
         .comparison-slider .before {
-            background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1000');
+            background-image: url('before1.jpeg');
             z-index: 1;
         }
 
         .comparison-slider .after {
-            background-image: url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=1000');
+            background-image: url('after1.jpeg');
             width: 50%;
             z-index: 2;
             border-right: 4px solid var(--brand-white);
@@ -839,9 +826,8 @@
                                 <label for="hero-service" class="visually-hidden">Select Cleaning Package</label>
                                 <select id="hero-service" name="service" required>
                                     <option value="" disabled selected>Select Cleaning Package</option>
-                                    <option value="tier1">The Wash (Tier 1)</option>
-                                    <option value="tier2">The Pre + Wash (Tier 2)</option>
-                                    <option value="tier3">The Full Treatment (Tier 3)</option>
+                                    <option value="gold">Gold Package</option>
+                                    <option value="diamond">Diamond Package</option>
                                 </select>
 
                                 <button type="submit" class="cta">Get My Free Quote</button>
@@ -863,52 +849,15 @@
 
         <!-- Services Section -->
         <section class="container" id="services">
-            <h2 class="text-center">SUNDE SURFACE CLEANING — Pricing Tiers</h2>
-            <p class="text-center">Three packages — same quality work, different levels of treatment</p>
+            <h2 class="text-center">SUNDE SURFACE CLEANING — Pricing Packages</h2>
+            <p class="text-center">Two professional tiers — same quality work, different levels of treatment</p>
 
             <div class="pricing-table">
-                <!-- Tier 1 -->
-                <div class="tier-column">
-                    <div class="tier-cell tier-header tier-1-header">
-                        <small>TIER 1</small>
-                        <h3 id="tier1-name">The Wash</h3>
-                    </div>
-                    <div class="label-row" aria-hidden="true">Pricing</div>
-                    <div class="tier-cell price-cell">
-                        <div class="price-value">$0.38</div>
-                        <div class="price-unit">per square foot</div>
-                        <small>$150 minimum</small>
-                    </div>
-                    <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
-                    <div class="tier-cell features-cell">
-                        <ul aria-labelledby="tier1-name">
-                            <li>✅  Pressure wash</li>
-                            <li>✅  Standard rinse</li>
-                            <li>➖️</li>
-                            <li>➖️</li>
-                            <li>➖️</li>
-                            <li>➖️</li>
-                        </ul>
-                    </div>
-                    <div class="label-row" aria-hidden="true">BEST FOR</div>
-                    <div class="tier-cell best-for-cell">
-                        Light dirt<br>
-                        Regular maintenance<br>
-                        Light surface refresh
-                    </div>
-                    <div class="tier-cell tagline-cell">
-                        "Quick refresh — gets the surface clean."
-                    </div>
-                    <div class="tier-cell tier-footer">
-                        <a href="tel:2067398507" class="button outline full-width">Get Tier 1 Estimate</a>
-                    </div>
-                </div>
-
-                <!-- Tier 2 -->
+                <!-- Gold Package -->
                 <div class="tier-column">
                     <div class="tier-cell tier-header tier-2-header">
-                        <small>⭐ TIER 2 ⭐</small>
-                        <h3 id="tier2-name">The Pre + Wash</h3>
+                        <small>⭐ GOLD PACKAGE ⭐</small>
+                        <h3 id="gold-name">Gold Wash</h3>
                         <div class="popular-badge">MOST POPULAR</div>
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
@@ -919,7 +868,7 @@
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
                     <div class="tier-cell features-cell">
-                        <ul aria-labelledby="tier2-name">
+                        <ul aria-labelledby="gold-name">
                             <li>✅  Pressure wash</li>
                             <li>✅  Standard rinse</li>
                             <li>✅  Eco-friendly pre-treat</li>
@@ -937,15 +886,15 @@
                     <div class="tier-cell tagline-cell">
                         "Our most popular — handles moss the right way."
                     </div>                    <div class="tier-cell tier-footer">
-                        <a href="tel:2067398507" class="button primary full-width">Get Tier 2 Estimate</a>
+                        <a href="tel:2067398507" class="button primary full-width">Get Gold Estimate</a>
                     </div>
                 </div>
 
-                <!-- Tier 3 -->
+                <!-- Diamond Package -->
                 <div class="tier-column">
                     <div class="tier-cell tier-header tier-3-header">
-                        <small>TIER 3</small>
-                        <h3 id="tier3-name">The Full Treatment</h3>
+                        <small>💎 DIAMOND PACKAGE 💎</small>
+                        <h3 id="diamond-name">Diamond Treatment</h3>
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
@@ -955,7 +904,7 @@
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
                     <div class="tier-cell features-cell">
-                        <ul aria-labelledby="tier3-name">
+                        <ul aria-labelledby="diamond-name">
                             <li>✅  Pressure wash</li>
                             <li>✅  Standard rinse</li>
                             <li>✅  Eco-friendly pre-treat</li>
@@ -973,7 +922,7 @@
                     <div class="tier-cell tagline-cell">
                         "Clean now. Stays clean longer."
                     </div>                    <div class="tier-cell tier-footer">
-                        <a href="tel:2067398507" class="button outline full-width">Get Tier 3 Estimate</a>
+                        <a href="tel:2067398507" class="button outline full-width">Get Diamond Estimate</a>
                     </div>
                 </div>
             </div>
@@ -994,16 +943,12 @@
 
             <div class="calculator-grid" aria-live="polite">
                 <div>
-                    <small id="label-tier1">TIER 1 QUOTE</small>
-                    <div id="calc-tier1" class="calculator-price navy" aria-labelledby="label-tier1">$190.00</div>
+                    <small id="label-gold">GOLD PACKAGE</small>
+                    <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$250.00</div>
                 </div>
                 <div class="calculator-divider">
-                    <small id="label-tier2">TIER 2 QUOTE</small>
-                    <div id="calc-tier2" class="calculator-price primary" aria-labelledby="label-tier2">$250.00</div>
-                </div>
-                <div>
-                    <small id="label-tier3">TIER 3 QUOTE</small>
-                    <div id="calc-tier3" class="calculator-price navy" aria-labelledby="label-tier3">$275.00</div>
+                    <small id="label-diamond">DIAMOND PACKAGE</small>
+                    <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$275.00</div>
                 </div>
             </div>
             <p class="calculator-footer-note">* Estimates include minimum charges where applicable.</p>
@@ -1015,7 +960,7 @@
 
         <!-- Before/After Slider -->
         <section class="container" aria-labelledby="reveal-title">
-            <h2 id="reveal-title" class="text-center">The "Reveal"</h2>
+            <h2 id="reveal-title" class="text-center">Transformations</h2>
             <p class="text-center">Slide to see the <span class="accent-text">Sunde</span> transformation</p>
             <div class="comparison-slider">
                 <div class="image before" aria-hidden="true"></div>
@@ -1100,15 +1045,15 @@
             <h2 id="faq-title" class="text-center">Frequently Asked Questions</h2>
             <details>
                 <summary>Why should I choose Pre-Cleaning over just Water Pressure?</summary>
-                <p>Water pressure alone only removes surface dirt. Our Standard and Premium packages use specialized pre-cleaning solutions that kill moss and algae at the root. This ensures a deeper clean and prevents organic growth from returning just weeks later.</p>
+                <p>Water pressure alone only removes surface dirt. Both our Gold and Diamond packages use specialized pre-cleaning solutions that kill moss and algae at the root. This ensures a deeper clean and prevents organic growth from returning just weeks later.</p>
             </details>
             <details>
                 <summary>What is included in the Post-Cleaning treatment?</summary>
-                <p>Included in our Premium Wash, the post-treatment is a brightening agent that eliminates "tiger stripes" (uneven wash lines) and leaves a residual barrier on the surface. This protective layer can keep your surfaces clean for up to 2 years.</p>
+                <p>Included in our Diamond Treatment, the post-treatment is a brightening agent that eliminates "tiger stripes" (uneven wash lines) and leaves a residual barrier on the surface. This protective layer can keep your surfaces clean for up to 2 years.</p>
             </details>
             <details>
                 <summary>Is the high pressure safe for my property?</summary>
-                <p>While our Basic Wash uses high pressure for flat surfaces like concrete, our Standard and Premium packages allow us to use a 'Soft Wash' technique. Because the chemicals do the heavy lifting, we can use lower pressure, which is much safer for your siding, roof, and delicate surfaces.</p>
+                <p>Because our Gold and Diamond packages use specialized solutions to do the heavy lifting, we can use a 'Soft Wash' technique. This lower pressure is much safer for your siding, roof, and delicate surfaces while still achieving superior results.</p>
             </details>
         </section>
 
@@ -1156,19 +1101,17 @@
 
         // Price Calculator Logic
         const sqftInput = document.getElementById('sqft-input');
-        const tier1Display = document.getElementById('calc-tier1');
-        const tier2Display = document.getElementById('calc-tier2');
-        const tier3Display = document.getElementById('calc-tier3');
+        const goldDisplay = document.getElementById('calc-gold');
+        const diamondDisplay = document.getElementById('calc-diamond');
 
-        const rates = { tier1: 0.38, tier2: 0.50, tier3: 0.55 };
-        const mins = { tier1: 150, tier2: 200, tier3: 250 };
+        const rates = { gold: 0.50, diamond: 0.55 };
+        const mins = { gold: 200, diamond: 250 };
 
         function updatePrices() {
             const sqft = parseFloat(sqftInput.value) || 0;
             
-            tier1Display.innerText = '$' + Math.max(mins.tier1, sqft * rates.tier1).toFixed(2);
-            tier2Display.innerText = '$' + Math.max(mins.tier2, sqft * rates.tier2).toFixed(2);
-            tier3Display.innerText = '$' + Math.max(mins.tier3, sqft * rates.tier3).toFixed(2);
+            goldDisplay.innerText = '$' + Math.max(mins.gold, sqft * rates.gold).toFixed(2);
+            diamondDisplay.innerText = '$' + Math.max(mins.diamond, sqft * rates.diamond).toFixed(2);
         }
 
         sqftInput.addEventListener('input', updatePrices);
