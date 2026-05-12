@@ -178,14 +178,64 @@
 
         /* Layout & Sections */
         .site-header {
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
         }
 
         .header-logo {
-            max-height: 80px;
+            max-height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brand-navy);
+            font-weight: 600;
+            font-family: var(--headings-font-family);
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-azure);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide nav on mobile for simplicity in this redesign */
+            }
+        }
+
+        /* Pill Buttons */
+        .pill-button {
+            background: var(--brand-navy);
+            color: var(--brand-white);
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--headings-font-family);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .pill-button:hover {
+            background: var(--brand-azure);
+            color: var(--brand-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,45,114,0.2);
         }
 
         .section-padding {
@@ -201,74 +251,64 @@
 
         /* Hero Section */
         .hero {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-light-bg) 100%);
-            border-bottom: 1px solid #e1e8ed;
+            padding: 8rem 0;
+            background: linear-gradient(rgba(248, 251, 254, 0.85), rgba(248, 251, 254, 0.85)), url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Optional: creates a parallax-like effect */
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
         }
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
+        .hero-centered {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
             align-items: center;
         }
 
-        @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: var(--brand-navy);
+            letter-spacing: -1px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
             }
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 span {
-            color: var(--brand-azure);
-            background: linear-gradient(to bottom, var(--brand-azure), var(--brand-navy));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-form {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,45,114,0.1);
-            border: 1px solid var(--brand-light-bg);
-        }
-
-        .hero-form h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-trust-note {
-            font-size: 0.8rem;
-            text-align: center;
-            margin-top: 0.5rem;
+        .hero-subhead {
+            font-size: 1.25rem;
             color: var(--brand-navy);
+            margin-bottom: 3rem;
+            font-weight: 500;
         }
 
-        .hero-stars-container {
-            color: #FFD700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 300px;
         }
 
-        .hero-stars-text {
-            color: var(--text-main);
+        .hero-actions .pill-button {
+            width: 100%;
+            padding: 1rem 2rem;
             font-size: 1rem;
         }
 
-        .hero-guarantee {
-            font-weight: 600;
-            color: var(--brand-navy);
-            margin-top: 1rem;
-        }
+
 
         /* CTA Buttons */
         button.cta, a.cta, .button.primary {
@@ -741,45 +781,24 @@
         <body>
 
         <header class="container site-header">
-            <img src="logo.png" alt="Sunde Surface Cleaning Logo - Seattle's Premier Pressure Washing and Soft Washing Specialist" class="header-logo">
-            <h1 class="visually-hidden">Sunde Surface Cleaning - Seattle's Premier Exterior Cleaning</h1>
+            <img src="logo.png" alt="Sunde Surface Cleaning Logo" class="header-logo">
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#faq">Contact</a>
+            </nav>
+            <a href="tel:2067398507" class="pill-button">Book Now</a>
         </header>
 
         <main>
         <!-- Hero Section -->
         <section class="hero" aria-label="Introduction and Quote Request">
-            <div class="container">
-                <div class="hero-content">
-                    <div>
-                        <h1 id="main-heading">Restore Your Seattle Property’s Curb Appeal in <span>Under 2 Hours</span></h1>
-                        <p class="mb-2">Seattle's Premier Surface Cleaning Specialist. We use professional "Soft-Wash" technology to safely remove moss and grime without damaging your property.</p>
-                        <div class="hero-stars-container" aria-label="5 star rating">★★★★★ <span class="hero-stars-text">(4.9/5 from 200+ Seattle Locals)</span></div>
-                        <p class="hero-guarantee">✅ Licensed & Insured | ⚡ 15-Min Response Guarantee</p>
-                    </div>
-                    <div class="hero-form">
-                        <h2 class="text-center">Get My Free Instant Estimate</h2>
-                        <form action="#" method="POST" aria-label="Quote Request Form">
-                            <fieldset class="visually-hidden">
-                                <legend>Contact Information and Service Selection</legend>
-                            </fieldset>
-
-                                <label for="hero-name" class="visually-hidden">Full Name</label>
-                                <input type="text" id="hero-name" name="name" placeholder="Full Name" required>
-
-                                <label for="hero-phone" class="visually-hidden">Phone Number</label>
-                                <input type="tel" id="hero-phone" name="phone" placeholder="Phone Number" required>
-
-                                <label for="hero-service" class="visually-hidden">Select Cleaning Package</label>
-                                <select id="hero-service" name="service" required>
-                                    <option value="" disabled selected>Select Cleaning Package</option>
-                                    <option value="gold">Gold Package</option>
-                                    <option value="diamond">Diamond Package</option>
-                                </select>
-
-                                <button type="submit" class="cta">Get My Free Quote</button>
-                        </form>
-                        <p class="hero-trust-note">Join 500+ Seattle homeowners who trust Sunde</p>
-                    </div>
+            <div class="container hero-centered">
+                <h1 id="main-heading">Student Led Pressure Washing<br>Service</h1>
+                <p class="hero-subhead">Premium Surface Cleaning within the Greater Seattle Area</p>
+                <div class="hero-actions">
+                    <a href="#calculator" class="pill-button">Get A Free Quote</a>
+                    <a href="#services" class="pill-button">View Packages</a>
                 </div>
             </div>
         </section>
