@@ -186,21 +186,22 @@
         }
 
         .header-logo {
-            max-height: 100px;
+            max-height: 120px;
             width: auto;
             position: absolute;
-            top: 0.5rem;
+            top: -10px; /* Floating slightly above/below the header line */
+            left: -75px;
             z-index: 50;
         }
 
         /* Create space for the absolute logo so it doesn't overlap text on mobile */
         .site-header {
             position: relative;
-            min-height: 80px;
+            min-height: 90px;
         }
 
         .nav-links {
-            margin-left: 180px; /* Offset to clear the larger logo */
+            margin-left: 220px; /* Increased offset for the even larger logo */
             display: flex;
             gap: 2rem;
             align-items: center;
@@ -224,14 +225,16 @@
                 margin-left: 0;
             }
             .header-logo {
-                max-height: 80px; /* Slightly smaller for mobile screens */
+                max-height: 100px; /* Slightly smaller for mobile screens but still prominent */
                 position: relative;
                 top: 0;
+                margin-bottom: 1rem;
             }
             .site-header {
                 justify-content: center;
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0;
+                padding-top: 1rem;
             }
         }
 
@@ -857,6 +860,7 @@
             <img src="logo.png" alt="Sunde Surface Cleaning Logo" class="header-logo">
             <nav class="nav-links">
                 <a href="#services">Services</a>
+                <a href="#gallery">Gallery</a>
                 <a href="#about">About</a>
                 <a href="#faq">Contact</a>
             </nav>
@@ -867,7 +871,7 @@
         <!-- Hero Section -->
         <section class="hero" aria-label="Introduction and Quote Request">
             <div class="container hero-centered">
-                <h1 id="main-heading">Student Led Pressure Washing<br>Service</h1>
+                <h1 id="main-heading">Locally Owned & Operated<br>Pressure Washing</h1>
                 <p class="hero-subhead">Premium Surface Cleaning within the Greater Seattle Area</p>
                 <div class="hero-actions">
                     <a href="#calculator" class="pill-button">Get A Free Quote</a>
@@ -997,7 +1001,7 @@
     </section>
 
         <!-- Before/After Scroll Transformations -->
-        <section aria-labelledby="reveal-title">
+        <section aria-labelledby="reveal-title" id="gallery">
             <h2 id="reveal-title" class="text-center">SEE THE IMPACT</h2>
             
             <!-- Project 1: Driveway -->
