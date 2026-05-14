@@ -1051,7 +1051,7 @@
                     <div class="tier-cell price-cell">
                         <div class="price-value" id="gold-rate-display">$0.50</div>
                         <div class="price-unit">per square foot</div>
-                        <small id="gold-min-display">$200 minimum</small>
+                        <small id="gold-min-display">$135 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
                     <div class="tier-cell features-cell">
@@ -1091,7 +1091,7 @@
                     <div class="tier-cell price-cell">
                         <div class="price-value" id="diamond-rate-display">$0.55</div>
                         <div class="price-unit">per square foot</div>
-                        <small id="diamond-min-display">$250 minimum</small>
+                        <small id="diamond-min-display">$135 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
                     <div class="tier-cell features-cell">
@@ -1349,9 +1349,9 @@
         const diamondMinDisplay = document.getElementById('diamond-min-display');
 
         const pricingMatrix = {
-            concrete:  { gold: { rate: 0.50, min: 200 }, diamond: { rate: 0.55, min: 250 } },
-            wood:      { gold: { rate: 0.75, min: 300 }, diamond: { rate: 0.80, min: 300 } },
-            synthetic: { gold: { rate: 0.60, min: 300 }, diamond: { rate: 0.70, min: 300 } }
+            concrete:  { gold: { rate: 0.38, min: 135 }, diamond: { rate: 0.45, min: 135 } },
+            wood:      { gold: { rate: 0.69, min: 220 }, diamond: { rate: 0.98, min: 220 } },
+            synthetic: { gold: { rate: 0.89, min: 220 }, diamond: { rate: 1.00, min: 220 } }
         };
 
         let currentMaterial = 'concrete';
