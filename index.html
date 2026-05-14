@@ -504,9 +504,56 @@
             color: var(--brand-navy);
         }
 
-        .badge-item span {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
+        /* Material Toggle (Segmented Control) */
+        .material-toggle-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .material-toggle {
+            display: inline-flex;
+            background: var(--brand-light-bg);
+            padding: 0.25rem;
+            border-radius: 50px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,45,114,0.1);
+        }
+
+        .material-btn {
+            border: none;
+            background: transparent;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--brand-navy);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--headings-font-family);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .material-btn.active {
+            background: var(--brand-navy);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,45,114,0.2);
+        }
+
+        .material-btn:hover:not(.active) {
+            background: rgba(0,45,114,0.05);
+        }
+
+        /* Price Transition Animation */
+        .price-update {
+            animation: pricePop 0.3s ease-out;
+        }
+
+        @keyframes pricePop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: var(--brand-orange); }
+            100% { transform: scale(1); }
         }
 
         /* Pricing Table */
@@ -978,7 +1025,15 @@
         <!-- Services Section -->
         <section class="container" id="services">
             <h2 class="text-center">SUNDE SURFACE CLEANING — Pricing Packages</h2>
-            <p class="text-center">Two professional tiers — same quality work, different levels of treatment</p>
+            <p class="text-center">Select your surface material to see exact pricing and treatment options</p>
+
+            <div class="material-toggle-container">
+                <div class="material-toggle" role="tablist" aria-label="Surface Material">
+                    <button class="material-btn active" data-material="concrete" role="tab" aria-selected="true">Concrete</button>
+                    <button class="material-btn" data-material="wood" role="tab" aria-selected="false">Wood</button>
+                    <button class="material-btn" data-material="synthetic" role="tab" aria-selected="false">Synthetic Wood</button>
+                </div>
+            </div>
 
             <div class="pricing-table">
                 <!-- Gold Package -->
@@ -994,9 +1049,9 @@
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div class="price-value">$0.50</div>
+                        <div class="price-value" id="gold-rate-display">$0.50</div>
                         <div class="price-unit">per square foot</div>
-                        <small>$200 minimum</small>
+                        <small id="gold-min-display">$200 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
                     <div class="tier-cell features-cell">
@@ -1034,9 +1089,9 @@
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div class="price-value">$0.55</div>
+                        <div class="price-value" id="diamond-rate-display">$0.55</div>
                         <div class="price-unit">per square foot</div>
-                        <small>$250 minimum</small>
+                        <small id="diamond-min-display">$250 minimum</small>
                     </div>
                     <div class="label-row" aria-hidden="true">WHAT'S INCLUDED</div>
                     <div class="tier-cell features-cell">
@@ -1069,6 +1124,7 @@
         <h2 id="calc-title" class="text-center"><svg class="icon" style="margin-right: 0.5rem; transform: scale(1.5);" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg> INSTANT QUOTE — Type any square footage below</h2>
 
         <div class="calculator-card">
+            <p class="text-center"><small>Selected Material: <strong id="calc-selected-material" style="color: var(--brand-azure);">CONCRETE</strong></small></p>
             <form onsubmit="return false;">
                 <label for="sqft-input">Square footage:</label>
                 <div class="input-group">
@@ -1283,18 +1339,74 @@
         const sqftInput = document.getElementById('sqft-input');
         const goldDisplay = document.getElementById('calc-gold');
         const diamondDisplay = document.getElementById('calc-diamond');
+        const materialButtons = document.querySelectorAll('.material-btn');
+        const calcMaterialText = document.getElementById('calc-selected-material');
 
-        const rates = { gold: 0.50, diamond: 0.55 };
-        const mins = { gold: 200, diamond: 250 };
+        // Dynamic Display IDs
+        const goldRateDisplay = document.getElementById('gold-rate-display');
+        const goldMinDisplay = document.getElementById('gold-min-display');
+        const diamondRateDisplay = document.getElementById('diamond-rate-display');
+        const diamondMinDisplay = document.getElementById('diamond-min-display');
+
+        const pricingMatrix = {
+            concrete:  { gold: { rate: 0.50, min: 200 }, diamond: { rate: 0.55, min: 250 } },
+            wood:      { gold: { rate: 0.75, min: 300 }, diamond: { rate: 0.80, min: 300 } },
+            synthetic: { gold: { rate: 0.60, min: 300 }, diamond: { rate: 0.70, min: 300 } }
+        };
+
+        let currentMaterial = 'concrete';
+
+        function updatePricingDisplay() {
+            const data = pricingMatrix[currentMaterial];
+            
+            // Update Pricing Cards with animation
+            [goldRateDisplay, goldMinDisplay, diamondRateDisplay, diamondMinDisplay].forEach(el => {
+                el.classList.remove('price-update');
+                void el.offsetWidth; // Trigger reflow
+                el.classList.add('price-update');
+            });
+
+            goldRateDisplay.innerText = `$${data.gold.rate.toFixed(2)}`;
+            goldMinDisplay.innerText = `$${data.gold.min} minimum`;
+            
+            diamondRateDisplay.innerText = `$${data.diamond.rate.toFixed(2)}`;
+            diamondMinDisplay.innerText = `$${data.diamond.min} minimum`;
+
+            // Update Calculator Indicator
+            calcMaterialText.innerText = currentMaterial.toUpperCase();
+
+            // Update Final Prices
+            updatePrices();
+        }
 
         function updatePrices() {
             const sqft = parseFloat(sqftInput.value) || 0;
+            const data = pricingMatrix[currentMaterial];
             
-            goldDisplay.innerText = '$' + Math.max(mins.gold, sqft * rates.gold).toFixed(2);
-            diamondDisplay.innerText = '$' + Math.max(mins.diamond, sqft * rates.diamond).toFixed(2);
+            const goldTotal = Math.max(data.gold.min, sqft * data.gold.rate);
+            const diamondTotal = Math.max(data.diamond.min, sqft * data.diamond.rate);
+
+            goldDisplay.innerText = '$' + goldTotal.toFixed(2);
+            diamondDisplay.innerText = '$' + diamondTotal.toFixed(2);
         }
 
+        materialButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                materialButtons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                currentMaterial = btn.dataset.material;
+                updatePricingDisplay();
+            });
+        });
+
         sqftInput.addEventListener('input', updatePrices);
+
+        // Initial setup
+        updatePricingDisplay();
     </script>
 </body>
 </html>
