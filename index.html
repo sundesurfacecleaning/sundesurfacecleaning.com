@@ -1073,7 +1073,7 @@
                     <div class="tier-cell tagline-cell">
                         "Our most popular — handles moss the right way."
                     </div>                    <div class="tier-cell tier-footer">
-                        <a href="https://cal.com/sundesurfacecleaning/free-quote" target="_blank" class="button primary full-width">Get Gold Estimate</a>
+                        <a href="https://cal.com/sundesurfacecleaning/free-quote" id="gold-card-cta" target="_blank" class="button primary full-width">Get Gold Estimate</a>
                     </div>
                 </div>
 
@@ -1113,7 +1113,7 @@
                     <div class="tier-cell tagline-cell">
                         "Clean now. Stays clean longer."
                     </div>                    <div class="tier-cell tier-footer">
-                        <a href="https://cal.com/sundesurfacecleaning/free-quote" target="_blank" class="button outline full-width">Get Diamond Estimate</a>
+                        <a href="https://cal.com/sundesurfacecleaning/free-quote" id="diamond-card-cta" target="_blank" class="button outline full-width">Get Diamond Estimate</a>
                     </div>
                 </div>
             </div>
@@ -1145,7 +1145,7 @@
             </div>
             <p class="calculator-footer-note">* Estimates include minimum charges where applicable.</p>
             <div class="text-center mt-2">
-                <a href="https://cal.com/sundesurfacecleaning/free-quote" target="_blank" class="cta button full-width">Click to Lock in This Price</a>
+                <a href="https://cal.com/sundesurfacecleaning/free-quote" id="calc-cta" target="_blank" class="cta button full-width">Click to Lock in This Price</a>
             </div>
         </div>
     </section>
@@ -1307,11 +1307,7 @@
                 const trackHeight = track.offsetHeight;
 
                 // Calculate progress through the track (0 to 1)
-                // Progress starts when the top of the track hits the top of the viewport
-                // and ends when the bottom of the track hits the bottom of the viewport
                 let progress = -trackRect.top / (trackHeight - windowHeight);
-                
-                // Clamp progress between 0 and 1
                 progress = Math.max(0, Math.min(1, progress));
 
                 // Update clip-path (wipe from left to right)
@@ -1335,12 +1331,15 @@
         // Initialize all positions
         updateAllWipes();
 
-        // Price Calculator Logic
+        // Price Calculator & Interactive Matrix Logic
         const sqftInput = document.getElementById('sqft-input');
         const goldDisplay = document.getElementById('calc-gold');
         const diamondDisplay = document.getElementById('calc-diamond');
         const materialButtons = document.querySelectorAll('.material-btn');
         const calcMaterialText = document.getElementById('calc-selected-material');
+        const calcCTA = document.getElementById('calc-cta');
+        const goldCTA = document.getElementById('gold-card-cta');
+        const diamondCTA = document.getElementById('diamond-card-cta');
 
         // Dynamic Display IDs
         const goldRateDisplay = document.getElementById('gold-rate-display');
@@ -1349,9 +1348,9 @@
         const diamondMinDisplay = document.getElementById('diamond-min-display');
 
         const pricingMatrix = {
-            concrete:  { gold: { rate: 0.38, min: 135 }, diamond: { rate: 0.45, min: 135 } },
-            wood:      { gold: { rate: 0.69, min: 220 }, diamond: { rate: 0.98, min: 220 } },
-            synthetic: { gold: { rate: 0.89, min: 220 }, diamond: { rate: 1.00, min: 220 } }
+            concrete:  { gold: { rate: 0.50, min: 200 }, diamond: { rate: 0.55, min: 250 } },
+            wood:      { gold: { rate: 0.75, min: 300 }, diamond: { rate: 0.80, min: 300 } },
+            synthetic: { gold: { rate: 0.60, min: 300 }, diamond: { rate: 0.70, min: 300 } }
         };
 
         let currentMaterial = 'concrete';
@@ -1361,19 +1360,25 @@
             
             // Update Pricing Cards with animation
             [goldRateDisplay, goldMinDisplay, diamondRateDisplay, diamondMinDisplay].forEach(el => {
+                if (!el) return;
                 el.classList.remove('price-update');
                 void el.offsetWidth; // Trigger reflow
                 el.classList.add('price-update');
             });
 
-            goldRateDisplay.innerText = `$${data.gold.rate.toFixed(2)}`;
-            goldMinDisplay.innerText = `$${data.gold.min} minimum`;
+            if (goldRateDisplay) goldRateDisplay.innerText = `$${data.gold.rate.toFixed(2)}`;
+            if (goldMinDisplay) goldMinDisplay.innerText = `$${data.gold.min} minimum`;
             
-            diamondRateDisplay.innerText = `$${data.diamond.rate.toFixed(2)}`;
-            diamondMinDisplay.innerText = `$${data.diamond.min} minimum`;
+            if (diamondRateDisplay) diamondRateDisplay.innerText = `$${data.diamond.rate.toFixed(2)}`;
+            if (diamondMinDisplay) diamondMinDisplay.innerText = `$${data.diamond.min} minimum`;
 
             // Update Calculator Indicator
-            calcMaterialText.innerText = currentMaterial.toUpperCase();
+            if (calcMaterialText) calcMaterialText.innerText = currentMaterial.toUpperCase();
+
+            // Update Card CTA links with pre-fill info
+            const matName = currentMaterial.charAt(0).toUpperCase() + currentMaterial.slice(1);
+            if (goldCTA) goldCTA.href = `https://cal.com/sundesurfacecleaning/free-quote?notes=${encodeURIComponent(`Interested in Gold Package (${matName} Surface)`)}`;
+            if (diamondCTA) diamondCTA.href = `https://cal.com/sundesurfacecleaning/free-quote?notes=${encodeURIComponent(`Interested in Diamond Treatment (${matName} Surface)`)}`;
 
             // Update Final Prices
             updatePrices();
@@ -1386,8 +1391,12 @@
             const goldTotal = Math.max(data.gold.min, sqft * data.gold.rate);
             const diamondTotal = Math.max(data.diamond.min, sqft * data.diamond.rate);
 
-            goldDisplay.innerText = '$' + goldTotal.toFixed(2);
-            diamondDisplay.innerText = '$' + diamondTotal.toFixed(2);
+            if (goldDisplay) goldDisplay.innerText = '$' + goldTotal.toFixed(2);
+            if (diamondDisplay) diamondDisplay.innerText = '$' + diamondTotal.toFixed(2);
+
+            // Dynamically update Calculator CTA link with specific quote notes
+            const notes = `Quote Details:\n- Surface: ${currentMaterial.toUpperCase()}\n- Area: ${sqft} sqft\n- Gold Package: $${goldTotal.toFixed(2)}\n- Diamond Treatment: $${diamondTotal.toFixed(2)}`;
+            if (calcCTA) calcCTA.href = `https://cal.com/sundesurfacecleaning/free-quote?notes=${encodeURIComponent(notes)}`;
         }
 
         materialButtons.forEach(btn => {
@@ -1403,7 +1412,7 @@
             });
         });
 
-        sqftInput.addEventListener('input', updatePrices);
+        if (sqftInput) sqftInput.addEventListener('input', updatePrices);
 
         // Initial setup
         updatePricingDisplay();
