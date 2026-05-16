@@ -347,7 +347,7 @@
         /* Hero Section */
         .hero {
             margin-top: 0 !important;
-            padding: 8rem 0;
+            padding: 4rem 0 2rem;
             background: linear-gradient(rgba(248, 251, 254, 0.85), rgba(248, 251, 254, 0.85)), url('bg.jpeg');
             background-size: cover;
             background-position: center;
@@ -356,7 +356,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 80vh;
+            min-height: 50vh; /* Reduced from 80vh */
         }
 
         .hero-centered {
@@ -368,9 +368,9 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 3.5rem; /* Reduced from 5rem */
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             font-weight: 900;
             color: var(--brand-navy);
@@ -379,23 +379,31 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
         }
 
         .hero-subhead {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: var(--brand-navy);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-weight: 500;
         }
 
         .hero-actions {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Horizontal on desktop */
             gap: 1rem;
             width: 100%;
-            max-width: 300px;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-actions {
+                flex-direction: column;
+                max-width: 300px;
+            }
         }
 
         .hero-actions .pill-button {
@@ -404,7 +412,26 @@
             font-size: 1rem;
         }
 
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(0,45,114,0.1);
+            padding-top: 1.5rem;
+            width: 100%;
+        }
 
+        .hero-badge-item {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--brand-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         /* CTA Buttons */
         button.cta, a.cta, .button.primary {
@@ -1010,15 +1037,21 @@
                     <a href="#calculator" class="pill-button">Get A Free Quote</a>
                     <a href="#services" class="pill-button">View Packages</a>
                 </div>
-            </div>
-        </section>
 
-        <!-- Badge Bar -->
-        <section class="badge-bar" aria-label="Trust Badges">
-            <div class="container badge-grid">
-                <div class="badge-item"><svg class="icon icon-fill" style="color: #FFD700; margin-right: 0.5rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 5.0 Google Rating</div>
-                <div class="badge-item"><svg class="icon icon-fill" style="color: var(--brand-azure); margin-right: 0.5rem;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Licensed & Insured</div>
-                <div class="badge-item"><svg class="icon" style="color: var(--brand-orange); margin-right: 0.5rem;" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 100% Satisfaction Guarantee</div>
+                <div class="hero-badges">
+                    <div class="hero-badge-item">
+                        <svg class="icon icon-fill" style="color: #FFD700; margin-right: 0.5rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        5.0 Google Rating
+                    </div>
+                    <div class="hero-badge-item">
+                        <svg class="icon icon-fill" style="color: var(--brand-azure); margin-right: 0.5rem;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Licensed & Insured
+                    </div>
+                    <div class="hero-badge-item">
+                        <svg class="icon" style="color: var(--brand-orange); margin-right: 0.5rem;" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        100% Satisfaction
+                    </div>
+                </div>
             </div>
         </section>
 
