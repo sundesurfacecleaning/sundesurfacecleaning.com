@@ -772,15 +772,67 @@
             border: 1px solid var(--brand-light-bg);
         }
 
+        /* Range Slider Styling */
+        .range-container {
+            margin-bottom: 2rem;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: #e1e8ed;
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 1rem 0;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--brand-azure);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
         .input-group {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calc-formula {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.25rem;
+            font-family: monospace;
+            display: block;
+        }
+
+        .min-badge {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-weight: 700;
+            border: 1px solid #ffeeba;
+            visibility: hidden;
+        }
+
+        .min-badge.active {
+            visibility: visible;
         }
 
         .input-group input { 
-            flex-grow: 1; 
+        ...
             border: 2px solid #e1e8ed;
             border-radius: 8px;
             padding: 1rem;
@@ -1193,10 +1245,19 @@
         <div class="calculator-card">
             <p class="text-center"><small>Selected Material: <strong id="calc-selected-material" style="color: var(--brand-azure);">CONCRETE</strong></small></p>
             <form onsubmit="return false;">
-                <label for="sqft-input">Square footage:</label>
+                <div class="range-container">
+                    <label for="sqft-range" class="sr-only">Adjust square footage</label>
+                    <input type="range" id="sqft-range" min="0" max="5000" step="50" value="210">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #999;">
+                        <span>0 sqft</span>
+                        <span>2,500 sqft</span>
+                        <span>5,000+ sqft</span>
+                    </div>
+                </div>
+
+                <label for="sqft-input">Or type exact square footage:</label>
                 <div class="input-group">
                     <input type="number" id="sqft-input" placeholder="e.g. 200" min="0" value="210">
-                    <small class="text-muted-italic">← change this number</small>
                 </div>
             </form>
 
@@ -1204,10 +1265,14 @@
                 <div>
                     <small id="label-gold">GOLD PACKAGE</small>
                     <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$135.00</div>
+                    <span class="calc-formula" id="gold-formula">($0.38 × 210)</span>
+                    <span class="min-badge" id="gold-min-badge">MINIMUM APPLIED</span>
                 </div>
                 <div class="calculator-divider">
                     <small id="label-diamond">DIAMOND PACKAGE</small>
                     <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$135.00</div>
+                    <span class="calc-formula" id="diamond-formula">($0.45 × 210)</span>
+                    <span class="min-badge" id="diamond-min-badge">MINIMUM APPLIED</span>
                 </div>
             </div>
             <p class="calculator-footer-note">* Estimates include minimum charges where applicable.</p>
@@ -1400,8 +1465,13 @@
 
         // Price Calculator & Interactive Matrix Logic
         const sqftInput = document.getElementById('sqft-input');
+        const sqftRange = document.getElementById('sqft-range');
         const goldDisplay = document.getElementById('calc-gold');
         const diamondDisplay = document.getElementById('calc-diamond');
+        const goldFormula = document.getElementById('gold-formula');
+        const diamondFormula = document.getElementById('diamond-formula');
+        const goldMinBadge = document.getElementById('gold-min-badge');
+        const diamondMinBadge = document.getElementById('diamond-min-badge');
         const materialButtons = document.querySelectorAll('.material-btn');
         const calcMaterialText = document.getElementById('calc-selected-material');
         const calcCTA = document.getElementById('calc-cta');
@@ -1451,15 +1521,37 @@
             updatePrices();
         }
 
-        function updatePrices() {
-            const sqft = parseFloat(sqftInput.value) || 0;
+        function updatePrices(e) {
+            // Sync Input and Range
+            let sqft = 0;
+            if (e && e.target.id === 'sqft-range') {
+                sqft = parseFloat(sqftRange.value);
+                sqftInput.value = sqft;
+            } else {
+                sqft = parseFloat(sqftInput.value) || 0;
+                sqftRange.value = sqft;
+            }
+
             const data = pricingMatrix[currentMaterial];
             
-            const goldTotal = Math.max(data.gold.min, sqft * data.gold.rate);
-            const diamondTotal = Math.max(data.diamond.min, sqft * data.diamond.rate);
+            // Calculate Totals
+            const goldBase = sqft * data.gold.rate;
+            const diamondBase = sqft * data.diamond.rate;
+            
+            const goldTotal = Math.max(data.gold.min, goldBase);
+            const diamondTotal = Math.max(data.diamond.min, diamondBase);
 
+            // Update Displays
             if (goldDisplay) goldDisplay.innerText = '$' + goldTotal.toFixed(2);
             if (diamondDisplay) diamondDisplay.innerText = '$' + diamondTotal.toFixed(2);
+
+            // Update Formulas
+            if (goldFormula) goldFormula.innerText = `($${data.gold.rate.toFixed(2)} × ${sqft.toLocaleString()} sqft)`;
+            if (diamondFormula) diamondFormula.innerText = `($${data.diamond.rate.toFixed(2)} × ${sqft.toLocaleString()} sqft)`;
+
+            // Update Minimum Badges
+            if (goldMinBadge) goldMinBadge.classList.toggle('active', goldBase < data.gold.min && sqft > 0);
+            if (diamondMinBadge) diamondMinBadge.classList.toggle('active', diamondBase < data.diamond.min && sqft > 0);
 
             // Dynamically update Calculator CTA link with specific quote notes
             const notes = `Quote Details:\n- Surface: ${currentMaterial.toUpperCase()}\n- Area: ${sqft} sqft\n- Gold Package: $${goldTotal.toFixed(2)}\n- Diamond Treatment: $${diamondTotal.toFixed(2)}`;
@@ -1480,6 +1572,7 @@
         });
 
         if (sqftInput) sqftInput.addEventListener('input', updatePrices);
+        if (sqftRange) sqftRange.addEventListener('input', updatePrices);
 
         // Initial setup
         updatePricingDisplay();
