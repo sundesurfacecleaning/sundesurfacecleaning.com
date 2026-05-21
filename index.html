@@ -75,33 +75,67 @@
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Exterior Cleaning Services",
+          "name": "Surface Cleaning Services",
           "itemListElement": [
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Gold Package (Tier 1)",
-                "description": "Eco-friendly pre-treatment and pressure wash. Ideal for Seattle moss and algae removal.",
-                "offers": {
+              "@type": "OfferCatalog",
+              "name": "Concrete Cleaning",
+              "itemListElement": [
+                {
                   "@type": "Offer",
-                  "price": "0.50",
-                  "priceCurrency": "USD"
+                  "itemOffered": { "@type": "Service", "name": "Concrete Gold Wash" },
+                  "price": "0.38",
+                  "priceCurrency": "USD",
+                  "description": "Eco-friendly pre-treatment and pressure wash for concrete."
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Concrete Diamond Treatment" },
+                  "price": "0.45",
+                  "priceCurrency": "USD",
+                  "description": "Complete concrete restoration with post-treatment inhibitors."
                 }
-              }
+              ]
             },
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Diamond Package (Tier 2)",
-                "description": "Complete restoration with post-treatment inhibitors to keep surfaces clean 2-3x longer.",
-                "offers": {
+              "@type": "OfferCatalog",
+              "name": "Wood Cleaning",
+              "itemListElement": [
+                {
                   "@type": "Offer",
-                  "price": "0.55",
-                  "priceCurrency": "USD"
+                  "itemOffered": { "@type": "Service", "name": "Wood Gold Wash" },
+                  "price": "0.69",
+                  "priceCurrency": "USD",
+                  "description": "Gentle wood cleaning with specialized solutions."
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Wood Diamond Treatment" },
+                  "price": "0.98",
+                  "priceCurrency": "USD",
+                  "description": "Premium wood restoration and preservation."
                 }
-              }
+              ]
+            },
+            {
+              "@type": "OfferCatalog",
+              "name": "Synthetic Wood Cleaning",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Synthetic Gold Wash" },
+                  "price": "0.89",
+                  "priceCurrency": "USD",
+                  "description": "Safe cleaning for composite and synthetic decking."
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Synthetic Diamond Treatment" },
+                  "price": "1.00",
+                  "priceCurrency": "USD",
+                  "description": "Advanced protection for synthetic wood surfaces."
+                }
+              ]
             }
           ]
         }
@@ -1082,7 +1116,7 @@
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div class="price-value" id="gold-rate-display">$0.50</div>
+                        <div class="price-value" id="gold-rate-display">$0.38</div>
                         <div class="price-unit">per square foot</div>
                         <small id="gold-min-display">$135 minimum</small>
                     </div>
@@ -1122,7 +1156,7 @@
                     </div>
                     <div class="label-row" aria-hidden="true">Pricing</div>
                     <div class="tier-cell price-cell">
-                        <div class="price-value" id="diamond-rate-display">$0.55</div>
+                        <div class="price-value" id="diamond-rate-display">$0.45</div>
                         <div class="price-unit">per square foot</div>
                         <small id="diamond-min-display">$135 minimum</small>
                     </div>
@@ -1169,11 +1203,11 @@
             <div class="calculator-grid" aria-live="polite">
                 <div>
                     <small id="label-gold">GOLD PACKAGE</small>
-                    <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$250.00</div>
+                    <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$135.00</div>
                 </div>
                 <div class="calculator-divider">
                     <small id="label-diamond">DIAMOND PACKAGE</small>
-                    <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$275.00</div>
+                    <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$135.00</div>
                 </div>
             </div>
             <p class="calculator-footer-note">* Estimates include minimum charges where applicable.</p>
@@ -1381,9 +1415,9 @@
         const diamondMinDisplay = document.getElementById('diamond-min-display');
 
         const pricingMatrix = {
-            concrete:  { gold: { rate: 0.50, min: 200 }, diamond: { rate: 0.55, min: 250 } },
-            wood:      { gold: { rate: 0.75, min: 300 }, diamond: { rate: 0.80, min: 300 } },
-            synthetic: { gold: { rate: 0.60, min: 300 }, diamond: { rate: 0.70, min: 300 } }
+            concrete:  { gold: { rate: 0.38, min: 135 }, diamond: { rate: 0.45, min: 135 } },
+            wood:      { gold: { rate: 0.69, min: 220 }, diamond: { rate: 0.98, min: 220 } },
+            synthetic: { gold: { rate: 0.89, min: 220 }, diamond: { rate: 1.00, min: 220 } }
         };
 
         let currentMaterial = 'concrete';
