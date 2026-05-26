@@ -50,8 +50,6 @@
         const materialButtons = document.querySelectorAll('.material-btn');
         const calcMaterialText = document.getElementById('calc-selected-material');
         const calcCTA = document.getElementById('calc-cta');
-        const goldCTA = document.getElementById('gold-card-cta');
-        const diamondCTA = document.getElementById('diamond-card-cta');
 
         // Dynamic Display IDs
         const goldRateDisplay = document.getElementById('gold-rate-display');
@@ -86,11 +84,6 @@
 
             // Update Calculator Indicator
             if (calcMaterialText) calcMaterialText.innerText = currentMaterial.toUpperCase();
-
-            // Update Card CTA links with pre-fill info
-            const matName = currentMaterial.charAt(0).toUpperCase() + currentMaterial.slice(1);
-            if (goldCTA) goldCTA.href = `https://cal.com/sundesurfacecleaning/free-quote?notes=${encodeURIComponent(`Interested in Gold Package (${matName} Surface)`)}`;
-            if (diamondCTA) diamondCTA.href = `https://cal.com/sundesurfacecleaning/free-quote?notes=${encodeURIComponent(`Interested in Diamond Restoration & Long-Term Protection (${matName} Surface)`)}`;
 
             // Update Final Prices
             updatePrices();
