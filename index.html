@@ -863,8 +863,9 @@
         }
 
         .calculator-price {
-            font-size: 2rem;
+            font-size: 1.60rem;
             font-weight: 800;
+            line-height: 1.2;
         }
 
         .calculator-price.primary { color: var(--brand-orange); }
@@ -1295,13 +1296,11 @@
                 <div>
                     <small id="label-gold">GOLD PACKAGE</small>
                     <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$135.00</div>
-                    <span class="calc-formula" id="gold-formula">($0.38 × 210)</span>
                     <span class="min-badge" id="gold-min-badge">MINIMUM APPLIED</span>
                 </div>
                 <div class="calculator-divider">
                     <small id="label-diamond">DIAMOND PACKAGE</small>
                     <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$135.00</div>
-                    <span class="calc-formula" id="diamond-formula">($0.45 × 210)</span>
                     <span class="min-badge" id="diamond-min-badge">MINIMUM APPLIED</span>
                 </div>
             </div>
@@ -1584,8 +1583,6 @@
         const sqftRange = document.getElementById('sqft-range');
         const goldDisplay = document.getElementById('calc-gold');
         const diamondDisplay = document.getElementById('calc-diamond');
-        const goldFormula = document.getElementById('gold-formula');
-        const diamondFormula = document.getElementById('diamond-formula');
         const goldMinBadge = document.getElementById('gold-min-badge');
         const diamondMinBadge = document.getElementById('diamond-min-badge');
         const materialButtons = document.querySelectorAll('.material-btn');
@@ -1601,9 +1598,9 @@
         const diamondMinDisplay = document.getElementById('diamond-min-display');
 
         const pricingMatrix = {
-            concrete:  { gold: { rate: 0.38, min: 135 }, diamond: { rate: 0.45, min: 135 } },
-            wood:      { gold: { rate: 0.69, min: 220 }, diamond: { rate: 0.98, min: 220 } },
-            synthetic: { gold: { rate: 0.89, min: 220 }, diamond: { rate: 1.00, min: 220 } }
+            concrete:  { gold: { minRate: 0.35, maxRate: 0.50, min: 200 }, diamond: { minRate: 0.45, maxRate: 0.60, min: 200 } },
+            wood:      { gold: { minRate: 0.45, maxRate: 0.65, min: 250 }, diamond: { minRate: 0.55, maxRate: 0.75, min: 250 } },
+            synthetic: { gold: { minRate: 0.50, maxRate: 0.75, min: 275 }, diamond: { minRate: 0.60, maxRate: 0.85, min: 275 } }
         };
 
         let currentMaterial = 'concrete';
@@ -1619,10 +1616,10 @@
                 el.classList.add('price-update');
             });
 
-            if (goldRateDisplay) goldRateDisplay.innerText = `$${data.gold.rate.toFixed(2)}`;
+            if (goldRateDisplay) goldRateDisplay.innerText = `$${data.gold.minRate.toFixed(2)} - $${data.gold.maxRate.toFixed(2)}`;
             if (goldMinDisplay) goldMinDisplay.innerText = `$${data.gold.min} minimum`;
             
-            if (diamondRateDisplay) diamondRateDisplay.innerText = `$${data.diamond.rate.toFixed(2)}`;
+            if (diamondRateDisplay) diamondRateDisplay.innerText = `$${data.diamond.minRate.toFixed(2)} - $${data.diamond.maxRate.toFixed(2)}`;
             if (diamondMinDisplay) diamondMinDisplay.innerText = `$${data.diamond.min} minimum`;
 
             // Update Calculator Indicator
@@ -1651,26 +1648,37 @@
             const data = pricingMatrix[currentMaterial];
             
             // Calculate Totals
-            const goldBase = sqft * data.gold.rate;
-            const diamondBase = sqft * data.diamond.rate;
+            const goldBaseMin = sqft * data.gold.minRate;
+            const goldBaseMax = sqft * data.gold.maxRate;
+            const diamondBaseMin = sqft * data.diamond.minRate;
+            const diamondBaseMax = sqft * data.diamond.maxRate;
             
-            const goldTotal = Math.max(data.gold.min, goldBase);
-            const diamondTotal = Math.max(data.diamond.min, diamondBase);
+            const goldTotalMin = Math.max(data.gold.min, goldBaseMin);
+            const goldTotalMax = Math.max(data.gold.min, goldBaseMax);
+            const diamondTotalMin = Math.max(data.diamond.min, diamondBaseMin);
+            const diamondTotalMax = Math.max(data.diamond.min, diamondBaseMax);
 
             // Update Displays
-            if (goldDisplay) goldDisplay.innerText = '$' + goldTotal.toFixed(2);
-            if (diamondDisplay) diamondDisplay.innerText = '$' + diamondTotal.toFixed(2);
-
-            // Update Formulas
-            if (goldFormula) goldFormula.innerText = `($${data.gold.rate.toFixed(2)} × ${sqft.toLocaleString()} sqft)`;
-            if (diamondFormula) diamondFormula.innerText = `($${data.diamond.rate.toFixed(2)} × ${sqft.toLocaleString()} sqft)`;
+            if (goldDisplay) {
+                goldDisplay.innerText = (goldTotalMin === goldTotalMax) 
+                    ? `$${goldTotalMin.toFixed(2)}` 
+                    : `$${goldTotalMin.toFixed(2)} - $${goldTotalMax.toFixed(2)}`;
+            }
+            if (diamondDisplay) {
+                diamondDisplay.innerText = (diamondTotalMin === diamondTotalMax) 
+                    ? `$${diamondTotalMin.toFixed(2)}` 
+                    : `$${diamondTotalMin.toFixed(2)} - $${diamondTotalMax.toFixed(2)}`;
+            }
 
             // Update Minimum Badges
-            if (goldMinBadge) goldMinBadge.classList.toggle('active', goldBase < data.gold.min && sqft > 0);
-            if (diamondMinBadge) diamondMinBadge.classList.toggle('active', diamondBase < data.diamond.min && sqft > 0);
+            if (goldMinBadge) goldMinBadge.classList.toggle('active', goldTotalMin === data.gold.min && sqft > 0);
+            if (diamondMinBadge) diamondMinBadge.classList.toggle('active', diamondTotalMin === data.diamond.min && sqft > 0);
 
             // Dynamically update Calculator CTA link with specific quote notes
-            const notes = `Quote Details:\n- Surface: ${currentMaterial.toUpperCase()}\n- Area: ${sqft} sqft\n- Gold Package: $${goldTotal.toFixed(2)}\n- Diamond Restoration & Long-Term Protection: $${diamondTotal.toFixed(2)}`;
+            const goldQuote = (goldTotalMin === goldTotalMax) ? `$${goldTotalMin.toFixed(2)}` : `$${goldTotalMin.toFixed(2)} - $${goldTotalMax.toFixed(2)}`;
+            const diamondQuote = (diamondTotalMin === diamondTotalMax) ? `$${diamondTotalMin.toFixed(2)}` : `$${diamondTotalMin.toFixed(2)} - $${diamondTotalMax.toFixed(2)}`;
+            
+            const notes = `Quote Details:\n- Surface: ${currentMaterial.toUpperCase()}\n- Area: ${sqft} sqft\n- Gold Package Estimate: ${goldQuote}\n- Diamond Restoration & Long-Term Protection Estimate: ${diamondQuote}`;
             if (calcCTA) calcCTA.href = `https://cal.com/sundesurfacecleaning/free-quote?notes=${encodeURIComponent(notes)}`;
         }
 
