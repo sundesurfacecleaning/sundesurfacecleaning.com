@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Mark R.",
+    "location": "Bellevue",
+    "text": "The team made my driveway look brand new. Excellent service here in Bellevue!",
+    "stars": 5,
+    "verified": true,
+    "googleLink": "https://maps.app.goo.gl/sGL6Xg4vsv3ECZwq5"
+  },
+  {
+    "name": "Jane L.",
+    "location": "Queen Anne",
+    "text": "Finally, a service that understands Seattle moss. The house wash was perfect.",
+    "stars": 5,
+    "verified": true,
+    "googleLink": "https://maps.app.goo.gl/sGL6Xg4vsv3ECZwq5"
+  },
+  {
+    "name": "Sam T.",
+    "location": "Ballard",
+    "text": "Great price and even better results. My roof looks 10 years younger.",
+    "stars": 5,
+    "verified": true,
+    "googleLink": "https://maps.app.goo.gl/sGL6Xg4vsv3ECZwq5"
+  }
+]

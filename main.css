@@ -270,28 +270,55 @@
             font-size: 1rem;
         }
 
-        .hero-badges {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            border-top: 1px solid rgba(0,45,114,0.1);
-            padding-top: 1.5rem;
+        .hero-carousel-container {
             width: 100%;
+            max-width: 600px;
+            margin-top: 2rem;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 45, 114, 0.1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .hero-badge-item {
+        .hero-carousel-track {
             display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--brand-navy);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* CTA Buttons */
+        .hero-carousel-item {
+            flex: 0 0 100%;
+            min-width: 100%;
+            padding: 0 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-carousel-text {
+            font-size: 0.95rem;
+            color: var(--brand-navy);
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 500px;
+        }
+
+        .hero-carousel-author {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--brand-azure);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Testimonials Section Styles */
         button.cta, a.cta, .button.primary {
             background: var(--brand-orange);
             border: none;
@@ -823,6 +850,33 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+        }
+
+        .testimonial-card .google-link {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #4285F4;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .testimonial-card .google-link:hover {
+            opacity: 1;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #34A853;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            font-style: normal;
         }
 
         .stars {
