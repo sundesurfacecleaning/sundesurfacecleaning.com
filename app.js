@@ -189,7 +189,7 @@
                             `).join('')}
                         </div>
                         <p class="hero-carousel-text" style="max-width: 800px;">"${review.text}"</p>
-                        <span class="hero-carousel-author">${review.name} — ${review.location}</span>
+                        <span class="hero-carousel-author">${review.name}</span>
                     </div>
                 `).join('');
 
