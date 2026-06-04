@@ -134,17 +134,6 @@
                 width: 100%;
                 max-width: 200px;
             }
-            .wipe-wrapper {
-                height: 50vh; /* Shorter for mobile aspect ratios */
-                border-radius: 12px;
-            }
-            .wipe-badge {
-                font-size: 0.75rem;
-                padding: 0.25rem 0.75rem;
-                top: 1rem;
-            }
-            .badge-before { left: 1rem; }
-            .badge-after { right: 1rem; }
             
             .calculator-card {
                 padding: 1.5rem;
@@ -662,14 +651,6 @@
             margin-bottom: 1rem;
         }
 
-        .calc-formula {
-            font-size: 0.75rem;
-            color: #666;
-            margin-top: 0.25rem;
-            font-family: monospace;
-            display: block;
-        }
-
         .min-badge {
             display: inline-block;
             background: #fff3cd;
@@ -738,34 +719,33 @@
 
 
 
-        /* Scroll-Triggered Wipe Styles */
-        .scroll-track {
-            height: 200vh; /* Length of the scroll animation */
-            position: relative;
-            padding-bottom: 10vh; /* Spacing between multiple tracks */
+        /* 3-Column Comparison Slider Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .sticky-container {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .wipe-wrapper {
+        .comparison-container {
             position: relative;
             width: 100%;
-            max-width: 1200px;
-            height: 70vh;
-            border-radius: 20px;
+            aspect-ratio: 4/5;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: #eee;
+            cursor: ew-resize;
+            user-select: none;
         }
 
-        .wipe-image {
+        .comparison-img {
             position: absolute;
             top: 0;
             left: 0;
@@ -775,59 +755,69 @@
             background-position: center;
         }
 
-        .wipe-before {
+        .img-before {
             z-index: 1;
         }
 
-        .wipe-after {
+        .img-after {
             z-index: 2;
-            width: 100%;
-            clip-path: inset(0 100% 0 0); /* Hidden initially */
+            width: 50%; /* Initial state */
         }
 
-        .wipe-badge {
+        .slider-handle {
             position: absolute;
-            top: 2rem;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1rem;
-            z-index: 10;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .badge-before {
-            left: 2rem;
-            background: var(--brand-navy);
-            color: white;
-        }
-
-        .badge-after {
-            right: 2rem;
-            background: var(--brand-orange);
-            color: var(--brand-navy);
-            opacity: 0; /* Hidden initially */
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 2rem;
+            top: 0;
+            bottom: 0;
             left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            color: white;
-            text-align: center;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            animation: bounce 2s infinite;
+            width: 4px;
+            background: white;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-            40% {transform: translateX(-50%) translateY(-10px);}
-            60% {transform: translateX(-50%) translateY(-5px);}
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-navy);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            font-weight: 900;
+        }
+
+        .comparison-label {
+            position: absolute;
+            bottom: 1rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .label-before { left: 1rem; }
+        .label-after { right: 1rem; }
+
+        .material-caption {
+            margin-top: 1rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--brand-navy);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
         /* Testimonials Section */
@@ -1045,28 +1035,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        /* Sticky Footer Call Button */
-        .sticky-call {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .sticky-call {
-                display: block;
-                left: 20px;
-                right: 20px;
-                bottom: 10px;
-            }
-            .sticky-call a {
-                width: 100%;
-                box-shadow: 0 4px 15px rgba(0,45,114,0.3);
-            }
         }
 
         .desktop-only { display: block; }

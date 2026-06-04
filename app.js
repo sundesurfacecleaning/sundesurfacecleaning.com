@@ -1,44 +1,43 @@
-        // Dynamic Multi-Project Scroll-Triggered Wipe Logic
-        const tracks = document.querySelectorAll('.js-scroll-track');
+        // Interactive Comparison Slider Logic
+        function initComparisonSliders() {
+            const containers = document.querySelectorAll('.js-comparison');
 
-        function updateAllWipes() {
-            const windowHeight = window.innerHeight;
+            containers.forEach(container => {
+                const afterImg = container.querySelector('.js-after-img');
+                const handle = container.querySelector('.js-handle');
+                let isResizing = false;
 
-            tracks.forEach(track => {
-                const afterImg = track.querySelector('.js-wipe-after');
-                const badgeBefore = track.querySelector('.js-badge-before');
-                const badgeAfter = track.querySelector('.js-badge-after');
-                const scrollHint = track.querySelector('.js-scroll-hint');
-                
-                if (!afterImg) return;
+                function updateSlider(x) {
+                    const rect = container.getBoundingClientRect();
+                    let position = ((x - rect.left) / rect.width) * 100;
+                    
+                    // Clamp position between 0 and 100
+                    position = Math.max(0, Math.min(100, position));
 
-                const trackRect = track.getBoundingClientRect();
-                const trackHeight = track.offsetHeight;
-
-                // Calculate progress through the track (0 to 1)
-                let progress = -trackRect.top / (trackHeight - windowHeight);
-                progress = Math.max(0, Math.min(1, progress));
-
-                // Update clip-path (wipe from left to right)
-                const revealPercent = (1 - progress) * 100;
-                afterImg.style.clipPath = `inset(0 ${revealPercent}% 0 0)`;
-
-                // Update badges and hints specifically for this track
-                if (badgeBefore) badgeBefore.style.opacity = progress > 0.8 ? (1 - progress) * 5 : 1;
-                if (badgeAfter) badgeAfter.style.opacity = progress > 0.2 ? progress : 0;
-                if (scrollHint) {
-                    scrollHint.style.opacity = progress > 0.1 ? 0 : 1;
-                    scrollHint.style.pointerEvents = progress > 0.1 ? 'none' : 'auto';
+                    afterImg.style.width = `${position}%`;
+                    handle.style.left = `${position}%`;
                 }
+
+                container.addEventListener('mousedown', () => isResizing = true);
+                window.addEventListener('mouseup', () => isResizing = false);
+                
+                container.addEventListener('mousemove', (e) => {
+                    if (!isResizing) return;
+                    updateSlider(e.clientX);
+                });
+
+                // Touch support
+                container.addEventListener('touchstart', () => isResizing = true);
+                window.addEventListener('touchend', () => isResizing = false);
+                container.addEventListener('touchmove', (e) => {
+                    if (!isResizing) return;
+                    updateSlider(e.touches[0].clientX);
+                });
             });
         }
 
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(updateAllWipes);
-        });
-
-        // Initialize all positions
-        updateAllWipes();
+        // Initialize positions
+        initComparisonSliders();
 
         // Price Calculator & Interactive Matrix Logic
         const sqftInput = document.getElementById('sqft-input');
