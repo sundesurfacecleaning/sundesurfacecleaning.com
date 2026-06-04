@@ -172,6 +172,32 @@
             });
         }
 
+        // Utility: Smart Truncate
+        function truncateReview(text, maxLength) {
+            if (text.length <= maxLength) return text;
+            
+            // Find positions of periods
+            const periods = [];
+            let pos = text.indexOf('.');
+            while (pos !== -1 && periods.length < 3) {
+                periods.push(pos);
+                pos = text.indexOf('.', pos + 1);
+            }
+
+            // If we have at least 2 periods and the 2nd is within reasonable bounds
+            if (periods.length >= 2 && periods[1] <= maxLength + 50) {
+                return text.substring(0, periods[1] + 1);
+            }
+            
+            // Fallback to first period if it's within bounds
+            if (periods.length >= 1 && periods[0] <= maxLength) {
+                return text.substring(0, periods[0] + 1);
+            }
+
+            // Absolute fallback: slice at maxLength
+            return text.substring(0, maxLength).trim() + '...';
+        }
+
         // Fetch and Render Hero Carousel
         async function loadHeroCarousel() {
             const track = document.getElementById('hero-reviews-carousel');
@@ -188,7 +214,7 @@
                                 <svg class="icon icon-fill" style="color: #FFD700; width: 0.8rem; height: 0.8rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             `).join('')}
                         </div>
-                        <p class="hero-carousel-text" style="max-width: 800px;">"${review.text}"</p>
+                        <p class="hero-carousel-text" style="max-width: 800px;">${truncateReview(review.text, 160)}</p>
                         <span class="hero-carousel-author">${review.name}</span>
                     </div>
                 `).join('');
@@ -223,19 +249,22 @@
                             <svg class="icon icon-fill" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/></svg>
                         </a>` : ''}
                         
-                        ${review.verified ? `
-                        <div class="verified-badge">
-                            <svg class="icon" style="width: 0.9rem; height: 0.9rem;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Verified Customer
-                        </div>` : ''}
+                        <div class="testimonial-meta">
+                            ${review.verified ? `
+                            <div class="verified-badge">
+                                <svg class="icon" style="width: 0.9rem; height: 0.9rem;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                                Verified Customer
+                            </div>` : ''}
 
-                        <div class="stars" aria-label="${review.stars} stars">
-                            ${Array(review.stars).fill().map(() => `
-                                <svg class="icon icon-fill" style="color: #FFD700;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            `).join('')}
+                            <div class="stars" aria-label="${review.stars} stars">
+                                ${Array(review.stars).fill().map(() => `
+                                    <svg class="icon icon-fill" style="color: #FFD700; width: 0.9rem; height: 0.9rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                `).join('')}
+                            </div>
                         </div>
-                        <p>"${review.text}"</p>
-                        <strong>— ${review.name}${review.location ? `, ${review.location}` : ''}</strong>
+
+                        <p>${truncateReview(review.text, 240)}</p>
+                        <strong>— ${review.name}</strong>
                     </div>
                 `).join('');
             } catch (error) {

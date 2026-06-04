@@ -838,13 +838,16 @@
         }
 
         .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            columns: 3 320px;
+            column-gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .testimonial-card {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 2.5rem;
+            break-inside: avoid;
             font-style: italic;
             font-size: 1.1rem;
             padding: 2.5rem;
@@ -852,10 +855,16 @@
             border-radius: 12px;
             border-top: 4px solid var(--brand-sky);
             box-shadow: 0 10px 25px rgba(0,45,114,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             position: relative;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .testimonial-card .google-link {
@@ -880,12 +889,12 @@
             color: #34A853;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
             font-style: normal;
         }
 
         .stars {
-            margin-bottom: 1.5rem;
+            display: inline-flex;
+            gap: 2px;
         }
 
         /* FAQ */
