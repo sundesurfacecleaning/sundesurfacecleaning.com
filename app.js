@@ -3,7 +3,7 @@
             const containers = document.querySelectorAll('.js-comparison');
 
             containers.forEach(container => {
-                const afterImg = container.querySelector('.js-after-img');
+                const beforeImg = container.querySelector('.js-before-img');
                 const handle = container.querySelector('.js-handle');
                 let isResizing = false;
 
@@ -14,7 +14,7 @@
                     // Clamp position between 0 and 100
                     position = Math.max(0, Math.min(100, position));
 
-                    afterImg.style.width = `${position}%`;
+                    beforeImg.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
                     handle.style.left = `${position}%`;
                 }
 
