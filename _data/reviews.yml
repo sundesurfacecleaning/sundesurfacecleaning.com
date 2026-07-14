@@ -1,48 +1,94 @@
-- name: "Carlos"
+- name: SnackPanther78
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://search.google.com/local/reviews?placeid=ChIJi6C1MxquEmsR9-c-3O48ykI
+  text: |-
+    Stayed for drinks. Great atmosphere, nice music, excellent and attentive service and a fantastic view.
+    Cruise ship was in the way, which we knew about and departed to reveal an amazing view of the Opera House. Well worth a stop for afternoon drinks with a great vibe. Booking recommended on busy occasions.
+- name: Espy Eats
+  stars: 3
+  verified: true
+  googleLink: https://search.google.com/local/reviews?placeid=ChIJi6C1MxquEmsR9-c-3O48ykI
+  text: We visited Cruise bar and restaurant on a balmy Sunday evening and loved the outlook ambience and attentive service we received. When we booked we had kind of expect to be seated upstairs but this area was closed. Our only complaint about the downstairs low lying tables that those eating pasta found them hard to eat that type of meal from without making a mess. Food wise what did disappoint unfortunately was the temperature of the food that was served… both pastas and my steak were luke warm at best when they arrived to us. The only dish that arrived warm seems to be the chicken parma… which had us thinking all the other dishes must have been waiting on the pass for an absolute age before being sent along with the parma. Definitely a disappointment temperature wise but still good flavours and we still enjoyed our time at Cruise overall.
+- name: Sarah charles (Thewhereto)
+  stars: 5
+  verified: true
+  googleLink: https://search.google.com/local/reviews?placeid=ChIJi6C1MxquEmsR9-c-3O48ykI
+  text: |-
+    Cruise Bar and restaurant is a harbour front gem in the heart of the city and Sydney’s Circular Quay.
+
+    Perched above the shimmering waters of Sydney Harbour at the Overseas Passenger Terminal at Circular Quay, this is the perfect spot for a couple of drinks and outstanding food.
+
+    If you’re sitting outside on their lounges you get uninterrupted views of the harbour and Opera House if those cruise ships are out to sea. If you stay into the evening, it’s great for sunset drinks with friends.
+
+    From the moment you arrive, Cruise makes its first impression with high tables and live music playing inside and you get the panoramic views inside too. Choose to drink and dine indoors or lounge outside and wherever you choose, you will be impressed.
+
+    The menu at Cruise celebrates local produce and bold Australian flavours, drawing inspiration from Australia’s diverse landscapes and sea life. We loved the pan seared barramundi with macadamia cream, and the cold seafood platter with stunning oysters, prawns, scallop and lobster. The food was perfect for the stomach and the setting.
+
+    What pairs better with harbour views than a creative cocktail? They incorporate native Australian botanicals such as Lilly Flower. We tried Whether it be a beer or wine, cocktail or mocktail, you name it they make it. This “French Fashion” (or their version of an old fashioned) was insanely good - beurre-noisette whiskey, liquor de noix, walnut bitters and shortbread. Clarity, clear and beautiful infused smooth flavours!
+
+    Book ahead for dinner and weekends because naturally, the views and vibe draw big crowds.
+
+    Come early for sunset — there’s nothing quite like sipping a spritz by the harbour. Soak up our beautiful city!
+
+    Whether you’re a Sydneysider showing visitors around, or a local  simply chasing great food, unique cocktails, and killer views, Cruise Bar & Restaurant captures the essence of Sydney life.
+- name: JIM LEE
+  stars: 3
+  verified: true
+  googleLink: https://search.google.com/local/reviews?placeid=ChIJi6C1MxquEmsR9-c-3O48ykI
+  text: |-
+    We recently held our company event at Cruise Bar in Circular Quay.
+    The location was absolutely stunning, with amazing harbour views that really added to the Christmas and year-end celebration. The atmosphere was lively, and the venue itself was stylish and enjoyable.
+
+    However, the overall service and catering fell short of expectations. The drinks selection was very limited, and the finger-food portions were quite small, with not much variety. Many of us ended up going out for dinner afterwards because the food wasn’t sufficient for an event of this size.
+
+    Service was also inconsistent. Some servers seemed inexperienced or part-time, and the bar staff were often distracted on their phones, resulting in slow responses. For such a premium location, I expected a higher level of professionalism and attention.
+
+    Cruise Bar is undeniably beautiful and well-located, but the food and service quality need improvement to match the venue’s reputation.
+- name: Carol Chung
+  stars: 5
+  verified: true
+  googleLink: https://search.google.com/local/reviews?placeid=ChIJi6C1MxquEmsR9-c-3O48ykI
+  text: 'This restaurant offers an absolutely stunning view of the opera house and evening-to-night cityscape, breathtaking at every hour. The food is excellent: the salt & pepper calamari is crispy and perfectly seasoned, and the dry aged black Angus Ribeye on bone is juicy, flavorful, and cooked to perfection. The staff provides attentive, thoughtful service throughout the meal, making the experience even more enjoyable. A wonderful combination of great views, delicious food, and top-tier service. Highly recommended.'
+- name: Carlos
+  stars: 5
+  verified: true
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     Our property was badly in need of deep maintenance, so we hired a complete concrete pressure washing. The transformation is absolutely remarkable. The concrete driveway is bright and slip-free, and they treated areas around our garden safely using low pressure to prevent any damage. They were highly professional, arrived precisely on time, and completely flushed out the downspouts while protecting our flowerbeds from any debris. This is easily the most reliable and thorough pressure washing company in the area.
-
-- name: "Cherrin"
+- name: Cherrin
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     5 Stars! Sunde Surface Cleaning did an amazing job pressure washing my driveway and cleaning up my back yard. The difference is night and day — everything looks fresh, bright, and brand new. They were on time, professional, and incredibly thorough. I’m genuinely impressed with the quality of their work and highly recommend them to anyone who needs reliable surface cleaning.
-
-- name: "JJ"
+- name: JJ
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     Oskar came to clean my property and I was extremely pleased with the results. He is a very hard-working individual while the results back that up. They were unmatched from any other company we’ve used.
-
-- name: "Silvia"
+- name: Silvia
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     Oskar was very professional and transparent with his prices! I will definitely be using this service again!
-
-- name: "Lauren"
+- name: Lauren
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     Professional, friendly and efficient cleaning service. Our decks look amazing!
-
-- name: "Sarah"
+- name: Sarah
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     Sunde Surface Cleaning did a great job pressure washing our patio, driveway and deck - very professional and thorough.
-
-- name: "Paul"
+- name: Paul
   stars: 5
   verified: true
-  googleLink: "https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07"
+  googleLink: https://www.google.com/maps/place/Sunde+Surface+Cleaning/@47.608715,-122.339798,11z/data=!4m8!3m7!1s0x6d7abd183e611d1f:0x6c6e472ec74b9d2a!8m2!3d47.608715!4d-122.339798!9m1!1b1!16s%2Fg%2F11nk0s6v07
   text: |
     Happy with the outcome and job done by this youthful contractor. Glad he can accept all types of payment.
