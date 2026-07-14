@@ -57,9 +57,9 @@
         const diamondMinDisplay = document.getElementById('diamond-min-display');
 
         const pricingMatrix = {
-            concrete:  { gold: { minRate: 0.35, maxRate: 0.50, min: 200 }, diamond: { minRate: 0.45, maxRate: 0.60, min: 200 } },
-            wood:      { gold: { minRate: 0.45, maxRate: 0.65, min: 250 }, diamond: { minRate: 0.55, maxRate: 0.75, min: 250 } },
-            synthetic: { gold: { minRate: 0.50, maxRate: 0.75, min: 275 }, diamond: { minRate: 0.60, maxRate: 0.85, min: 275 } }
+            concrete:  { gold: { minRate: 0.35, maxRate: 0.50, min: 195 }, diamond: { minRate: 0.45, maxRate: 0.60, min: 195 } },
+            wood:      { gold: { minRate: 0.45, maxRate: 0.65, min: 210 }, diamond: { minRate: 0.55, maxRate: 0.75, min: 210 } },
+            synthetic: { gold: { minRate: 0.50, maxRate: 0.75, min: 230 }, diamond: { minRate: 0.60, maxRate: 0.85, min: 230 } }
         };
 
         let currentMaterial = 'concrete';
