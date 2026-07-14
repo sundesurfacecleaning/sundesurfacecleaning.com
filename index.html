@@ -1,215 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seattle Pressure Washing & Surface Restoration | Restore Your Seattle Property’s Curb Appeal</title>
-    <meta name="description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
-    <link rel="canonical" href="https://sundesurfacecleaning.com/">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
-    <!-- Critical Asset Preload -->
-    <link rel="preload" href="bg.webp?v=5.0" as="image">
+---
+layout: default
+---
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <link rel="stylesheet" href="main.css?v=5.0">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png?v=5.0">
-    <link rel="shortcut icon" type="image/png" href="favicon.png?v=5.0">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sundesurfacecleaning.com/">
-    <meta property="og:title" content="Seattle Pressure Washing & Surface Restoration | Seattle's Premier Exterior Cleaning">
-    <meta property="og:description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
-    <meta property="og:image" content="https://sundesurfacecleaning.com/logo.webp?v=5.0">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://sundesurfacecleaning.com/">
-    <meta property="twitter:title" content="Seattle Pressure Washing & Surface Restoration | Seattle's Premier Exterior Cleaning">
-    <meta property="twitter:description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
-    <meta property="twitter:image" content="https://sundesurfacecleaning.com/logo.webp?v=5.0">
-
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Seattle Pressure Washing & Surface Restoration",
-        "image": "https://sundesurfacecleaning.com/logo.webp?v=5.0",
-        "url": "https://sundesurfacecleaning.com",
-        "telephone": "+12067398507",
-        "email": "oskar@sundesurfacecleaning.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Serving Seattle & Surrounding Areas",
-          "addressLocality": "Seattle",
-          "addressRegion": "WA",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 47.6062,
-          "longitude": -122.3321
-        },
-        "priceRange": "$$",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "08:00",
-          "closes": "20:00"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "200"
-        },
-        "areaServed": [
-          "Seattle", "Bellevue", "Queen Anne", "Ballard", "Capitol Hill", "Magnolia", 
-          "West Seattle", "Shoreline", "Edmonds", "Kirkland", "Redmond", 
-          "Mercer Island", "Renton", "Issaquah", "Sammamish"
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Pressure Washing & Surface Restoration Services",
-          "itemListElement": [
-            {
-              "@type": "OfferCatalog",
-              "name": "Concrete Cleaning",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Concrete Gold Restoration" },
-                  "price": "0.35",
-                  "priceCurrency": "USD",
-                  "description": "Eco-friendly pre-treatment and pressure wash for concrete."
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Concrete Diamond Restoration & Long-Term Protection" },
-                  "price": "0.45",
-                  "priceCurrency": "USD",
-                  "description": "Complete concrete restoration with post-treatment inhibitors."
-                }
-              ]
-            },
-            {
-              "@type": "OfferCatalog",
-              "name": "Wood Cleaning",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Wood Gold Restoration" },
-                  "price": "0.45",
-                  "priceCurrency": "USD",
-                  "description": "Gentle wood cleaning with specialized solutions."
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Wood Diamond Restoration & Long-Term Protection" },
-                  "price": "0.55",
-                  "priceCurrency": "USD",
-                  "description": "Premium wood restoration and preservation."
-                }
-              ]
-            },
-            {
-              "@type": "OfferCatalog",
-              "name": "Synthetic Wood Cleaning",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Synthetic Gold Restoration" },
-                  "price": "0.50",
-                  "priceCurrency": "USD",
-                  "description": "Safe cleaning for composite and synthetic decking."
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Synthetic Diamond Restoration & Long-Term Protection" },
-                  "price": "0.60",
-                  "priceCurrency": "USD",
-                  "description": "Advanced protection for synthetic wood surfaces."
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Why should I choose Pre-Cleaning over just Water Pressure?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Water pressure alone only removes surface dirt. Both our Gold and Diamond packages use specialized pre-cleaning solutions that kill moss and algae at the root, preventing growth from returning quickly."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is included in the Post-Cleaning treatment?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Included in our Diamond Restoration & Long-Term Protection, the post-treatment is a brightening agent that eliminates uneven wash lines and leaves a residual barrier to keep surfaces clean for up to 2 years."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is the high pressure safe for my property?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Because our Gold and Diamond packages use specialized solutions to do the heavy lifting, we can use a 'Soft Wash' technique. This lower pressure is much safer for your home."
-            }
-          }
-        ]
-      }
-    ]
-    </script>
-
-        </head>
-        <body>
-
-        <header class="container site-header">
-            <a href="index.html" aria-label="Seattle Pressure Washing & Surface Restoration Homepage">
-                <img src="logo.webp?v=5.0" alt="Seattle Pressure Washing & Surface Restoration Logo" class="header-logo">
-            </a>
-            
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <nav class="nav-links" id="nav-links">
-                <a href="/">Home</a>
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="https://cal.com/sundesurfacecleaning/free-quote" class="pill-button mobile-only">Book in person quote</a>
-            </nav>
-            <a href="https://cal.com/sundesurfacecleaning/free-quote" class="pill-button desktop-only">Book in person quote</a>
-        </header>
-
-        <!-- Mobile Sticky Footer -->
-        <div class="mobile-sticky-bar">
-            <a href="https://cal.com/sundesurfacecleaning/free-quote" class="button primary full-width" style="width: 100%;">
-                <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Get My Premium pressure washing
-            </a>
-        </div>
-
-        <main>
+    <main>
         <!-- Hero Section -->
         <section class="hero" aria-label="Introduction and Quote Request">
             <div class="container hero-centered">
@@ -220,7 +13,17 @@
                 </div>
                 <div class="hero-carousel-container">
                     <div class="hero-carousel-track" id="hero-reviews-carousel">
-                        <!-- Reviews loaded dynamically from reviews.json -->
+                        {% for review in site.data.reviews %}
+                        <div class="hero-carousel-item">
+                            <div class="stars" style="margin-bottom: 0.25rem;">
+                                {% for i in (1..review.stars) %}
+                                <svg class="icon icon-fill" style="color: #FFD700; width: 0.8rem; height: 0.8rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                {% endfor %}
+                            </div>
+                            <p class="hero-carousel-text" style="max-width: 800px;">{{ review.text | truncate: 160 }}</p>
+                            <span class="hero-carousel-author">{{ review.name }}</span>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <p class="text-center" style="margin-top: 1rem; font-size: 0.9rem; font-weight: 700; color: var(--brand-navy);">
@@ -244,50 +47,50 @@
             </div>
         </section>
 
-    <!-- Free Quote Calculator -->
-    <section class="container section-light-bg" id="calculator" aria-labelledby="calc-title" style="padding-top: 2rem; padding-bottom: 2rem;">
-        <h2 id="calc-title" class="text-center"><svg class="icon" style="margin-right: 0.5rem; transform: scale(1.5);" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg> Free Quote — Type any square footage below</h2>
+        <!-- Free Quote Calculator -->
+        <section class="container section-light-bg" id="calculator" aria-labelledby="calc-title" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <h2 id="calc-title" class="text-center"><svg class="icon" style="margin-right: 0.5rem; transform: scale(1.5);" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg> Free Quote — Type any square footage below</h2>
 
-        <div class="calculator-card">
-            <p class="text-center"><small>Selected Material: <strong id="calc-selected-material" style="color: var(--brand-azure);">CONCRETE</strong></small></p>
-            <form onsubmit="return false;">
-                <div class="range-container">
-                    <label for="sqft-range" class="sr-only">Adjust square footage</label>
-                    <input type="range" id="sqft-range" min="0" max="5000" step="50" value="210">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #999;">
-                        <span>0 sqft</span>
-                        <span>2,500 sqft</span>
-                        <span>5,000+ sqft</span>
+            <div class="calculator-card">
+                <p class="text-center"><small>Selected Material: <strong id="calc-selected-material" style="color: var(--brand-azure);">CONCRETE</strong></small></p>
+                <form onsubmit="return false;">
+                    <div class="range-container">
+                        <label for="sqft-range" class="sr-only">Adjust square footage</label>
+                        <input type="range" id="sqft-range" min="0" max="5000" step="50" value="210">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #999;">
+                            <span>0 sqft</span>
+                            <span>2,500 sqft</span>
+                            <span>5,000+ sqft</span>
+                        </div>
+                    </div>
+
+                    <label for="sqft-input">Or type exact square footage:</label>
+                    <div class="input-group">
+                        <input type="number" id="sqft-input" placeholder="e.g. 200" min="0" value="210">
+                    </div>
+                </form>
+
+                <div class="calculator-grid" aria-live="polite">
+                    <div>
+                        <small id="label-gold">GOLD PACKAGE</small>
+                        <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$135.00</div>
+                        <span class="min-badge" id="gold-min-badge">MINIMUM APPLIED</span>
+                    </div>
+                    <div class="calculator-divider">
+                        <small id="label-diamond">DIAMOND PACKAGE</small>
+                        <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$135.00</div>
+                        <span class="min-badge" id="diamond-min-badge">MINIMUM APPLIED</span>
                     </div>
                 </div>
-
-                <label for="sqft-input">Or type exact square footage:</label>
-                <div class="input-group">
-                    <input type="number" id="sqft-input" placeholder="e.g. 200" min="0" value="210">
-                </div>
-            </form>
-
-            <div class="calculator-grid" aria-live="polite">
-                <div>
-                    <small id="label-gold">GOLD PACKAGE</small>
-                    <div id="calc-gold" class="calculator-price primary" aria-labelledby="label-gold">$135.00</div>
-                    <span class="min-badge" id="gold-min-badge">MINIMUM APPLIED</span>
-                </div>
-                <div class="calculator-divider">
-                    <small id="label-diamond">DIAMOND PACKAGE</small>
-                    <div id="calc-diamond" class="calculator-price navy" aria-labelledby="label-diamond">$135.00</div>
-                    <span class="min-badge" id="diamond-min-badge">MINIMUM APPLIED</span>
+                <p class="calculator-footer-note" style="margin-top: 1rem;">* Estimates include minimum charges where applicable.</p>
+                <div class="text-center mt-1">
+                    <a href="https://cal.com/sundesurfacecleaning/free-quote" id="calc-cta" target="_blank" class="cta button full-width">Book in person quote</a>
                 </div>
             </div>
-            <p class="calculator-footer-note" style="margin-top: 1rem;">* Estimates include minimum charges where applicable.</p>
-            <div class="text-center mt-1">
-                <a href="https://cal.com/sundesurfacecleaning/free-quote" id="calc-cta" target="_blank" class="cta button full-width">Book in person quote</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Packages Section -->
-    <section class="container" id="packages">
+        <!-- Packages Section -->
+        <section class="container" id="packages">
             <div class="pricing-table">
                 <!-- Gold Package -->
                 <div class="tier-column">
@@ -366,7 +169,7 @@
                     </div>
                 </div>
             </div>
-    </section>
+        </section>
 
         <!-- Before/After Scroll Transformations -->
         <section aria-labelledby="reveal-title" id="gallery" class="container">
@@ -377,8 +180,8 @@
                 <!-- Concrete -->
                 <div class="gallery-item">
                     <div class="comparison-container js-comparison">
-                        <div class="comparison-img img-before js-before-img" style="background-image: url('before1.webp?v=5.0');"></div>
-                        <div class="comparison-img img-after" style="background-image: url('after1.webp?v=5.0');"></div>
+                        <div class="comparison-img img-before js-before-img" style="background-image: url('{{ '/assets/img/before1.webp' | relative_url }}?v=5.0');"></div>
+                        <div class="comparison-img img-after" style="background-image: url('{{ '/assets/img/after1.webp' | relative_url }}?v=5.0');"></div>
                         <div class="slider-handle js-handle">
                             <div class="slider-button">↔</div>
                         </div>
@@ -391,8 +194,8 @@
                 <!-- Wood -->
                 <div class="gallery-item">
                     <div class="comparison-container js-comparison">
-                        <div class="comparison-img img-before js-before-img" style="background-image: url('before2.webp?v=5.0');"></div>
-                        <div class="comparison-img img-after" style="background-image: url('after2.webp?v=5.0');"></div>
+                        <div class="comparison-img img-before js-before-img" style="background-image: url('{{ '/assets/img/before2.webp' | relative_url }}?v=5.0');"></div>
+                        <div class="comparison-img img-after" style="background-image: url('{{ '/assets/img/after2.webp' | relative_url }}?v=5.0');"></div>
                         <div class="slider-handle js-handle">
                             <div class="slider-button">↔</div>
                         </div>
@@ -405,8 +208,8 @@
                 <!-- Synthetic -->
                 <div class="gallery-item">
                     <div class="comparison-container js-comparison">
-                        <div class="comparison-img img-before js-before-img" style="background-image: url('before3.webp?v=5.0');"></div>
-                        <div class="comparison-img img-after" style="background-image: url('after3.webp?v=5.0');"></div>
+                        <div class="comparison-img img-before js-before-img" style="background-image: url('{{ '/assets/img/before3.webp' | relative_url }}?v=5.0');"></div>
+                        <div class="comparison-img img-after" style="background-image: url('{{ '/assets/img/after3.webp' | relative_url }}?v=5.0');"></div>
                         <div class="slider-handle js-handle">
                             <div class="slider-button">↔</div>
                         </div>
@@ -418,7 +221,6 @@
             </div>
         </section>
 
-
         <!-- Testimonials Section -->
         <section class="testimonials-section" aria-labelledby="testimonials-title">
             <div class="container">
@@ -428,7 +230,28 @@
                     <p style="font-weight: 700; color: var(--brand-navy);">Verified 5-Star Service on Google</p>
                 </div>
                 <div class="testimonials-grid" id="testimonials-container">
-                    <!-- Reviews loaded dynamically from reviews.json -->
+                    {% for review in site.data.reviews %}
+                    <div class="testimonial-card">
+                        {% if review.googleLink %}
+                        <a href="{{ review.googleLink }}" target="_blank" class="google-link" aria-label="View this review on Google">
+                            <svg class="icon icon-fill" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/></svg>
+                        </a>
+                        {% endif %}
+                        
+                        <div class="stars">
+                            {% for i in (1..review.stars) %}
+                            <svg class="icon icon-fill" style="color: #FFD700; width: 0.8rem; height: 0.8rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            {% endfor %}
+                        </div>
+                        <p class="testimonial-text">"{{ review.text }}"</p>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-author">{{ review.name }}</span>
+                            {% if review.verified %}
+                            <span class="verified-badge">Verified Customer</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
 
                 <div class="text-center mt-2" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
@@ -460,32 +283,3 @@
         </section>
 
     </main>
-
-    <!-- Footer -->
-    <footer role="contentinfo" id="contact">
-        <div class="container footer-content">
-            <h3>Seattle Pressure Washing & Surface Restoration</h3>
-            <p>Seattle's Premier Exterior Cleaning Specialist</p>
-            
-            <div class="service-areas-container">
-                <h4 class="service-areas-title">Service Areas</h4>
-                <p class="service-areas-list">
-                    Proudly serving <strong>Seattle</strong> and the surrounding communities, including:<br>
-                    Bellevue • Queen Anne • Ballard • Capitol Hill • Magnolia • West Seattle • Shoreline • Edmonds • Kirkland • Redmond • Mercer Island • Renton • Issaquah • Sammamish
-                </p>
-            </div>
-
-            <address class="address-block">
-                <p><strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a></p>
-                <p><strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a></p>
-                <p><strong>Reviews:</strong> <a href="https://maps.app.goo.gl/sGL6Xg4vsv3ECZwq5" target="_blank">View 200+ 5-Star Reviews on Google</a></p>
-            </address>
-            <p class="footer-copyright">
-                &copy; 2026 Seattle Pressure Washing & Surface Restoration. All rights reserved.
-            </p>
-        </div>
-    </footer>
-
-    <script src="app.js?v=5.0"></script>
-</body>
-</html>

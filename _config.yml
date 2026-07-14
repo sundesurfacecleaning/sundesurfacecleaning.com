@@ -1,0 +1,23 @@
+email: oskar@sundesurfacecleaning.com
+description: >-
+  Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!
+url: "https://sundesurfacecleaning.com"
+
+# Build Settings
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+
+# Exclude list
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - README.md
+  - .idea/
+  - prices.xlsx
+  - JEKYLL_MIGRATION_PLAN.md
+  - '*.plan'
+  - '*.jpg'
+  - '*_PLAN.md'
+  - CNAME

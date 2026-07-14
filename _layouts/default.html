@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seattle Pressure Washing & Surface Restoration | Restore Your Seattle Property’s Curb Appeal</title>
+    <meta name="description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
+    <link rel="canonical" href="https://sundesurfacecleaning.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sundesurfacecleaning.com/">
+    <meta property="og:title" content="Seattle Pressure Washing & Surface Restoration | Seattle's Premier Exterior Cleaning">
+    <meta property="og:description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
+    <meta property="og:image" content="https://sundesurfacecleaning.com/logo.webp?v=5.0">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sundesurfacecleaning.com/">
+    <meta property="twitter:title" content="Seattle Pressure Washing & Surface Restoration | Seattle's Premier Exterior Cleaning">
+    <meta property="twitter:description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
+    <meta property="twitter:image" content="https://sundesurfacecleaning.com/logo.webp?v=5.0">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Critical Asset Preload -->
+    <link rel="preload" href="{{ '/assets/img/bg.webp' | relative_url }}?v=5.0" as="image">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v=5.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}?v=5.0">
+    <link rel="shortcut icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}?v=5.0">
+
+    {% include structured-data.html %}
+</head>
+<body>
+
+    <header class="container site-header">
+        <a href="{{ '/' | relative_url }}" aria-label="Seattle Pressure Washing & Surface Restoration Homepage">
+            <img src="{{ '/assets/img/logo.webp' | relative_url }}?v=5.0" alt="Seattle Pressure Washing & Surface Restoration Logo" class="header-logo">
+        </a>
+        
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links" id="nav-links">
+            <a href="{{ '/' | relative_url }}">Home</a>
+            <a href="{{ '/#services' | relative_url }}">Services</a>
+            <a href="{{ '/#about' | relative_url }}">About</a>
+            <a href="https://cal.com/sundesurfacecleaning/free-quote" class="pill-button mobile-only">Book in person quote</a>
+        </nav>
+        <a href="https://cal.com/sundesurfacecleaning/free-quote" class="pill-button desktop-only">Book in person quote</a>
+    </header>
+
+    <!-- Mobile Sticky Footer -->
+    <div class="mobile-sticky-bar">
+        <a href="https://cal.com/sundesurfacecleaning/free-quote" class="button primary full-width" style="width: 100%;">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Get My Premium pressure washing
+        </a>
+    </div>
+
+    {{ content }}
+
+    <!-- Footer -->
+    <footer role="contentinfo" id="contact">
+        <div class="container footer-content">
+            <h3>Seattle Pressure Washing & Surface Restoration</h3>
+            <p>Seattle's Premier Exterior Cleaning Specialist</p>
+            
+            <div class="service-areas-container">
+                <h4 class="service-areas-title">Service Areas</h4>
+                <p class="service-areas-list">
+                    Proudly serving <strong>Seattle</strong> and the surrounding communities, including:<br>
+                    Bellevue • Queen Anne • Ballard • Capitol Hill • Magnolia • West Seattle • Shoreline • Edmonds • Kirkland • Redmond • Mercer Island • Renton • Issaquah • Sammamish
+                </p>
+            </div>
+
+            <address class="address-block">
+                <p><strong>Phone:</strong> <a href="tel:2067398507">206-739-8507</a></p>
+                <p><strong>Email:</strong> <a href="mailto:oskar@sundesurfacecleaning.com">oskar@sundesurfacecleaning.com</a></p>
+                <p><strong>Reviews:</strong> <a href="https://maps.app.goo.gl/sGL6Xg4vsv3ECZwq5" target="_blank">View 200+ 5-Star Reviews on Google</a></p>
+            </address>
+            <p class="footer-copyright">
+                &copy; 2026 Seattle Pressure Washing & Surface Restoration. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/app.js' | relative_url }}?v=5.0"></script>
+</body>
+</html>
