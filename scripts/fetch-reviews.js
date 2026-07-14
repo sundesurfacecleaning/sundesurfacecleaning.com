@@ -12,9 +12,9 @@ if (!API_KEY || !PLACE_ID) {
   process.exit(1);
 }
 
-// 1. Fetch reviews from Google Places API
+// 1. Fetch reviews from Google Places API (New)
 function fetchGoogleReviews() {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${API_KEY}`;
+  const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=reviews&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -23,10 +23,10 @@ function fetchGoogleReviews() {
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
-          if (parsed.status === 'OK' && parsed.result && parsed.result.reviews) {
-            resolve(parsed.result.reviews);
+          if (res.statusCode === 200) {
+            resolve(parsed.reviews || []);
           } else {
-            reject(new Error(`API Error: ${parsed.status}. ${parsed.error_message || ''}`));
+            reject(new Error(`API Error (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
           }
         } catch (err) {
           reject(err);
@@ -60,14 +60,20 @@ async function main() {
     const existingReviews = readExistingReviews();
     console.log(`Loaded ${existingReviews.length} existing reviews from reviews.yml.`);
 
-    // Map Google Reviews format to our Jekyll Schema
-    const mappedReviews = googleReviews.map(r => ({
-      name: r.author_name,
-      stars: r.rating,
-      verified: true,
-      googleLink: `https://search.google.com/local/reviews?placeid=${PLACE_ID}`,
-      text: r.text
-    }));
+    // Map Google Reviews format to our Jekyll Schema (omit empty text field)
+    const mappedReviews = googleReviews.map(r => {
+      const reviewObj = {
+        name: r.authorAttribution ? r.authorAttribution.displayName : 'Anonymous',
+        stars: r.rating,
+        verified: true,
+        googleLink: r.googleMapsUri || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
+      };
+      const textVal = r.text ? r.text.text : '';
+      if (textVal) {
+        reviewObj.text = textVal;
+      }
+      return reviewObj;
+    });
 
     // Merge reviews (prevent duplicates based on author name and text snippet)
     const mergedReviews = [...existingReviews];
@@ -76,7 +82,7 @@ async function main() {
     for (const newReview of mappedReviews) {
       const isDuplicate = existingReviews.some(
         ex => ex.name.toLowerCase() === newReview.name.toLowerCase() && 
-              ex.text.substring(0, 50) === newReview.text.substring(0, 50)
+              (ex.text || '').substring(0, 50) === (newReview.text || '').substring(0, 50)
       );
 
       if (!isDuplicate) {

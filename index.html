@@ -14,6 +14,7 @@ layout: default
                 <div class="hero-carousel-container">
                     <div class="hero-carousel-track" id="hero-reviews-carousel">
                         {% for review in site.data.reviews %}
+                        {% if review.text and review.text != "" %}
                         <div class="hero-carousel-item">
                             <div class="stars" style="margin-bottom: 0.25rem;">
                                 {% for i in (1..review.stars) %}
@@ -23,6 +24,7 @@ layout: default
                             <p class="hero-carousel-text" style="max-width: 800px;">{{ review.text | truncate: 160 }}</p>
                             <span class="hero-carousel-author">{{ review.name }}</span>
                         </div>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -243,7 +245,9 @@ layout: default
                             <svg class="icon icon-fill" style="color: #FFD700; width: 0.8rem; height: 0.8rem;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             {% endfor %}
                         </div>
+                        {% if review.text and review.text != "" %}
                         <p class="testimonial-text">"{{ review.text }}"</p>
+                        {% endif %}
                         <div class="testimonial-meta">
                             <span class="testimonial-author">{{ review.name }}</span>
                             {% if review.verified %}
