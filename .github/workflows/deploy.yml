@@ -3,10 +3,12 @@ name: Deploy Jekyll Site to Pages
 on:
   push:
     branches: ["main"]
+  schedule:
+    - cron: '0 0 * * 1' # Runs every Monday at midnight UTC
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,6 +22,27 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Script Dependencies
+        run: npm install js-yaml
+
+      - name: Fetch Latest Google Reviews
+        run: node scripts/fetch-reviews.js
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          PLACE_ID: ${{ secrets.PLACE_ID }}
+
+      - name: Commit and Push Updated Reviews
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/reviews.yml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-update google reviews [skip ci]" && git push)
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
