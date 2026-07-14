@@ -25,6 +25,12 @@
             --spacing: 1rem;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         body {
             font-size: 16px;
             line-height: 1.5;
@@ -136,16 +142,21 @@
             }
             
             .calculator-card {
-                padding: 1.5rem;
+                padding: 1.25rem;
             }
             .calculator-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 0;
+                padding: 1.25rem;
             }
             .calculator-divider {
                 border-left: none;
                 border-top: 2px solid rgba(0,45,114,0.1);
-                padding-top: 1.5rem;
+                padding-top: 1.25rem;
+                margin-top: 1.25rem;
+            }
+            .calculator-price {
+                font-size: 1.4rem;
             }
         }
 
@@ -451,6 +462,17 @@
             background: rgba(0,45,114,0.05);
         }
 
+        @media (max-width: 480px) {
+            .material-btn {
+                padding: 0.6rem 0.75rem;
+                font-size: 0.75rem;
+                min-height: 44px;
+            }
+            .material-toggle {
+                padding: 0.25rem;
+            }
+        }
+
         /* Price Transition Animation */
         .price-update {
             animation: pricePop 0.3s ease-out;
@@ -489,6 +511,16 @@
             z-index: 10;
             border-color: transparent;
             border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .tier-column:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            .tier-column {
+                border-right: none;
+            }
         }
 
         .tier-column:last-child {
@@ -669,7 +701,7 @@
         }
 
         .input-group input { 
-        ...
+            width: 100%;
             border: 2px solid #e1e8ed;
             border-radius: 8px;
             padding: 1rem;
@@ -846,6 +878,13 @@
             border-top: 4px solid var(--brand-sky);
             box-shadow: 0 10px 25px rgba(0,45,114,0.05);
             position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-card {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
         }
 
         .testimonial-meta {
