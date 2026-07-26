@@ -140,24 +140,6 @@
                 width: 100%;
                 max-width: 200px;
             }
-            
-            .calculator-card {
-                padding: 1.25rem;
-            }
-            .calculator-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-                padding: 1.25rem;
-            }
-            .calculator-divider {
-                border-left: none;
-                border-top: 2px solid rgba(0,45,114,0.1);
-                padding-top: 1.25rem;
-                margin-top: 1.25rem;
-            }
-            .calculator-price {
-                font-size: 1.4rem;
-            }
         }
 
         /* Pill Buttons */
@@ -747,6 +729,26 @@
             color: var(--brand-navy);
             opacity: 0.7;
             font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-card {
+                padding: 1.25rem;
+            }
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding: 1.25rem;
+            }
+            .calculator-divider {
+                border-left: none;
+                border-top: 2px solid rgba(0,45,114,0.1);
+                padding-top: 1.25rem;
+                margin-top: 1.25rem;
+            }
+            .calculator-price {
+                font-size: 1.4rem;
+            }
         }
 
 
