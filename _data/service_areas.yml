@@ -1,0 +1,168 @@
+bellevue:
+  name: Bellevue
+  title: "Premium Pressure Washing & Deck Cleaning in Bellevue, WA"
+  map_query: "Bellevue,+WA"
+  tagline: "Eastside's Premier Exterior Surface Cleaning Specialists"
+  description: "Keep your Bellevue home or commercial property looking pristine. From the modern concrete driveways of West Bellevue to the weathered wood decks of Somerset, we deliver professional exterior cleaning tailored to Bellevue's unique properties."
+  sub_areas:
+    - West Bellevue
+    - Somerset
+    - Bellevue Square
+    - Crossroads
+    - Factoria
+
+queen-anne:
+  name: Queen Anne
+  title: "Premium Pressure Washing & Deck Cleaning in Queen Anne, Seattle"
+  map_query: "Queen+Anne,+Seattle,+WA"
+  tagline: "Historic Charm Met With Modern Surface Cleaning"
+  description: "Preserve the beauty of your Queen Anne home. Whether it's restoring the historic concrete walkways of classic craftsman homes or soft-washing modern decks on the steep slopes of the hill, we have the right pressure and chemistry to keep your property looking its best."
+  sub_areas:
+    - Upper Queen Anne
+    - Lower Queen Anne
+    - East Queen Anne
+    - West Queen Anne
+
+ballard:
+  name: Ballard
+  title: "Premium Pressure Washing & Deck Cleaning in Ballard, Seattle"
+  map_query: "Ballard,+Seattle,+WA"
+  tagline: "Expert Exterior Cleaning for Ballard's Homes & Businesses"
+  description: "Expert exterior cleaning for Ballard's residential and commercial spaces. We clean everything from concrete driveways near the locks to wood decks in Sunset Hill, ensuring your surfaces stay clean and slip-free."
+  sub_areas:
+    - Ballard Locks
+    - Sunset Hill
+    - Loyal Heights
+    - Ballard Ave
+
+capitol-hill:
+  name: Capitol Hill
+  title: "Premium Pressure Washing & Deck Cleaning in Capitol Hill, Seattle"
+  map_query: "Capitol+Hill,+Seattle,+WA"
+  tagline: "High-Traffic Surface Restoration & Moss Removal"
+  description: "Washing Cap Hill's historic brickways, concrete patios, and urban decks. We clear moss and grime quickly, leaving your outdoor areas clean and vibrant."
+  sub_areas:
+    - Broadway
+    - Volunteer Park
+    - Pike-Pine Corridor
+    - Stevens
+
+magnolia:
+  name: Magnolia
+  title: "Premium Pressure Washing & Deck Cleaning in Magnolia, Seattle"
+  map_query: "Magnolia,+Seattle,+WA"
+  tagline: "Premium Surface Restoration for Coastal Neighborhoods"
+  description: "Dedicated exterior cleaning for Magnolia's premium residential estates. We restore concrete driveways, stone patios, and view-facing decks to like-new condition, protecting them from the elements."
+  sub_areas:
+    - Magnolia Bluff
+    - Discovery Park
+    - Briarcliff
+    - Lawton Park
+
+west-seattle:
+  name: West Seattle
+  title: "Premium Pressure Washing & Deck Cleaning in West Seattle, Seattle"
+  map_query: "West+Seattle,+Seattle,+WA"
+  tagline: "Salt-Air and Wind-Resistant Exterior Restoration"
+  description: "Keep your West Seattle property shining against the coastal weather. We wash wind-weathered decks, driveways, and patios near Alki and the Junction."
+  sub_areas:
+    - Alki Beach
+    - The Junction
+    - Admiral District
+    - Fauntleroy
+
+shoreline:
+  name: Shoreline
+  title: "Premium Pressure Washing & Deck Cleaning in Shoreline, WA"
+  map_query: "Shoreline,+WA"
+  tagline: "Suburban Concrete Restoration & Moss Solutions"
+  description: "Expert concrete and deck cleaning for Shoreline's tree-shaded neighborhoods. We specialize in deep concrete pre-treatments that kill heavy moss at the root."
+  sub_areas:
+    - Richmond Beach
+    - Innis Arden
+    - Echo Lake
+    - Ridgecrest
+
+edmonds:
+  name: Edmonds
+  title: "Premium Pressure Washing & Deck Cleaning in Edmonds, WA"
+  map_query: "Edmonds,+WA"
+  tagline: "Waterfront Patio & Deck Restoration Services"
+  description: "Waterfront exterior surface washing for Edmonds homes and commercial fronts. From wood decks near the bowl to brick walkways, we make sure they stay slip-resistant and clean."
+  sub_areas:
+    - Edmonds Bowl
+    - Woodway
+    - Perrinville
+    - Westgate
+
+kirkland:
+  name: Kirkland
+  title: "Premium Pressure Washing & Deck Cleaning in Kirkland, WA"
+  map_query: "Kirkland,+WA"
+  tagline: "Premium Deck & Concrete Washing Near the Lake"
+  description: "Professional cleaning for Kirkland's lakeside properties and commercial sidewalks. We restore wood, composite, and concrete surfaces with environment-friendly detergents."
+  sub_areas:
+    - Downtown Kirkland
+    - Juanita Beach
+    - Norkirk
+    - Houghton
+
+redmond:
+  name: Redmond
+  title: "Premium Pressure Washing & Deck Cleaning in Redmond, WA"
+  map_query: "Redmond,+WA"
+  tagline: "Modern Concrete & Composite Deck Maintenance"
+  description: "Keep your Redmond home or campus paths clean. We provide high-pressure concrete cleaning and gentle composite deck soft-washing to prevent moss growth."
+  sub_areas:
+    - Education Hill
+    - Overlake
+    - Grass Lawn
+    - Bear Creek
+
+mercer-island:
+  name: Mercer Island
+  title: "Premium Pressure Washing & Deck Cleaning in Mercer Island, WA"
+  map_query: "Mercer+Island,+WA"
+  tagline: "High-End Residential Driveway & Deck Detailing"
+  description: "Premium property washing for Mercer Island estates. We treat long driveways, stone patios, and large wood decks with precision and care."
+  sub_areas:
+    - First Hill
+    - Mercerwood
+    - East Seattle
+    - West Shore
+
+renton:
+  name: Renton
+  title: "Premium Pressure Washing & Deck Cleaning in Renton, WA"
+  map_query: "Renton,+WA"
+  tagline: "Reliable Residential Driveway & Patio Washing"
+  description: "Keep Renton driveways, sidewalks, and patios completely clean and moss-free. Our treatments leave a long-lasting barrier that blocks regrowth."
+  sub_areas:
+    - Renton Highlands
+    - Kennydale
+    - Cascade
+    - Benson Hill
+
+issaquah:
+  name: Issaquah
+  title: "Premium Pressure Washing & Deck Cleaning in Issaquah, WA"
+  map_query: "Issaquah,+WA"
+  tagline: "Deep Moss Extraction for Cascade-Shadowed Properties"
+  description: "Exterior restoration for Issaquah's wet, moss-prone climate. We provide soft-wash solutions for cedar decks and deep concrete washing in the Highlands."
+  sub_areas:
+    - Issaquah Highlands
+    - Talus
+    - Squak Mountain
+    - Gilman
+
+sammamish:
+  name: Sammamish
+  title: "Premium Pressure Washing & Deck Cleaning in Sammamish, WA"
+  map_query: "Sammamish,+WA"
+  tagline: "Complete Suburban Estate Surface Detailing"
+  description: "Complete surface cleaning for Sammamish homes. We wash large driveways, wood and composite decks, and concrete pool surrounds with high-quality equipment."
+  sub_areas:
+    - Klahanie
+    - Pine Lake
+    - Sahalee
+    - Inglewood

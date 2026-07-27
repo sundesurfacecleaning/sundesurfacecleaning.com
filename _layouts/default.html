@@ -6,6 +6,7 @@
     <title>Seattle Pressure Washing & Surface Restoration | Restore Your Seattle Property’s Curb Appeal</title>
     <meta name="description" content="Premium pressure washing for driveways, decks, and patios in Seattle. Eco-conscious chemistry, locally owned, and owner-operated. Get your free quote today!">
     <link rel="canonical" href="https://sundesurfacecleaning.com/">
+    <link rel="alternate" type="text/markdown" href="{{ '/llms.txt' | absolute_url }}">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -54,9 +55,27 @@
         </button>
 
         <nav class="nav-links" id="nav-links">
-            <a href="{{ '/' | relative_url }}">Home</a>
-            <a href="{{ '/#services' | relative_url }}">Services</a>
-            <a href="{{ '/#about' | relative_url }}">About</a>
+            {% for item in site.data.navigation %}
+                {% if item.dropdown %}
+                    <div class="nav-dropdown">
+                        <a href="{{ item.url | relative_url }}" class="nav-dropdown-toggle">{{ item.name }} <span class="dropdown-caret">▼</span></a>
+                        <div class="nav-dropdown-menu">
+                            <div class="dropdown-grid">
+                                {% for column in item.dropdown %}
+                                    <div class="dropdown-column">
+                                        <span class="dropdown-header{% if column.desktop_only_header %} desktop-only{% endif %}">{{ column.name }}</span>
+                                        {% for link in column.items %}
+                                            <a href="{{ link.url | relative_url }}">{{ link.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
+                {% endif %}
+            {% endfor %}
             <a href="https://cal.com/sundesurfacecleaning/free-quote" class="pill-button mobile-only">Book in person quote</a>
         </nav>
         <a href="https://cal.com/sundesurfacecleaning/free-quote" class="pill-button desktop-only">Book in person quote</a>

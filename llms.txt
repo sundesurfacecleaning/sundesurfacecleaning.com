@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# Seattle Pressure Washing & Surface Restoration
+
+{{ site.description }}
+
+## Business Contact Info
+- **Phone**: 206-739-8507
+- **Email**: {{ site.email }}
+- **Website**: {{ site.url }}
+- **Google Reviews**: https://maps.app.goo.gl/sGL6Xg4vsv3ECZwq5
+- **Instant Booking**: https://cal.com/sundesurfacecleaning/free-quote
+
+## Service Tiers
+- **Gold Package**: Standard high-pressure wash with organic pretreatment to remove moss, mildew, and grime.
+- **Diamond Package**: Comprehensive surface restoration including soft-wash sanitization, deep pressure washing, and premium post-sealing protection.
+
+## Service Areas
+We serve the following target areas in the Greater Seattle region:
+{% for area_pair in site.data.service_areas %}{% assign key = area_pair[0] %}{% assign area = area_pair[1] %}
+- {{ area.name }}: /services-{{ key }}/{% endfor %}

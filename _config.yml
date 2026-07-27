@@ -13,6 +13,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
+  - scripts/
   - README.md
   - .idea/
   - prices.xlsx

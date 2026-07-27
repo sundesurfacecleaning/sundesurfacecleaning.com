@@ -1,0 +1,48 @@
+- name: Home
+  url: /
+- name: Services
+  url: /#services
+  dropdown:
+    - name: Cleaning Packages
+      items:
+        - name: Concrete Cleaning
+          url: /#services
+        - name: Wood & Deck Cleaning
+          url: /#services
+        - name: Synthetic Wood Cleaning
+          url: /#services
+    - name: Service Areas
+      items:
+        - name: Bellevue
+          url: /services-bellevue
+        - name: Queen Anne
+          url: /services-queen-anne
+        - name: Ballard
+          url: /services-ballard
+        - name: Capitol Hill
+          url: /services-capitol-hill
+        - name: Magnolia
+          url: /services-magnolia
+        - name: West Seattle
+          url: /services-west-seattle
+        - name: Shoreline
+          url: /services-shoreline
+    - name: "&nbsp;"
+      desktop_only_header: true
+      items:
+        - name: Edmonds
+          url: /services-edmonds
+        - name: Kirkland
+          url: /services-kirkland
+        - name: Redmond
+          url: /services-redmond
+        - name: Mercer Island
+          url: /services-mercer-island
+        - name: Renton
+          url: /services-renton
+        - name: Issaquah
+          url: /services-issaquah
+        - name: Sammamish
+          url: /services-sammamish
+- name: About
+  url: /#about
