@@ -4,33 +4,53 @@ const https = require('https');
 const yaml = require('js-yaml'); // Installed during GitHub Actions run
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+const PLACE_ID = process.env.PLACE_ID || 'ChIJHx1hPhi9em0RKp1Lxy5Hbmw';
 const REVIEWS_FILE_PATH = path.join(__dirname, '../_data/reviews.yml');
-const BUSINESS_FILE_PATH = path.join(__dirname, '../_data/business.yml');
 
 if (!API_KEY) {
   console.error('ERROR: GOOGLE_PLACES_API_KEY environment variable is required.');
   process.exit(1);
 }
 
-// 1. Get CID from business.yml or fallback
-function getBusinessCid() {
-  try {
-    if (fs.existsSync(BUSINESS_FILE_PATH)) {
-      const fileContents = fs.readFileSync(BUSINESS_FILE_PATH, 'utf8');
-      const loaded = yaml.load(fileContents);
-      if (loaded && loaded.cid) {
-        return loaded.cid;
-      }
+// 1. Resolve canonical Place ID using Places API (New) Details call
+// (New details API resolves redirection automatically, and uses standard details permissions)
+function resolveCanonicalPlaceId() {
+  const options = {
+    hostname: 'places.googleapis.com',
+    path: `/v1/places/${PLACE_ID}`,
+    method: 'GET',
+    headers: {
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'id'
     }
-  } catch (error) {
-    console.warn('Warning: Could not read business.yml for CID, using default.', error.message);
-  }
-  return '9498524464705765795'; // Static fallback CID
+  };
+
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode === 200 && parsed.id) {
+            resolve(parsed.id);
+          } else {
+            reject(new Error(`Failed to resolve canonical Place ID (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.end();
+  });
 }
 
-// 2. Fetch reviews from Google Places API (Legacy using CID and newest sort)
-function fetchGoogleReviews(cid) {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?cid=${cid}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
+// 2. Fetch reviews from Google Places API (Legacy using canonical ID and newest sort)
+function fetchGoogleReviews(canonicalId) {
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${canonicalId}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -69,11 +89,12 @@ function readExistingReviews() {
 // 4. Main execution block
 async function main() {
   try {
-    const cid = getBusinessCid();
-    console.log(`Using Business CID: ${cid}`);
+    console.log('Resolving canonical Place ID...');
+    const canonicalPlaceId = await resolveCanonicalPlaceId();
+    console.log(`Resolved canonical Place ID: ${canonicalPlaceId}`);
 
     console.log('Fetching latest Google Reviews...');
-    const googleReviews = await fetchGoogleReviews(cid);
+    const googleReviews = await fetchGoogleReviews(canonicalPlaceId);
     console.log(`Successfully fetched ${googleReviews.length} reviews from Google.`);
 
     const existingReviews = readExistingReviews();
@@ -85,7 +106,7 @@ async function main() {
         name: r.author_name || 'Anonymous',
         stars: r.rating,
         verified: true,
-        googleLink: r.author_url || `https://maps.google.com/?cid=${cid}`
+        googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${canonicalPlaceId}`
       };
       if (r.text) {
         reviewObj.text = r.text;
