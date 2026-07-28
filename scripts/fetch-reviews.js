@@ -12,10 +12,10 @@ if (!API_KEY || !PLACE_ID) {
   process.exit(1);
 }
 
-// 1. Resolve canonical Place ID using Legacy Find Place from Text
+// 1. Resolve canonical Place ID using Legacy Find Place from Phone Number
 function resolveCanonicalPlaceId() {
-  const query = encodeURIComponent("Sunde Surface Cleaning Seattle");
-  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id,name&key=${API_KEY}`;
+  const phone = encodeURIComponent("+12067398507");
+  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${phone}&inputtype=phonenumber&fields=place_id,name&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -27,7 +27,7 @@ function resolveCanonicalPlaceId() {
           if (res.statusCode === 200 && parsed.status === 'OK' && parsed.candidates && parsed.candidates.length > 0) {
             resolve(parsed.candidates[0].place_id);
           } else {
-            reject(new Error(`Failed to find place by legacy search (Status ${parsed.status || res.statusCode}): ${parsed.error_message || JSON.stringify(parsed)}`));
+            reject(new Error(`Failed to find place by phone search (Status ${parsed.status || res.statusCode}): ${parsed.error_message || JSON.stringify(parsed)}`));
           }
         } catch (err) {
           reject(err);
