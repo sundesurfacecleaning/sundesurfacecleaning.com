@@ -12,7 +12,39 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-// 1. Fetch reviews from Google Places API (New)
+// 1. Fetch place metadata from Google Places API (New) to debug the resolved ID and name
+function fetchPlaceMetadata() {
+  const options = {
+    hostname: 'places.googleapis.com',
+    path: `/v1/places/${PLACE_ID}`,
+    method: 'GET',
+    headers: {
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'id,displayName'
+    }
+  };
+
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          console.log('DEBUG: Google Places Resolved Metadata:', JSON.stringify(parsed));
+          resolve(parsed);
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.end();
+  });
+}
+
+// 2. Fetch reviews from Google Places API (New)
 function fetchGoogleReviews() {
   const options = {
     hostname: 'places.googleapis.com',
