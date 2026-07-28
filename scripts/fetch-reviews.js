@@ -12,9 +12,44 @@ if (!API_KEY || !PLACE_ID) {
   process.exit(1);
 }
 
-// 1. Fetch reviews from Google Places API (Legacy with newest sort)
-function fetchGoogleReviews() {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
+// 1. Resolve canonical Place ID using Places API (New)
+function resolveCanonicalPlaceId() {
+  const options = {
+    hostname: 'places.googleapis.com',
+    path: `/v1/places/${PLACE_ID}`,
+    method: 'GET',
+    headers: {
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'id'
+    }
+  };
+
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode === 200 && parsed.id) {
+            resolve(parsed.id);
+          } else {
+            reject(new Error(`Failed to resolve canonical Place ID (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.end();
+  });
+}
+
+// 2. Fetch reviews from Google Places API (Legacy with newest sort)
+function fetchGoogleReviews(canonicalId) {
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${canonicalId}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -36,7 +71,7 @@ function fetchGoogleReviews() {
   });
 }
 
-// 2. Read existing reviews from reviews.yml
+// 3. Read existing reviews from reviews.yml
 function readExistingReviews() {
   try {
     if (fs.existsSync(REVIEWS_FILE_PATH)) {
@@ -50,11 +85,15 @@ function readExistingReviews() {
   return [];
 }
 
-// 3. Main execution block
+// 4. Main execution block
 async function main() {
   try {
+    console.log('Resolving canonical Place ID...');
+    const canonicalPlaceId = await resolveCanonicalPlaceId();
+    console.log(`Resolved canonical Place ID: ${canonicalPlaceId}`);
+
     console.log('Fetching latest Google Reviews...');
-    const googleReviews = await fetchGoogleReviews();
+    const googleReviews = await fetchGoogleReviews(canonicalPlaceId);
     console.log(`Successfully fetched ${googleReviews.length} reviews from Google.`);
 
     const existingReviews = readExistingReviews();
@@ -66,7 +105,7 @@ async function main() {
         name: r.author_name || 'Anonymous',
         stars: r.rating,
         verified: true,
-        googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
+        googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${canonicalPlaceId}`
       };
       if (r.text) {
         reviewObj.text = r.text;
