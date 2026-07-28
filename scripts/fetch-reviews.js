@@ -96,6 +96,9 @@ function readExistingReviews() {
 // 3. Main execution block
 async function main() {
   try {
+    console.log('Fetching place metadata...');
+    await fetchPlaceMetadata();
+
     console.log('Fetching latest Google Reviews...');
     const googleReviews = await fetchGoogleReviews();
     console.log(`Successfully fetched ${googleReviews.length} reviews from Google.`);
