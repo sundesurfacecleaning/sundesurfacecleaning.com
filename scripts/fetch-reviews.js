@@ -12,40 +12,8 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-// 1. Fetch place metadata from Google Places API (New) to debug the resolved ID and name
-function fetchPlaceMetadata() {
-  const options = {
-    hostname: 'places.googleapis.com',
-    path: `/v1/places/${PLACE_ID}`,
-    method: 'GET',
-    headers: {
-      'X-Goog-Api-Key': API_KEY,
-      'X-Goog-FieldMask': 'id,displayName'
-    }
-  };
-
-  return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          const parsed = JSON.parse(data);
-          console.log('DEBUG: Google Places Resolved Metadata:', JSON.stringify(parsed));
-          resolve(parsed);
-        } catch (err) {
-          reject(err);
-        }
-      });
-    });
-
-    req.on('error', reject);
-    req.end();
-  });
-}
-
-// 2. Fetch reviews from Google Places API (New)
-function fetchGoogleReviews() {
+// 1. Fallback Fetch: Queries the New Places Details API (No sorting support, but supports redirected IDs)
+function fetchReviewsNewApi() {
   const options = {
     hostname: 'places.googleapis.com',
     path: `/v1/places/${PLACE_ID}`,
@@ -66,20 +34,68 @@ function fetchGoogleReviews() {
           if (res.statusCode === 200) {
             resolve(parsed.reviews || []);
           } else {
-            reject(new Error(`API Error (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
+            reject(new Error(`New API Error (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
           }
         } catch (err) {
           reject(err);
         }
       });
     });
-
     req.on('error', reject);
     req.end();
   });
 }
 
-// 2. Read existing reviews from reviews.yml
+// 2. Resolve Place ID using Legacy Text Search by querying the exact business name
+function resolvePlaceIdLegacySearch() {
+  const query = encodeURIComponent("Sunde Surface Cleaning");
+  const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${API_KEY}`;
+
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode === 200 && parsed.status === 'OK' && parsed.results && parsed.results.length > 0) {
+            resolve(parsed.results[0].place_id);
+          } else {
+            reject(new Error(`Legacy Search Status: ${parsed.status}`));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }).on('error', reject);
+  });
+}
+
+// 3. Fetch reviews from Google Places API (Legacy using resolved Place ID and newest sort)
+function fetchReviewsLegacyApi(canonicalId) {
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${canonicalId}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
+
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode === 200 && (parsed.status === 'OK' || parsed.status === 'ZERO_RESULTS')) {
+            resolve((parsed.result && parsed.result.reviews) || []);
+          } else {
+            reject(new Error(`Legacy Details Status: ${parsed.status}`));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }).on('error', reject);
+  });
+}
+
+// 4. Read existing reviews from reviews.yml
 function readExistingReviews() {
   try {
     if (fs.existsSync(REVIEWS_FILE_PATH)) {
@@ -93,32 +109,62 @@ function readExistingReviews() {
   return [];
 }
 
-// 3. Main execution block
+// 5. Main execution block
 async function main() {
-  try {
-    console.log('Fetching place metadata...');
-    await fetchPlaceMetadata();
+  let googleReviews = [];
+  let isLegacyFetched = false;
 
-    console.log('Fetching latest Google Reviews...');
-    const googleReviews = await fetchGoogleReviews();
-    console.log(`Successfully fetched ${googleReviews.length} reviews from Google.`);
+  try {
+    console.log('Attempting to fetch newest reviews using Legacy API...');
+    try {
+      const activePlaceId = await resolvePlaceIdLegacySearch();
+      console.log(`Resolved active Place ID via Legacy Search: ${activePlaceId}`);
+      googleReviews = await fetchReviewsLegacyApi(activePlaceId);
+      console.log(`Successfully fetched ${googleReviews.length} newest reviews from Legacy API.`);
+      isLegacyFetched = true;
+    } catch (legacyError) {
+      console.warn(`Warning: Legacy API chain failed (${legacyError.message}). Falling back to New Details API (Relevance sort).`);
+    }
+
+    // Fallback: If Legacy fetch failed or returned nothing, query the New details API
+    if (!isLegacyFetched || googleReviews.length === 0) {
+      console.log('Executing fallback Reviews query (New Places Details API)...');
+      googleReviews = await fetchReviewsNewApi();
+      console.log(`Successfully fetched ${googleReviews.length} relevant reviews from New Places API.`);
+    }
 
     const existingReviews = readExistingReviews();
     console.log(`Loaded ${existingReviews.length} existing reviews from reviews.yml.`);
 
-    // Map Google Reviews format to our Jekyll Schema (omit empty text field)
+    // Map Google Reviews format to our Jekyll Schema
     const mappedReviews = googleReviews.map(r => {
-      const reviewObj = {
-        name: r.authorAttribution ? r.authorAttribution.displayName : 'Anonymous',
-        stars: r.rating,
-        verified: true,
-        googleLink: r.googleMapsUri || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
-      };
-      const textVal = r.text ? r.text.text : '';
-      if (textVal) {
-        reviewObj.text = textVal;
+      // Handle mapping differently based on which API response we are processing
+      if (r.authorAttribution || r.googleMapsUri) {
+        // New API structure
+        const reviewObj = {
+          name: r.authorAttribution ? r.authorAttribution.displayName : 'Anonymous',
+          stars: r.rating,
+          verified: true,
+          googleLink: r.googleMapsUri || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
+        };
+        const textVal = r.text ? r.text.text : '';
+        if (textVal) {
+          reviewObj.text = textVal;
+        }
+        return reviewObj;
+      } else {
+        // Legacy API structure
+        const reviewObj = {
+          name: r.author_name || 'Anonymous',
+          stars: r.rating,
+          verified: true,
+          googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
+        };
+        if (r.text) {
+          reviewObj.text = r.text;
+        }
+        return reviewObj;
       }
-      return reviewObj;
     });
 
     // Merge reviews (prevent duplicates based on author name and text snippet)
@@ -150,7 +196,7 @@ async function main() {
     console.log('Successfully updated _data/reviews.yml.');
 
   } catch (error) {
-    console.error('Migration execution failed:', error.message);
+    console.error('Fatal execution error:', error.message);
     process.exit(1);
   }
 }
