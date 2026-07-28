@@ -12,17 +12,22 @@ if (!API_KEY || !PLACE_ID) {
   process.exit(1);
 }
 
-// 1. Resolve canonical Place ID using Places API (New)
+// 1. Resolve canonical Place ID by searching for the business name
 function resolveCanonicalPlaceId() {
   const options = {
     hostname: 'places.googleapis.com',
-    path: `/v1/places/${PLACE_ID}`,
-    method: 'GET',
+    path: '/v1/places:searchText',
+    method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       'X-Goog-Api-Key': API_KEY,
-      'X-Goog-FieldMask': 'id'
+      'X-Goog-FieldMask': 'places.id,places.displayName'
     }
   };
+
+  const body = JSON.stringify({
+    textQuery: "Sunde Surface Cleaning Seattle"
+  });
 
   return new Promise((resolve, reject) => {
     const req = https.request(options, (res) => {
@@ -31,10 +36,10 @@ function resolveCanonicalPlaceId() {
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
-          if (res.statusCode === 200 && parsed.id) {
-            resolve(parsed.id);
+          if (res.statusCode === 200 && parsed.places && parsed.places.length > 0) {
+            resolve(parsed.places[0].id);
           } else {
-            reject(new Error(`Failed to resolve canonical Place ID (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
+            reject(new Error(`Failed to find place by text search (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : JSON.stringify(parsed)}`));
           }
         } catch (err) {
           reject(err);
@@ -43,6 +48,7 @@ function resolveCanonicalPlaceId() {
     });
 
     req.on('error', reject);
+    req.write(body);
     req.end();
   });
 }
