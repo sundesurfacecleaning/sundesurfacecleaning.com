@@ -4,7 +4,6 @@ const https = require('https');
 const yaml = require('js-yaml'); // Installed during GitHub Actions run
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-const PLACE_ID = process.env.PLACE_ID || 'ChIJHx1hPhi9em0RKp1Lxy5Hbmw';
 const REVIEWS_FILE_PATH = path.join(__dirname, '../_data/reviews.yml');
 
 if (!API_KEY) {
@@ -12,43 +11,33 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-// 1. Resolve canonical Place ID using Places API (New) Details call
-// (New details API resolves redirection automatically, and uses standard details permissions)
+// 1. Resolve canonical Place ID using Legacy Text Search API
+// (Supported by standard Places API key permissions, works for Service Area Businesses)
 function resolveCanonicalPlaceId() {
-  const options = {
-    hostname: 'places.googleapis.com',
-    path: `/v1/places/${PLACE_ID}`,
-    method: 'GET',
-    headers: {
-      'X-Goog-Api-Key': API_KEY,
-      'X-Goog-FieldMask': 'id'
-    }
-  };
+  const query = encodeURIComponent("Sunde Surface Cleaning Seattle");
+  const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
+    https.get(url, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
-          if (res.statusCode === 200 && parsed.id) {
-            resolve(parsed.id);
+          if (res.statusCode === 200 && parsed.status === 'OK' && parsed.results && parsed.results.length > 0) {
+            resolve(parsed.results[0].place_id);
           } else {
-            reject(new Error(`Failed to resolve canonical Place ID (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
+            reject(new Error(`Failed to find place by legacy text search (Status ${parsed.status || res.statusCode}): ${parsed.error_message || JSON.stringify(parsed)}`));
           }
         } catch (err) {
           reject(err);
         }
       });
-    });
-
-    req.on('error', reject);
-    req.end();
+    }).on('error', reject);
   });
 }
 
-// 2. Fetch reviews from Google Places API (Legacy using canonical ID and newest sort)
+// 2. Fetch reviews from Google Places API (Legacy using resolved Place ID and newest sort)
 function fetchGoogleReviews(canonicalId) {
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${canonicalId}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
 
@@ -89,7 +78,7 @@ function readExistingReviews() {
 // 4. Main execution block
 async function main() {
   try {
-    console.log('Resolving canonical Place ID...');
+    console.log('Resolving canonical Place ID via Legacy Text Search...');
     const canonicalPlaceId = await resolveCanonicalPlaceId();
     console.log(`Resolved canonical Place ID: ${canonicalPlaceId}`);
 
