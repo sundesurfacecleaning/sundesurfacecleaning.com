@@ -169,21 +169,31 @@ async function main() {
       }
     });
 
-    // Merge reviews (prevent duplicates based on author name and text snippet)
+    // Merge reviews (prevent duplicates based on author name and text snippet, updating date if match is found)
     const mergedReviews = [...existingReviews];
     let addedCount = 0;
+    let updatedCount = 0;
 
     for (const newReview of mappedReviews) {
-      const isDuplicate = existingReviews.some(
+      const existingIndex = mergedReviews.findIndex(
         ex => ex.name.toLowerCase() === newReview.name.toLowerCase() && 
               (ex.text || '').substring(0, 50) === (newReview.text || '').substring(0, 50)
       );
 
-      if (!isDuplicate) {
-        mergedReviews.push(newReview); // Add to the array (sorting will handle order)
+      if (existingIndex === -1) {
+        mergedReviews.push(newReview); // Add to the array as a new review
         addedCount++;
+      } else {
+        // If the review is already present, update its date with the real timestamp from the API
+        if (mergedReviews[existingIndex].date !== newReview.date) {
+          console.log(`Updating date for existing review by ${newReview.name} to real date: ${newReview.date}`);
+          mergedReviews[existingIndex].date = newReview.date;
+          updatedCount++;
+        }
       }
     }
+
+    console.log(`Merged reviews. Added ${addedCount} new reviews, updated ${updatedCount} dates, and sorted chronologically.`);
 
     // Sort all merged reviews (with date first, newest first)
     mergedReviews.sort((a, b) => {
