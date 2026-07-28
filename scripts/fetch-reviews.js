@@ -12,44 +12,28 @@ if (!API_KEY || !PLACE_ID) {
   process.exit(1);
 }
 
-// 1. Resolve canonical Place ID by searching for the business name
+// 1. Resolve canonical Place ID using Legacy Find Place from Text
 function resolveCanonicalPlaceId() {
-  const options = {
-    hostname: 'places.googleapis.com',
-    path: '/v1/places:searchText',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Goog-Api-Key': API_KEY,
-      'X-Goog-FieldMask': 'places.id,places.displayName'
-    }
-  };
-
-  const body = JSON.stringify({
-    textQuery: "Sunde Surface Cleaning Seattle"
-  });
+  const query = encodeURIComponent("Sunde Surface Cleaning Seattle");
+  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id,name&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
+    https.get(url, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
-          if (res.statusCode === 200 && parsed.places && parsed.places.length > 0) {
-            resolve(parsed.places[0].id);
+          if (res.statusCode === 200 && parsed.status === 'OK' && parsed.candidates && parsed.candidates.length > 0) {
+            resolve(parsed.candidates[0].place_id);
           } else {
-            reject(new Error(`Failed to find place by text search (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : JSON.stringify(parsed)}`));
+            reject(new Error(`Failed to find place by legacy search (Status ${parsed.status || res.statusCode}): ${parsed.error_message || JSON.stringify(parsed)}`));
           }
         } catch (err) {
           reject(err);
         }
       });
-    });
-
-    req.on('error', reject);
-    req.write(body);
-    req.end();
+    }).on('error', reject);
   });
 }
 
