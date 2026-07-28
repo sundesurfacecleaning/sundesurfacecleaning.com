@@ -14,10 +14,18 @@ if (!API_KEY || !PLACE_ID) {
 
 // 1. Fetch reviews from Google Places API (New)
 function fetchGoogleReviews() {
-  const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=reviews&key=${API_KEY}`;
+  const options = {
+    hostname: 'places.googleapis.com',
+    path: `/v1/places/${PLACE_ID}`,
+    method: 'GET',
+    headers: {
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'reviews'
+    }
+  };
 
   return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
+    const req = https.request(options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
@@ -32,7 +40,10 @@ function fetchGoogleReviews() {
           reject(err);
         }
       });
-    }).on('error', reject);
+    });
+
+    req.on('error', reject);
+    req.end();
   });
 }
 
