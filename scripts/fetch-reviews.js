@@ -145,7 +145,8 @@ async function main() {
           name: r.authorAttribution ? r.authorAttribution.displayName : 'Anonymous',
           stars: r.rating,
           verified: true,
-          googleLink: r.googleMapsUri || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
+          googleLink: r.googleMapsUri || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`,
+          date: r.publishTime || new Date().toISOString()
         };
         const textVal = r.text ? r.text.text : '';
         if (textVal) {
@@ -158,7 +159,8 @@ async function main() {
           name: r.author_name || 'Anonymous',
           stars: r.rating,
           verified: true,
-          googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
+          googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`,
+          date: r.time ? new Date(r.time * 1000).toISOString() : new Date().toISOString()
         };
         if (r.text) {
           reviewObj.text = r.text;
@@ -178,12 +180,19 @@ async function main() {
       );
 
       if (!isDuplicate) {
-        mergedReviews.unshift(newReview); // Put newer reviews at the top
+        mergedReviews.push(newReview); // Add to the array (sorting will handle order)
         addedCount++;
       }
     }
 
-    console.log(`Merged reviews. Added ${addedCount} new reviews.`);
+    // Sort all merged reviews (with date first, newest first)
+    mergedReviews.sort((a, b) => {
+      const dateA = a.date ? new Date(a.date) : new Date(0);
+      const dateB = b.date ? new Date(b.date) : new Date(0);
+      return dateB - dateA; // Descending order (newest first)
+    });
+
+    console.log(`Merged reviews. Added ${addedCount} new reviews and sorted chronologically.`);
 
     // Write back to _data/reviews.yml
     const yamlStr = yaml.dump(mergedReviews, {

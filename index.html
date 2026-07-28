@@ -208,6 +208,11 @@ layout: default
                             {% if review.verified %}
                             <span class="verified-badge">Verified Customer</span>
                             {% endif %}
+                            {% if review.date %}
+                            <span class="testimonial-date" style="font-size: 0.8rem; color: #888; margin-left: auto;">
+                                {{ review.date | date: "%b %Y" }}
+                            </span>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
