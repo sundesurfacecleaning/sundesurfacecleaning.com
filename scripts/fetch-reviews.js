@@ -4,81 +4,50 @@ const https = require('https');
 const yaml = require('js-yaml'); // Installed during GitHub Actions run
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+const PLACE_ID = process.env.PLACE_ID || 'ChIJHx1hPhi9em0RKp1Lxy5Hbmw';
 const REVIEWS_FILE_PATH = path.join(__dirname, '../_data/reviews.yml');
-const BUSINESS_FILE_PATH = path.join(__dirname, '../_data/business.yml');
 
 if (!API_KEY) {
   console.error('ERROR: GOOGLE_PLACES_API_KEY environment variable is required.');
   process.exit(1);
 }
 
-// 1. Get the official Business Name from business.yml or fallback
-function getBusinessName() {
-  try {
-    if (fs.existsSync(BUSINESS_FILE_PATH)) {
-      const fileContents = fs.readFileSync(BUSINESS_FILE_PATH, 'utf8');
-      const loaded = yaml.load(fileContents);
-      if (loaded && loaded.name) {
-        return loaded.name;
-      }
+// 1. Fetch reviews from Google Places API (New)
+function fetchGoogleReviews() {
+  const options = {
+    hostname: 'places.googleapis.com',
+    path: `/v1/places/${PLACE_ID}`,
+    method: 'GET',
+    headers: {
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'reviews'
     }
-  } catch (error) {
-    console.warn('Warning: Could not read business.yml for Name, using default.', error.message);
-  }
-  return 'Seattle Pressure Washing & Surface Restoration';
-}
-
-// 2. Resolve canonical Place ID using Legacy Text Search API with the official name
-function resolveCanonicalPlaceId() {
-  const businessName = getBusinessName();
-  const query = encodeURIComponent(`${businessName} Seattle`);
-  const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${API_KEY}`;
+  };
 
   return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
+    const req = https.request(options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
-          if (res.statusCode === 200 && parsed.status === 'OK' && parsed.results && parsed.results.length > 0) {
-            resolve(parsed.results[0].place_id);
+          if (res.statusCode === 200) {
+            resolve(parsed.reviews || []);
           } else {
-            reject(new Error(`Failed to find place by legacy text search (Status ${parsed.status || res.statusCode}): ${parsed.error_message || JSON.stringify(parsed)}`));
+            reject(new Error(`API Error (Status ${res.statusCode}): ${parsed.error ? parsed.error.message : data}`));
           }
         } catch (err) {
           reject(err);
         }
       });
-    }).on('error', reject);
+    });
+
+    req.on('error', reject);
+    req.end();
   });
 }
 
-// 3. Fetch reviews from Google Places API (Legacy using resolved Place ID and newest sort)
-function fetchGoogleReviews(canonicalId) {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${canonicalId}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
-
-  return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          const parsed = JSON.parse(data);
-          if (res.statusCode === 200 && (parsed.status === 'OK' || parsed.status === 'ZERO_RESULTS')) {
-            resolve((parsed.result && parsed.result.reviews) || []);
-          } else {
-            reject(new Error(`API Error (Status ${parsed.status || res.statusCode}): ${parsed.error_message || data}`));
-          }
-        } catch (err) {
-          reject(err);
-        }
-      });
-    }).on('error', reject);
-  });
-}
-
-// 4. Read existing reviews from reviews.yml
+// 2. Read existing reviews from reviews.yml
 function readExistingReviews() {
   try {
     if (fs.existsSync(REVIEWS_FILE_PATH)) {
@@ -92,15 +61,11 @@ function readExistingReviews() {
   return [];
 }
 
-// 5. Main execution block
+// 3. Main execution block
 async function main() {
   try {
-    console.log('Resolving canonical Place ID via Legacy Text Search...');
-    const canonicalPlaceId = await resolveCanonicalPlaceId();
-    console.log(`Resolved canonical Place ID: ${canonicalPlaceId}`);
-
     console.log('Fetching latest Google Reviews...');
-    const googleReviews = await fetchGoogleReviews(canonicalPlaceId);
+    const googleReviews = await fetchGoogleReviews();
     console.log(`Successfully fetched ${googleReviews.length} reviews from Google.`);
 
     const existingReviews = readExistingReviews();
@@ -109,13 +74,14 @@ async function main() {
     // Map Google Reviews format to our Jekyll Schema (omit empty text field)
     const mappedReviews = googleReviews.map(r => {
       const reviewObj = {
-        name: r.author_name || 'Anonymous',
+        name: r.authorAttribution ? r.authorAttribution.displayName : 'Anonymous',
         stars: r.rating,
         verified: true,
-        googleLink: r.author_url || `https://search.google.com/local/reviews?placeid=${canonicalPlaceId}`
+        googleLink: r.googleMapsUri || `https://search.google.com/local/reviews?placeid=${PLACE_ID}`
       };
-      if (r.text) {
-        reviewObj.text = r.text;
+      const textVal = r.text ? r.text.text : '';
+      if (textVal) {
+        reviewObj.text = textVal;
       }
       return reviewObj;
     });
