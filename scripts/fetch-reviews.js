@@ -5,16 +5,33 @@ const yaml = require('js-yaml'); // Installed during GitHub Actions run
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 const REVIEWS_FILE_PATH = path.join(__dirname, '../_data/reviews.yml');
+const BUSINESS_FILE_PATH = path.join(__dirname, '../_data/business.yml');
 
 if (!API_KEY) {
   console.error('ERROR: GOOGLE_PLACES_API_KEY environment variable is required.');
   process.exit(1);
 }
 
-// 1. Resolve canonical Place ID using Legacy Text Search API
-// (Supported by standard Places API key permissions, works for Service Area Businesses)
+// 1. Get the official Business Name from business.yml or fallback
+function getBusinessName() {
+  try {
+    if (fs.existsSync(BUSINESS_FILE_PATH)) {
+      const fileContents = fs.readFileSync(BUSINESS_FILE_PATH, 'utf8');
+      const loaded = yaml.load(fileContents);
+      if (loaded && loaded.name) {
+        return loaded.name;
+      }
+    }
+  } catch (error) {
+    console.warn('Warning: Could not read business.yml for Name, using default.', error.message);
+  }
+  return 'Seattle Pressure Washing & Surface Restoration';
+}
+
+// 2. Resolve canonical Place ID using Legacy Text Search API with the official name
 function resolveCanonicalPlaceId() {
-  const query = encodeURIComponent("Sunde Surface Cleaning Seattle");
+  const businessName = getBusinessName();
+  const query = encodeURIComponent(`${businessName} Seattle`);
   const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${API_KEY}`;
 
   return new Promise((resolve, reject) => {
@@ -37,7 +54,7 @@ function resolveCanonicalPlaceId() {
   });
 }
 
-// 2. Fetch reviews from Google Places API (Legacy using resolved Place ID and newest sort)
+// 3. Fetch reviews from Google Places API (Legacy using resolved Place ID and newest sort)
 function fetchGoogleReviews(canonicalId) {
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${canonicalId}&fields=reviews&reviews_sort=newest&key=${API_KEY}`;
 
@@ -61,7 +78,7 @@ function fetchGoogleReviews(canonicalId) {
   });
 }
 
-// 3. Read existing reviews from reviews.yml
+// 4. Read existing reviews from reviews.yml
 function readExistingReviews() {
   try {
     if (fs.existsSync(REVIEWS_FILE_PATH)) {
@@ -75,7 +92,7 @@ function readExistingReviews() {
   return [];
 }
 
-// 4. Main execution block
+// 5. Main execution block
 async function main() {
   try {
     console.log('Resolving canonical Place ID via Legacy Text Search...');
