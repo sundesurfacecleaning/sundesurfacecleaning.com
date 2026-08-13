@@ -45,4 +45,4 @@
         - name: Sammamish
           url: /services-sammamish
 - name: About
-  url: /#about
+  url: /about/

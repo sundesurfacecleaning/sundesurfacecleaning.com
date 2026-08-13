@@ -1263,3 +1263,182 @@
         .text-muted-italic { color: #666; font-style: italic; }
         .mt-1 { margin-top: 1rem; }
         .mt-2 { margin-top: 2rem; }
+
+        /* ==========================================================================
+           About Layout Styles
+           ========================================================================== */
+        .about-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 119, 200, 0.1);
+            color: var(--brand-azure);
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(0, 119, 200, 0.2);
+        }
+
+        .about-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .stat-card {
+            background: var(--brand-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 45, 114, 0.06);
+            border: 1px solid rgba(0, 45, 114, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 45, 114, 0.12);
+        }
+
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: var(--brand-navy);
+            line-height: 1.1;
+            font-family: var(--headings-font-family);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--brand-azure);
+            margin-top: 0.35rem;
+        }
+
+        .about-story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .about-story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .story-card-highlight {
+            background: linear-gradient(135deg, var(--brand-navy), #001A4E);
+            color: var(--brand-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(0, 45, 114, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card-highlight h3 {
+            color: var(--brand-white) !important;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-card-highlight p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .value-card {
+            background: var(--brand-white);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 45, 114, 0.08);
+            box-shadow: 0 6px 20px rgba(0, 45, 114, 0.05);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 45, 114, 0.12);
+            border-color: rgba(0, 119, 200, 0.3);
+        }
+
+        .value-icon-box {
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: 12px;
+            background: var(--brand-light-bg);
+            color: var(--brand-azure);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--brand-navy);
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .process-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .process-step-card {
+            background: var(--brand-light-bg);
+            padding: 1.75rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 45, 114, 0.06);
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--brand-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step-card h4 {
+            font-size: 1.1rem;
+            color: var(--brand-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step-card p {
+            font-size: 0.9rem;
+            color: var(--brand-navy);
+            line-height: 1.5;
+            margin: 0;
+        }
+
